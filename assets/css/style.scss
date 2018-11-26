@@ -1,0 +1,21 @@
+---
+---
+@import "bootstrap";
+@import "{{ site.theme }}";
+
+
+left{
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+right{
+    float: right;
+    width: 50%;
+    height: 100%;
+}
+
+.btn-basic .icon {
+  opacity: 0.6;
+  background: url("../images/home.png") 0 0 no-repeat;
+}
