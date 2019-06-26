@@ -9,8 +9,10 @@ What is boosting ? It is the idea to use a combination of "weak" classifiers ins
 
 $$ F(x) = \Sigma_m \gamma_m F_m(x) $$
 
-Bossting has been made famous with GDBT (implemented in the XGBoost lib). However we are going to seen a simpler method : Ada Boost.
+Boosting has been made famous with GDBT (implemented in the XGBoost lib). However we are going to seen a simpler method : Ada Boost.
 Ada Boost also had some glory in the past with the Viola-Jones detector that used a Haar cascade to detect face in black and white images.
+
+In this post, our objective will be to feat an arbitrary distribution of random varibale that have 0/1 realisation, we will know the true distribution and sample a set of point $(x, y \in [0, 1])$
 
 
 #### The base function : scaled logistic regression 
@@ -38,6 +40,7 @@ class LogisticRegression(torch.nn.Module):
 model = LogisticRegression(1.180)
 ```
 Let's have a look at the shape of the function.
+
 ![sigmoid](/assets/images/sigmoid.png)
 
 
@@ -89,20 +92,20 @@ Now, let's have a look at the implementation :
 
 ```python
 def ref_ada_boost(models, X, Y, weights=None):
-	"""
-	models: List[ScaledLogisticRegression]
-	X : torch tensor  of shape [N, 1]
-	Y : torch tensor  of shape [N]
-	weights: difficulty weight of size N
-	"""
-	# 0 : some sanity check
+    """
+    models: List[ScaledLogisticRegression]
+    X : torch tensor  of shape [N, 1]
+    Y : torch tensor  of shape [N]
+    weights: difficulty weight of size N
+    """
+    # 0 : some sanity check
     if weights is None:
         weights = (1. / X.shape[0]) * torch.ones(X.shape[0])
     else:
         weights = torch.tensor(weights)
         
     # 1. Bagging step, we sample from the dataset around half of the total size, we sample based on the difficulty
-    sampling = np.random.choice(list(range(X.shape[0])), int(X.shape[0] / 2), p=weights.numpy())
+    sampling = np.random.choice(list(range(X.shape[0])), int(0.5 * X.shape[0]), p=weights.numpy())
     X_sampled = X[sampling]
     Y_sampled = Y[sampling]
         
@@ -123,9 +126,10 @@ def ref_ada_boost(models, X, Y, weights=None):
     print("e = {}".format(e))
     # Early exit if the model doesn't do better than randomness
     if e < 0.5:
-    	return None
+        return None
 
     # 3.a we compute the w to add model_ to the ensemble (models), it depends on the error of the model
+    # Small change on the w formula, we use the correct elements instead
     model_.w = 0.5 * torch.log(e / (1 - e))
     print("w for this model", model_.w)
     
@@ -147,9 +151,9 @@ weights = ref_ada_boost(my_models, X, Y)
 for _ in range(10):
     assigned_weights = ref_ada_boost(my_models, X, Y, weights)
     if assigned_weights is None:
-    	break
+        break
     else:
-    	weights = assigned_weights
+        weights = assigned_weights
 ```
 
 ## Experiments
@@ -160,16 +164,20 @@ for _ in range(10):
 import numpy as np
 import random
 
+# The true probability distribution (values above 1 count  as 1)
 g = lambda x: (x - 1) ** 2
-
+# sampling process, given the probability from g(x) we get a 0 or a 1
 f = lambda x: 1 if random.random() < g(x) else 0
 
+# We sample a thousand points from the process described above
 x = np.array(list(map(lambda x: np.exp(x), np.linspace(-3, 0.9, 1000))))
 y = list(map(f, x))
 
+# Data used for the logistic regression
 X = torch.FloatTensor(np.array(x).reshape(-1, 1))
 Y = torch.FloatTensor(np.array(y))
 
+# The plot of the distribution
 plt.scatter(x, g(x))
 ```
 
@@ -177,10 +185,11 @@ plt.scatter(x, g(x))
 
 
 ##### Boosting of logistic regression
+
 We run this boosting procedure on the described U shape.
 
 ```python
-complete_prediction = sum([m.w * m(X) for m in my_new_models[:8]])
+complete_prediction = sum([m.w * m(X) for m in my_new_models])
 complete_prediction = torch.min(torch.ones(complete_prediction.shape), torch.max(torch.zeros(complete_prediction.shape),complete_prediction))
 
 plt.scatter(x, complete_prediction.detach().numpy())
