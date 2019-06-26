@@ -31,7 +31,7 @@ class LogisticRegression(torch.nn.Module):
         self.w = torch.ones(1)
         
     def forward(self, x):
-        y_pred = self.a * F.sigmoid(self.linear(x)) #+ self.b
+        y_pred = self.a * F.sigmoid(self.linear(x))
         return y_pred
     
     
@@ -40,6 +40,38 @@ model = LogisticRegression(1.180)
 Let's have a look at the shape of the function.
 ![sigmoid](/assets/images/sigmoid.png)
 
+
+#### The base training procedure
+
+For information, we train the logistic regression model with Adam usingthe full dataset as it is very small.
+
+```python
+cap = lambda X: torch.min(torch.ones(X.shape[0]), torch.max(torch.zeros(X.shape[0]), X))
+total_pred = lambda models, X: cap(sum([m.w * m(X)[:, 0] for m in models]))
+
+def train_(models, model_, X, Y, X_importance=None):
+    if X_importance is None:
+        X_importance = (1. / X.shape[0]) * torch.ones(X.shape[0])
+    else:
+        X_importance = torch.tensor(weights)
+        
+    def routine(optimizer):
+        for epoch in range(1000):
+            model_.train()
+            optimizer.zero_grad()
+            # Forward pass
+            Y_pred = total_pred(models + [model_], X)
+            # Compute Loss
+            loss = F.binary_cross_entropy(Y_pred, Y, weight=X.shape[0] * X_importance)
+            # Backward pass
+            if epoch % 500 == 0:
+                print(loss)
+            loss.backward()
+            optimizer.step()
+
+    routine(torch.optim.Adam(model_.parameters(), lr=0.05))
+    routine(torch.optim.Adam(model_.parameters(), lr=0.01))
+```
 
 #### The algorithm
 
@@ -54,6 +86,7 @@ $$ \epsilon_m = \Sigma_i D_m(i)[y_i \neq F(x_i)] $$
 From the performance here, we will add the model to the ensemble with a coefficient based on this error.
 
 Now, let's have a look at the implementation : 
+
 ```python
 def ref_ada_boost(models, X, Y, weights=None):
 	"""
@@ -78,16 +111,22 @@ def ref_ada_boost(models, X, Y, weights=None):
     train_(models, model_, X_sampled, Y_sampled)
     
     # 3. computation of performance 
-    pre_prediction = total_pred(models + [model_], X)
-    print("Training finished with loss : {}".format(F.binary_cross_entropy(pre_prediction, Y, weight=X.shape[0] * X_importance)))
+    total_prediction = total_pred(models + [model_], X)
+    print("Training finished with loss : {}".format(F.binary_cross_entropy(total_prediction, Y)))
     
+    pre_prediction = total_pred([model_], X)
     prediction = (pre_prediction >= 0.5).float()
-    label_correctness = (prediction == Y_sampled).float()
+    label_correctness = (prediction == Y).float()
     
-    non_agg  = weights[sampling] * label_correctness
+    non_agg  = weights * label_correctness
     e = torch.sum(non_agg)
-    # 3.a we compute the w to add model_ to the ensemble (models)
-    model_.w = 0.5 * torch.log((1 - e) / e)
+    print("e = {}".format(e))
+    # Early exit if the model doesn't do better than randomness
+    if e < 0.5:
+    	return None
+
+    # 3.a we compute the w to add model_ to the ensemble (models), it depends on the error of the model
+    model_.w = 0.5 * torch.log(e / (1 - e))
     print("w for this model", model_.w)
     
     # 3.b the recompute the weights based on performances
@@ -106,7 +145,11 @@ weights = ref_ada_boost(my_models, X, Y)
 
 # Multiple rounds are needed to feat correctly the curve
 for _ in range(10):
-    weights = ref_ada_boost(my_models, X, Y, weights)
+    assigned_weights = ref_ada_boost(my_models, X, Y, weights)
+    if assigned_weights is None:
+    	break
+    else:
+    	weights = assigned_weights
 ```
 
 ## Experiments
@@ -147,5 +190,6 @@ Y_pred = my_new_models[0](X).detach().numpy().flatten()
 plt.plot(x, Y_pred)
 ```
 
+We can observe the original curve, the boosted model in thick and the first learned model in thin.
 ![parabolic_curve_feated](/assets/images/parabolic_curve_feated.png)
 
