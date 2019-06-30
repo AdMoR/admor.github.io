@@ -9,10 +9,14 @@ What is boosting ? It is the idea to use a combination of "weak" classifiers ins
 
 $$ F(x) = \Sigma_m \gamma_m F_m(x) $$
 
-Boosting has been made famous with GDBT (implemented in the XGBoost lib). However we are going to seen a simpler method : Ada Boost.
-Ada Boost also had some glory in the past with the Viola-Jones detector that used a Haar cascade to detect face in black and white images.
+F is built iteratively by adding at each iteration a function $$ \gamma_m F_m(x) $$ that will feat an altered version of the training set (X, Y).
 
-In this post, our objective will be to feat an arbitrary distribution of random varibale that have 0/1 realisation, we will know the true distribution and sample a set of point $(x, y \in [0, 1])$
+
+Boosting has been made famous with GDBT (implemented in the XGBoost lib). However we are going to see a simpler method : Ada Boost.
+Ada Boost also had some glory in the past with the Viola-Jones detector that used a Haar cascade to detect faces in black and white images.
+
+In this post, our objective will be to feat an arbitrary distribution of random varibale that have 0/1 realisation, we will know the true distribution and sample a set of points $$(x, y \in [0, 1])$$.
+More over, we will do this with sclaed logistic regression unlike most of other approaches.
 
 
 #### The base function : scaled logistic regression 
@@ -46,7 +50,7 @@ Let's have a look at the shape of the function.
 
 #### The base training procedure
 
-For information, we train the logistic regression model with Adam usingthe full dataset as it is very small.
+For information, we train the logistic regression model with Adam using the full dataset as it is very small.
 
 ```python
 cap = lambda X: torch.min(torch.ones(X.shape[0]), torch.max(torch.zeros(X.shape[0]), X))
@@ -82,11 +86,19 @@ Now let's see how Ada Boost works.
 The algorithm has many variants, but we will use a simple version. 
 
 AdaBoost maintains a score per sample that correspond to its difficulty so far. The difficulty correspond to how much the sample is misclassified.
-Each time we add a new model to the ensemble, we try to reduce the error of the model weighted by this difficulty.
+Each time we add a new model to the ensemble, we try to reduce the error of the ensemble weighted by the difficulty.
 
 $$ \epsilon_m = \Sigma_i D_m(i)[y_i \neq F(x_i)] $$
 
-From the performance here, we will add the model to the ensemble with a coefficient based on this error.
+We will add the model Fm learned on this round to the ensemble with a coefficient based on this error.
+
+
+__Summary__
+- 1. Bagging : select N_sample / 2 element of the training set using sample with replacement using the weights as probability distribution
+- 2. Train the model m by minimizing the loss of the ensemble on the training set selected before
+- 3. Compute performance to find the coefficient with which the model model will be added to the ensemble
+- 4. Update the weights based on the latest performance of the model
+
 
 Now, let's have a look at the implementation : 
 
