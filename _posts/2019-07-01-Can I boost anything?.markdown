@@ -94,10 +94,10 @@ We will add the model Fm learned on this round to the ensemble with a coefficien
 
 
 __Summary__
-- 1. Bagging : select N_sample / 2 element of the training set using sample with replacement using the weights as probability distribution
-- 2. Train the model m by minimizing the loss of the ensemble on the training set selected before
-- 3. Compute performance to find the coefficient with which the model model will be added to the ensemble
-- 4. Update the weights based on the latest performance of the model
+1. Bagging : select N_sample / 2 element of the training set using sample with replacement using the weights as probability distribution
+2. Train the model m by minimizing the loss of the ensemble on the training set selected before
+3. Compute performance to find the coefficient with which the model model will be added to the ensemble
+4. Update the weights based on the latest performance of the model
 
 
 Now, let's have a look at the implementation : 
@@ -140,12 +140,12 @@ def ref_ada_boost(models, X, Y, weights=None):
     if e < 0.5:
         return None
 
-    # 3.a we compute the w to add model_ to the ensemble (models), it depends on the error of the model
+    # 3 - we compute the w to add model_ to the ensemble (models), it depends on the error of the model
     # Small change on the w formula, we use the correct elements instead
     model_.w = 0.5 * torch.log(e / (1 - e))
     print("w for this model", model_.w)
     
-    # 3.b the recompute the weights based on performances
+    # 4 - the recompute the weights based on performances
     sigma = 2 * (e * (1-e)) ** 0.5
     print("sigma", sigma)
     for i, index in enumerate(set(sampling)):
@@ -196,7 +196,7 @@ plt.scatter(x, g(x))
 ![parabolic_curve](/assets/images/parabolic_curve.png)
 
 
-##### Boosting of logistic regression
+#### Boosting of logistic regression
 
 We run this boosting procedure on the described U shape.
 
@@ -214,3 +214,14 @@ plt.plot(x, Y_pred)
 We can observe the original curve, the boosted model in thick and the first learned model in thin.
 ![parabolic_curve_feated](/assets/images/parabolic_curve_feated.png)
 
+## Conclusion
+
+We have seen that Ada Boost can provide some modeling power even if the function used for the boosting is not a decision tree. Let's conclude with this list of pros and cons.
+
+#### Pros
+- Feat arbitrary shape with function that have limited modeling power
+- Almost no change to the training procedure of the original model --> easy to add to any system
+
+#### Cons
+- The methods is threshold based, >0.5 means 1 in term of classification. This should be adapted for efficiently handling probability distributions.
+- Prediction costs increases rapidly (fortunately logistic regression is very simple, thus fast enough)
