@@ -1,9 +1,9 @@
 ---
-description: Hand picked paper on application of graph convolution
+description: Hand picked papers on application of graph convolution
 tags: convolutional neural networks graph pooling 
 ---
 
-## Why are graph neural net interesting
+## Why are graph neural net worth of your interest ?
 
 Because of the applications, it ranges from 3D mesh object to recommandation with rich data annotation.
 The only problem it has, is that application of neural networks is non trivial. There is no obvious, built in graph operator.
@@ -12,7 +12,7 @@ This is why I will present some papers that use different methods.
 
 
 <br/>
-## Nice articles on graph convolution and pooling
+## Insighful articles on graph convolution and graph pooling
 
 #### Variational Autoencoders for Deforming 3D Mesh Models
 
@@ -29,12 +29,12 @@ Main elements :
 <br/><br/>
 #### Weighted Graph Cuts without Eigenvectors: A Multilevel Approach
 
-__This paper presents the fundamental Graclus algorithm to build a pooling operation for graphs.__
+__This paper presents the fundamental Graclus algorithm used to build a pooling operation for graphs.__
 
 This paper presents a way to do clustering on large scale graph through a hierarchical strategy.
 The Graclus pooling method allows to reduce the original graph to a reasonable size. From the labels extracted from the higher order graph, a refinedment strategy allows to propagates the labels to all lower order graph until the initial one is reached.
 
-A very good figure from the paper illustrates this idea for a clustering algorithm with 2 clusters.
+A figure from the paper illustrates this idea for a clustering algorithm with 2 clusters.
 
 ![graclus steps](/assets/images/graclus_fig.png)
 
@@ -67,9 +67,9 @@ Main steps :
 - Curriculum training and efficient map reduce schema
 
 
-Neighbourhood feature is defined as the weigthed mean of the neighbourhood nodes features. The neighbourhood is defined thanks to the weights extracted through random walk.
+The eighbourhood feature is defined as the weigthed mean of the neighbourhood nodes features. The neighbourhood is defined thanks to the weights extracted through random walk.
 
-Pooling done in an inverse manner, we first select the nodes we want to have after the k convolutions. 
+The pooling done in an inverse manner, we first select the nodes we want to have after the k convolutions. 
 For batch b, we select n_batch nodes N and wish to stack K convolutions. 
 We thus proceed to build S(k) recursively with S(K) = {N} and S(k-1) = S(k) + neighbourhood(k)
 
