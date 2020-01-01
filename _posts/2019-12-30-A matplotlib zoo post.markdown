@@ -42,7 +42,8 @@ ax.set_yticks(prob)
 ![cumulative distribution](/assets/images/cum_distribution_with_ticks.jpg)
 
 
-
+\x0A
+\x0A
 
 # Plot the most frequent terms 
 
@@ -118,8 +119,11 @@ import pandas as pd
 df = pd.read_csv("/Users/a.morvan/Downloads/US_Accidents_May19.csv")
 data = df["Weather_Condition"].values
 counter = Counter(data)
-c_normalised = Counter({k: v / total_count for k, v in counter.items()})
-plot_count(c_normalised, "Accident weather type distribution", counted=True)
+c_normalised = Counter({k: v / total_count 
+                        for k, v in counter.items()})
+plot_count(c_normalised, 
+           "Accident weather type distribution", 
+           counted=True)
 ```
 
 ![My plot count](/assets/images/distribution_weather.jpg)
@@ -128,16 +132,21 @@ plot_count(c_normalised, "Accident weather type distribution", counted=True)
 Now let's have a look at the difference when the accident is on a roundabout
 
 ```python
+# Collect roundabout accident only weather conditions
 df_roundabout = df[df["Roundabout"] == True]
-
 data = df_roundabout["Weather_Condition"].values
 
+# Apply the count 
 roundabout_weather_counter = Counter(data)
 total_roundabout = sum(roundabout_weather_counter.values())
-center_normalised_roundabout_weather_counter = Counter({k: (v / total_roundabout) - c_normalised[k] 
-                                                        for k, v in roundabout_weather_counter.items()})
+# Difference : remove the global avergae on each category !!!
+center_normalised_roundabout_weather_counter = \
+    Counter({k: (v / total_roundabout) - c_normalised[k] 
+             for k, v in roundabout_weather_counter.items()})
 
-plot_count(center_normalised_roundabout_weather_counter, "Accident weather type distribution on roundabouts", counted=True)
+plot_count(center_normalised_roundabout_weather_counter, 
+           "Accident weather type distribution on roundabouts", 
+           counted=True)
 ```
 
 ![My plot count for subgroup](/assets/images/distribution_difference_weather.jpg)
