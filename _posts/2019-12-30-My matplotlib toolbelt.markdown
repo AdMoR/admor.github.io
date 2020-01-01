@@ -1,10 +1,10 @@
 ---
-description: A cheatsheet of useful plots with all the fancy options.
+description: Some useful plots with all the fancy options.
 tags: matplotlib python 
 ---
 
 
-I collected a number of code sample to plot graphs. All of them needed me to google a few things and dive into the matplotlib documentation.
+I collected a number of code samples to plot graphs. All of them needed me to google a few things and dive into the matplotlib documentation.
 So it is usually a good starting point when you start a new analysis.
 
 We will see three examples
@@ -52,7 +52,7 @@ ax.set_yticks(prob)
 <br/>
 <br/>
 
-# Plot the most frequent terms 
+# Plot the most frequent terms from an array
 
 Seaborn has an built-in function, but we can do a little bit better without much effort.  
 Note that it is relatively painful to change the plot options with the seaborn way.
@@ -122,7 +122,7 @@ This will be even more useful with our next example.
 
 <br/>
 <br/>
-# Plot the relative frequencies compared to average with custom countplots
+# Plot relative frequencies
 
 We will use data from the US accident dataset.
 
@@ -141,7 +141,7 @@ plot_count(c_normalised,
 ![My plot count](/assets/images/distribution_weather.jpg)
 
 
-Now let's have a look at the difference when the accident is on a roundabout
+Now let's have a look at the difference when the accident is on a roundabout.
 
 ```python
 # Collect roundabout accident only weather conditions
@@ -163,6 +163,8 @@ plot_count(center_normalised_roundabout_weather_counter,
 
 ![My plot count for subgroup](/assets/images/distribution_difference_weather.jpg)
 
+
+This is a great way to find variables that can be predictive of a particular event.
 
 
 
