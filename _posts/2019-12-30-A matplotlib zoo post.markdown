@@ -3,13 +3,12 @@ description: A cheatsheet of useful plots with all the fancy options.
 tags: matplotlib python 
 ---
 
-# Code samples 
 
 I collected a number of code sample to plot graphs. All of them needed me to google a few things and dive into the matplotlib documentation.
 So it is usually a good starting point when you start a new analysis.
 
-
-### The cumulative distribution with hist
+  
+# The cumulative distribution with hist
 
 
 ![cumulative distribution](/assets/images/cum_distribution.jpg)
@@ -45,7 +44,7 @@ ax.set_yticks(prob)
 
 
 
-### Plot the most frequent terms 
+# Plot the most frequent terms 
 
 Seaborn has an built-in function, but we can do a little bit better without much effort.
 
@@ -95,17 +94,22 @@ def plot_count(data,  title="", counted=False):
 plot_count(data, "Favorite animals")
 ```
 
-![different countplots 1](/assets/images/seaborn_count.jpg)
+We get the following plots :
+  
 
+![different countplots 1](/assets/images/seaborn_count.jpg)
+The Seaborn countplot
 
 ![different countplots 2](/assets/images/custom_count.jpg)
+And out custom countplot
 
 
 With our custom plot, we can easily see which animal is everyone favorite !
+This will be event more useful with our next example.
+   
 
 
-
-### Plot the relative frequencies compared to average with custom countplots
+# Plot the relative frequencies compared to average with custom countplots
 
 We will use data from the US accident dataset.
 
@@ -115,7 +119,7 @@ df = pd.read_csv("/Users/a.morvan/Downloads/US_Accidents_May19.csv")
 data = df["Weather_Condition"].values
 counter = Counter(data)
 c_normalised = Counter({k: v / total_count for k, v in counter.items()})
-plot_count(c_normalised, "Accident weather type distribution")
+plot_count(c_normalised, "Accident weather type distribution", counted=True)
 ```
 
 ![My plot count](/assets/images/distribution_weather.jpg)
