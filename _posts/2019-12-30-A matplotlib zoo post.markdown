@@ -1,75 +1,127 @@
 ---
-description: A collection of pieces of code to create useful plots
+description: A cheatsheet of useful plots with all the fancy options.
 tags: matplotlib python 
 ---
 
 # Code samples 
 
-The goal of this post is to present some useful tools to plot classifcial data and some example usages.
+I collected a number of code sample to plot graphs. All of them needed me to google a few things and dive into the matplotlib documentation.
+So it is usually a good starting point when you start a new analysis.
 
 
-### The cumulative distribution 
+### The cumulative distribution with hist
 
-Easy to use but it took me some time to find it back.
+
+![cumulative distribution](/assets/images/cum_distribution.jpg)
+
+
+Easy enough with hist. However it is often 
 
 ```python
-x_values_you_want_to_see = range(100)
-data = [2, 2, 4, 10, 2, 2, 2, 10000]
-plt.hist(data, None, histtype='step', cumulative=True, normed=True)
+fig, ax = plt.subplots()
+data = [np.random.lognormal(3, 0.1) for _ in range(10000)] 
 
+max_val = int(np.quantile(data, 0.99))
+min_val = int(np.quantile(data, 0.01))
+
+ax.hist(data, None, histtype='step', cumulative=True, density=True)
+
+ax.set_xlim(min_val, max_val)
 ```
 
-![cumulative distribution](/assets/images/cum_distribution.png)
-
-
-### Plot the most frequent terms in an array
-
-Two options : 
-
-From the full array of values
+You can pimp a little bit your histogram to be able to read the probabilities
 
 ```python
-sns.countplot()
+fig, ax = plt.subplots()
+data = [np.random.lognormal(3, 0.1) for _ in range(10000)] 
+
+max_val = int(np.quantile(data, 0.99))
+min_val = int(np.quantile(data, 0.01))
+
+prob, buckets, _ = ax.hist(data, None, histtype='step', cumulative=True, density=True)
+
+ax.set_xlim(min_val, max_val)
+ax.set_xticks(buckets)
+ax.set_yticks(prob)
 ```
 
-You have a collections.Counter built from the previous array.
-It allows to display only the top-k most frequent items.
+![cumulative distribution](/assets/images/cum_distribution_with_ticks.jpg)
+
+
+
+
+### Plot the most frequent terms 
+
+Seaborn has an built-in function, but we can do a little bit better without much effort.
+
 
 ```python
-def plot_count(counter,  title):
+import seaborn as sns
+from collections import Counter
+
+
+# Generate the data
+choices = ["Poney", "Cat", "Dog", "Insect", "Bug", "Turtle", "Guinea pig", 
+           "Pig", "Horse", "Lion", "Dragon", "Unicorn", "Elephant", "Others", "Kangoroo", 
+           "Koala", "Dolphin", "Shark", "Rat", "Cockroach", "Beatle", "Gull", "Crow", "Eagle"]
+prob = np.array([np.random.random() for _ in range(len(choices))])
+prob /= sum(prob)
+data = [np.random.choice(choices, p=prob) for _ in range(10000)] 
+
+# Seaborn Countplot
+fig, ax = plt.subplots()
+sns.countplot(data)
+plt.xticks(range(len(choices)), choices, rotation="vertical", fontsize=10)
+
+
+# Custom Countplot
+def plot_count(data,  title="", counted=False):
+    
+    plt.style.use("seaborn")
+    
+    if not counted:
+        counter = Counter(data)
+    else:
+        counter = data
+    
     fig, ax = plt.subplots()
     size = 10
     most_common = counter.most_common(20)
     
     for i, l in enumerate(most_common):
-        rects1 = ax.bar(size * i, l[1], size / 2, label=str(l[0]))
+        rects1 = ax.bar(size * i, l[1], size / 1.5, label=str(l[0]))
     
     labels = [most_common[i][0] for i in range(len(most_common))]
     ticks = [size * i for i in range(len(most_common))]
-    
     ax.set_title(title)
-    
     plt.xticks(ticks, labels, rotation="vertical", fontsize=10)
+    
+    
+plot_count(data, "Favorite animals")
 ```
 
+![different countplots 1](/assets/images/countplot_seaborn.jpg)
+![different countplots 2](/assets/images/countplot_custom.jpg)
 
-# Application examples
+
+With our custom plot, we can easily see which animal is everyone favorite !
 
 
-## Basic analysis in the US accident dataset
 
-Get the basic information
+### Plot the relative frequencies compared to average with custom countplots
+
+We will use data from the US accident dataset.
 
 ```python
 import pandas as pd
 df = pd.read_csv("/Users/a.morvan/Downloads/US_Accidents_May19.csv")
 data = df["Weather_Condition"].values
-c = Counter(data)
-c_normalised = Counter({k: v / total_count for k, v in c.items()})
+counter = Counter(data)
+c_normalised = Counter({k: v / total_count for k, v in counter.items()})
 plot_count(c_normalised, "Accident weather type distribution")
 ```
 
-![My plot count](/assets/images/distribution_weather.png)
+![My plot count](/assets/images/distribution_weather.jpg)
 
 
 Now let's have a look at the difference when the accident is on a roundabout
@@ -84,11 +136,11 @@ total_roundabout = sum(roundabout_weather_counter.values())
 center_normalised_roundabout_weather_counter = Counter({k: (v / total_roundabout) - c_normalised[k] 
                                                         for k, v in roundabout_weather_counter.items()})
 
-plot_count(center_normalised_roundabout_weather_counter, "Accident weather type distribution on roundabouts")
+plot_count(center_normalised_roundabout_weather_counter, "Accident weather type distribution on roundabouts", counted=True)
 ```
 
+![My plot count for subgroup](/assets/images/distribution_difference_weather.jpg)
 
-![My plot count for subgroup](/assets/images/distribution_difference_weather.png)
 
 
 
