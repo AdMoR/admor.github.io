@@ -29,15 +29,10 @@ ax.hist(data, None, histtype='step', cumulative=True, density=True)
 ax.set_xlim(min_val, max_val)
 ```
 
-You can pimp a little bit your histogram to be able to read the probabilities
+You can pimp a little bit your histogram to be able to read the probabilities.
+We can just change the last lines to have : 
 
 ```python
-fig, ax = plt.subplots()
-data = [np.random.lognormal(3, 0.1) for _ in range(10000)] 
-
-max_val = int(np.quantile(data, 0.99))
-min_val = int(np.quantile(data, 0.01))
-
 prob, buckets, _ = ax.hist(data, None, histtype='step', cumulative=True, density=True)
 
 ax.set_xlim(min_val, max_val)
@@ -100,8 +95,10 @@ def plot_count(data,  title="", counted=False):
 plot_count(data, "Favorite animals")
 ```
 
-![different countplots 1](/assets/images/countplot_seaborn.jpg)
-![different countplots 2](/assets/images/countplot_custom.jpg)
+![different countplots 1](/assets/images/seaborn_count.jpg)
+
+
+![different countplots 2](/assets/images/custom_count.jpg)
 
 
 With our custom plot, we can easily see which animal is everyone favorite !
