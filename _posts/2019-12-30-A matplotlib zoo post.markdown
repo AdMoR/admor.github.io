@@ -7,6 +7,11 @@ tags: matplotlib python
 I collected a number of code sample to plot graphs. All of them needed me to google a few things and dive into the matplotlib documentation.
 So it is usually a good starting point when you start a new analysis.
 
+We will see three examples
+- A cumulative distribution 
+- A count plot
+- A frequency plot
+
 <br/>
 <br/>
 
@@ -49,7 +54,8 @@ ax.set_yticks(prob)
 
 # Plot the most frequent terms 
 
-Seaborn has an built-in function, but we can do a little bit better without much effort.
+Seaborn has an built-in function, but we can do a little bit better without much effort.  
+Note that it is relatively painful to change the plot options with the seaborn way.
 
 
 ```python
@@ -68,7 +74,9 @@ data = [np.random.choice(choices, p=prob) for _ in range(10000)]
 # Seaborn Countplot
 fig, ax = plt.subplots()
 sns.countplot(data)
-plt.xticks(range(len(choices)), choices, rotation="vertical", fontsize=10)
+ax = plt.gca()
+labels = [t.get_text() for t in ax.get_xticklabels()]
+plt.xticks(range(len(choices)), labels, rotation="vertical", fontsize=10)
 
 
 # Custom Countplot
