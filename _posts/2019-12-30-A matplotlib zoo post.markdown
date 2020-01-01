@@ -7,7 +7,9 @@ tags: matplotlib python
 I collected a number of code sample to plot graphs. All of them needed me to google a few things and dive into the matplotlib documentation.
 So it is usually a good starting point when you start a new analysis.
 
-  
+<br/>
+<br/>
+
 # The cumulative distribution with hist
 
 
@@ -42,8 +44,8 @@ ax.set_yticks(prob)
 ![cumulative distribution](/assets/images/cum_distribution_with_ticks.jpg)
 
 
-\x0A
-\x0A
+<br/>
+<br/>
 
 # Plot the most frequent terms 
 
@@ -100,16 +102,18 @@ We get the following plots :
 
 ![different countplots 1](/assets/images/seaborn_count.jpg)
 The Seaborn countplot
+<br/>
 
 ![different countplots 2](/assets/images/custom_count.jpg)
 And out custom countplot
 
 
-With our custom plot, we can easily see which animal is everyone favorite !
-This will be event more useful with our next example.
+With our custom plot, we can easily see which animal is everyone's favorite !
+This will be even more useful with our next example.
    
 
-
+<br/>
+<br/>
 # Plot the relative frequencies compared to average with custom countplots
 
 We will use data from the US accident dataset.
