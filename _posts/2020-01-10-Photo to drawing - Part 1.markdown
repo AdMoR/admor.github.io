@@ -17,7 +17,7 @@ From this, we could add colour and have a perfectly drawable representation of o
 3 easy steps :
 - Sample N random spatial clusters in the image
 - For each cluster, find the mean color
-- Reduce the number of colours by clustering the color of the image
+- Reduce the number of colours to M by clustering the color of the image
 
 
 <br/>
@@ -35,6 +35,19 @@ The result with 1000 clusters and 20 colors
 
 <br/>
 <br/>
+
+# Bonus : drawing only the boundary 
+
+If the region are small enough, drawing the boundary of the cell could be enough to get the idea.  
+To do so, we can follow these 4 easy steps :
+- Get the eqaation of the mediator line for all pair of centers
+- For each point of the line, determine if their are indeed closer to the two centers than the others. These point are the boundaries we are looking for.
+- Plot two line for each line, one of each center color.
+
+
+![im3](/assets/images/voronoi_cells.png)
+
+
 
 ### The code 
 
@@ -143,3 +156,5 @@ n_points = 1000
 n_colors = 20
 show_result(img)
 ```
+
+
