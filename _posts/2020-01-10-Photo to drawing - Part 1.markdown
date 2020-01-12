@@ -57,4 +57,4 @@ Do it and see by yourself that it is not a very powerful way to do it.
 However the performance of the raw implemntation is pretty poor. It takes large amount of time for small images and the scaling is horrible.  
 Part 2 of this post will look at solving these issues.
 
-The code is available [here][https://github.com/AdMoR/PlotterExperiments/blob/master/notebooks/voronoi%20and%20co.ipynb]
+The code is available [here](https://github.com/AdMoR/PlotterExperiments/blob/master/notebooks/voronoi%20and%20co.ipynb)
