@@ -1,5 +1,5 @@
 ---
-description: Essential ressources to use it for fun and profit
+description: Essential ressources to use for fun and profit
 tags: NLP transformers text generation
 ---
 
@@ -22,7 +22,7 @@ Rather than repetiting something that has already been done better, here are the
 
 ### Getting started to experiment
 
-I would recommend using HuggingFace great repository on Github to play with this kid of architecture as they have all the state of the art models
+I would recommend using HuggingFace great repository on Github to play with this kind of architecture as they have all the state of the art models
 
 [HuggingFace's Transformers](https://github.com/huggingface/transformers)
 
@@ -33,13 +33,13 @@ They support both Pytorch and Tensorflow, so everyone gets what he needs.
 
 The problem of modern language model is their size and the scale needed to train them.
 The most recent models may need a complete cluster equipped with powerful graphic cards to be trained.
-These models may not always perform the best for the task that you need.
+These models may not always perform the best for the task that you want to solve.
 
 
 Here are some insights on what can be done to save on your AWS bill : 
 
 - Bag of words models remain relatively comptetitve according to this [study](https://arxiv.org/pdf/1806.06259.pdf). When little data is available, they are a more than satisfactory solution and easy to implement.
 
-- [Distillation](https://arxiv.org/abs/1910.01108) can help to reduce the model size and improve the inference speed, while keeping most of the performance.
+- [Distillation](https://arxiv.org/abs/1910.01108) can help to reduce the model size and improve the inference speed, while keeping most of the performance. You can then train your distilled model if you need to.
 
 
