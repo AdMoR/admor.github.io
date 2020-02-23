@@ -12,7 +12,7 @@ However even if the paper [Attention is all you need](https://arxiv.org/pdf/1706
 This post is my personal cheatsheet for this kind of models.
 
 
-## Understanding the architecture
+### Understanding the architecture
 
 Rather than repetiting something that has already been done better, here are the links for understanding the model that I found the most helpful.
 
@@ -20,7 +20,7 @@ Rather than repetiting something that has already been done better, here are the
 - [The annotated Transformer](http://nlp.seas.harvard.edu/2018/04/03/attention.html) : Detailled implementation of the model, step by step. Really insightful to understand the details of the architecture
 
 
-## Getting started to experiment
+### Getting started to experiment
 
 I would recommend using HuggingFace great repository on Github to play with this kid of architecture as they have all the state of the art models
 
@@ -38,7 +38,7 @@ These models may not always perform the best for the task that you need.
 
 Here are some insights on what can be done to save on your AWS bill : 
 
-- Bag of words models remain relatively comptetitve according to this [study](https://arxiv.org/pdf/1806.06259.pdf). When little data is available, they are a solution easy to implement.
+- Bag of words models remain relatively comptetitve according to this [study](https://arxiv.org/pdf/1806.06259.pdf). When little data is available, they are a more than satisfactory solution and easy to implement.
 
 - [Distillation](https://arxiv.org/abs/1910.01108) can help to reduce the model size and improve the inference speed, while keeping most of the performance.
 
