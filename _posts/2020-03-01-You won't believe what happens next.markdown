@@ -28,7 +28,7 @@ with open("onion_processed.txt", "w") as g:
 
 Unfortunately the full GPT2 is a bit too big to be trained easily. We can go for a smaller model.
 
-[Folow the steps on this repo](https://github.com/minimaxir/gpt-2-simple)
+[Follow the steps on this repo](https://github.com/minimaxir/gpt-2-simple)
 
 Enabling the GPU mode, brings a lot of value in the training speed.
 
@@ -48,9 +48,9 @@ Quite interestingly, the limited training time brings a very crippled model even
 
 After the 300 steps : 
 
-"""
+```
 Man with 5 cats claims he's the new face of furry fandom
-"""
+```
 
 
 ### My best picks
