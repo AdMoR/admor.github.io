@@ -13,7 +13,7 @@ tags: gpt2 text generation finetuning
 
 Process it : 
 
-"""python
+```python
 f = open("OnionOrNot.csv")
 f.readline()
 data = filter(lambda line: len(line) > 0 and len(line.split(",")) == 2, f.readlines())
@@ -22,7 +22,7 @@ from functools import reduce
 dumped_data = reduce(lambda a, b: a + b, processed_data)
 with open("onion_processed.txt", "w") as g:
     g.write(dumped_data)
-"""
+```
 
 - Step 2 : Finetune the model
 
@@ -36,12 +36,12 @@ Enabling the GPU mode, brings a lot of value in the training speed.
 
 Early generation : 
 
-"""
+```
 And if you've ever had the chance to play a hidden game, I promise you, you will make the best ones.
 And if you've ever had the chance to play a hidden game, I promise you, you will make the best ones.
 And if you have the chance to play a hidden game, I promise you, you will make the best ones.
 I promise you, you will make the best ones.
-"""
+```
 
 Quite interestingly, the limited training time brings a very crippled model even if the loss decreased a lot in about 10 steps.
 
@@ -55,7 +55,7 @@ Man with 5 cats claims he's the new face of furry fandom
 
 ### My best picks
 
-"""
+```
 News: Incredible! Donald Trump Has Apologized For Taking His Daughter’s Phone Call During His Janitorial Degree Convocation
 
 Sugar Rush founder: Use of high fructose corn syrup increases obesity risk
@@ -67,12 +67,12 @@ Report: 87% Of Humans Would Rather Be Sexually Attracted To Robots
 Woman calls 911 to complain about the weather: 'I am in a bad mood right now'
 
 Life: Environmental Experts Recommend Cutting Down On Spiked Mistletoe
-"""
+```
 
 
 Non hand picked sample from 1000 iterations : 
 
-"""
+```
 ======== SAMPLE 1 ========
 Quosed Chinese thief pulls sled down Saskatchewan trail thinking it is a pet
 N.D. legislator sees potential in all New Yorkers by watching governor
@@ -130,7 +130,7 @@ Woman Sent Home After Driving Drunk For 7 Months Finally Gets Sent Back To Jail
 Man dressed as giant penis calls police to complain about giant penis.
 News: Stepping Up To The Plate: Crayola Has Announced That All Of Its Markers Will Now Inject You With Epinephrine
 Mariana Airlines Offering Rising Diversified Diet Menu Features For Participants 22 Years Of Ag
-"""
+```
 
 The quality remains globally poor as some examples are non sensical or stutter on certain words.
 
