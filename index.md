@@ -15,6 +15,6 @@ layout: default
 </ul>
 
 <ul>
-	On generative art
-	<a href=""> De Jong curves explorer </a>
+	<h4>Interactive experiments</h4>
+	<a href="/test.html"> De Jong curves explorer </a>
 </ul>
