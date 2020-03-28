@@ -13,3 +13,8 @@ layout: default
  
   {% endfor %}
 </ul>
+
+<ul>
+	On generative art
+	<a href=""> De Jong curves explorer </a>
+</ul>
