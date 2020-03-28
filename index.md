@@ -14,7 +14,10 @@ layout: default
   {% endfor %}
 </ul>
 
-<ul>
-	<h4>Interactive experiments</h4>
-	<a href="/test.html"> De Jong curves explorer </a>
-</ul>
+<div></div>
+<h2>Interactive experiments</h2>
+	<ul>
+		<li>
+		  <a href="/test.html"> De Jong curves explorer </a>
+		</li>
+	</ul>
