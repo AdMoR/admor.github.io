@@ -15,9 +15,6 @@ layout: default
 </ul>
 
 <div></div>
+
 <h2>Interactive experiments</h2>
-	<ul>
-		<li>
-		  <a href="/test.html"> De Jong curves explorer </a>
-		</li>
-	</ul>
+<a href="/test.html"> De Jong curves explorer </a>
