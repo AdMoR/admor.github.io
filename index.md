@@ -17,5 +17,9 @@ layout: default
 <div></div>
 
 <h2>Interactive experiments</h2>
-<a href="/test.html"> De Jong curves explorer </a>
+<li>
+<a href="/test.html"> De Jong curves explorer </a> 
+</li>
+<li>
 <a href="/ancient_scribble.html"> Experiment with chaikin curves </a>
+</li>
