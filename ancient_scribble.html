@@ -6,10 +6,17 @@
     <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
     <script type="text/javascript">
 
-        
 var LAMBDA = 80
+var DISPERSION = 5
+var SAMPLING = 1
+var SEED = 99
 const MAX_DEPTH = 10
 const MIN_SIZE = 40
+
+
+let lambda_slider
+let sampling_slider
+let dispersion_slider
 
 
 function setup() {
@@ -20,25 +27,53 @@ function setup() {
     let width = 640;
     let height = 480;
     createCanvas(width, height);
-    randomSeed(99);
 
-    createP("Fragmentation affinity value")
-    let inp = createInput('80');
-    inp.input(lambda_update);
+
+    createP("Fragmentation value")
+    lambda_slider = createSlider(10.0, 1000.0, 80, 0);
+    lambda_slider.mousePressed(draw)
+    lambda_slider.mouseReleased(draw)
+    lambda_slider.mouseMoved(draw)
+
+    createP("Sampling variation")
+    sampling_slider = createSlider(0.0, 1.0, 0.9, 0);
+    sampling_slider.mousePressed(draw)
+    sampling_slider.mouseReleased(draw)
+    sampling_slider.mouseMoved(draw)
+
+    createP("Dispersion variation")
+    dispersion_slider = createSlider(1.0, 15.0, 5, 0);
+    dispersion_slider.mousePressed(draw)
+    dispersion_slider.mouseReleased(draw)
+    dispersion_slider.mouseMoved(draw)
+
+    createP("Seed value")
+    let inp = createInput(SEED)
+    inp.input(seed_update);
+    inp.set
 
     let redraw = createButton("Redraw")
-    redraw.mousePressed(draw);
+    redraw.mousePressed(seed_update_bis);
 }
 
 function draw() {
+    randomSeed(SEED);
+    LAMBDA = lambda_slider.value()
+    SAMPLING = sampling_slider.value()
+    DISPERSION = dispersion_slider.value()
     clear()
     cut(0, 0, width, height, width, height, LAMBDA, 0)
 }
 
 
-function lambda_update(){
-    LAMBDA = this.value()
-    console.log("lambda", LAMBDA)
+function seed_update(){
+    SEED = this.value()
+    console.log("SEED", SEED)
+    draw()
+}
+
+function seed_update_bis(){
+    SEED = random(0, 10000)
     draw()
 }
 
@@ -150,7 +185,17 @@ function curve_in_area(x0, y0, x1, y1){
 
     // Generate n points
     for(var n=0; n < round(0.8 * sqrt(area)); n++){
-        let pt = [random(x0, x1), random(y0, y1)];
+        var pt;
+        if(random(0, 1) < SAMPLING){
+            pt = [random(x0, x1), random(y0, y1)];
+        }
+        else{
+            var sigma = [(x1 - x0) / DISPERSION, (y1 - y0) / DISPERSION]
+            var mid = [(x1 + x0) / 2, (y1 + y0) / 2]
+            pt = [randomGaussian(mid[0], sigma[0]), randomGaussian(mid[1], sigma[1])];
+            //console.log(">>>>>", pt[0], pt[1], x0, x1, y0, y1)
+        }
+
         ref_all_points.push(pt)
     }
     console.log("all pts", ref_all_points.length)
