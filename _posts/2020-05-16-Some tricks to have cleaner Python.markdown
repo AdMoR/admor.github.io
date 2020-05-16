@@ -178,5 +178,3 @@ class MyUsefulClass:
 ```
 
 The interest of this trick is even increased if the logic on the path creation is more complex. Like creating directories or deleting them.
-
-
