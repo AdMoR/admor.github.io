@@ -178,3 +178,33 @@ class MyUsefulClass:
 ```
 
 The interest of this trick is even increased if the logic on the path creation is more complex. Like creating directories or deleting them.
+
+
+### Make anything hashable
+
+Here is an example snippet
+
+```python
+from abc import ABC, abstractmethod
+import hashlib
+class HashableObject(ABC):
+
+    @abstractmethod
+    def __repr__(self):
+        raise NotImplementedError()
+
+    def __hash__(self):
+        m = hashlib.sha256()
+        m.update(self.__repr__().encode('utf-8'))
+        return int(m.hexdigest(), 16)
+
+class MyComplexClass(HashableObject):
+
+    def __init__(self, a, b, l):
+        self.a = a
+        self.b = b
+        self.my_list = l
+
+    def __repr__(self):
+        return "_".join([self.a, self.b] + self.my_list)
+```
