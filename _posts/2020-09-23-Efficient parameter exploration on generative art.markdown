@@ -9,7 +9,7 @@ I've played for some time with different kind of generative algorithm to produce
 [This post](https://admor.github.io/2020/01/10/Photo-to-drawing-Part-1.html) can attest it. It can be difficult to get a grasp of how good an idea can be without trying a lot of different combinations.
 
 
-# Evolution of the design
+## Evolution of the design
 
 ### Presentation of the algorithm
 
@@ -52,9 +52,11 @@ I ended up creating a new parameter which provided much more interest : point de
 Why ? While playing with the mouse, I could easily see that some parameters would bring very little variation between generation.
 
 ![Change across the spectrum](/assets/images/scribbles-crop.gif)
+  
 
 
-# Miscellaneous
+
+## Miscellaneous
 
 ### An algorithm for cutting a quadrilateral
 
