@@ -7,7 +7,8 @@ tags: generative algorithm pattern visuallization
 I've played for some time with different kind of generative algorithm to produce more or less successfully beautiful image.
 
 [This post](https://admor.github.io/2020/01/10/Photo-to-drawing-Part-1.html) can attest it. It can be difficult to get a grasp of how good an idea can be without trying a lot of different combinations.
-
+<br/>
+<br/>
 
 ## Evolution of the design
 
@@ -39,12 +40,12 @@ As i started to grow unsatisfied of the dull looking patterns, i tried to add mo
 
 ![too many](/assets/images/too_many_params.png)
 
-But after reusing the codebase after a few weeks it started to look
+But after reusing the codebase after a few weeks it started to look crowded and difficult to use.
 
 
 ### Using the mouse
 
-After reading some examples from the [Generative Design website](http://www.generative-gestaltung.de/2/) i realised that using the mouse instead of a slider made a lot of sense.
+After reading some examples from the [Generative Design website](http://www.generative-gestaltung.de/2/), I realised that using the mouse instead of a slider made a lot of sense.
 Despite the fact that you can represent only two slider with your mouse movement, these sliders are very precise and intuitive.
 
 I removed all the sliders and explored which parameters were the most important for muy generation.
@@ -52,9 +53,11 @@ I ended up creating a new parameter which provided much more interest : point de
 Why ? While playing with the mouse, I could easily see that some parameters would bring very little variation between generation.
 
 ![Change across the spectrum](/assets/images/scribbles-crop.gif)
-  
 
+On top of that I added that a mouse click would change the seed and geenrate another graphic with the same set of parameters. It helps to assess if the parameter set is fine or if it's just luck.  
 
+<br/>
+<br/>
 
 ## Miscellaneous
 
