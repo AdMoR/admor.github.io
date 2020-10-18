@@ -1,16 +1,14 @@
 ---
 description: and how my workflow evolved
-tags: generative algorithm pattern visuallization
+tags: generative algorithm pattern visualization
 ---
 
-
-I've played for some time with different kind of generative algorithm to produce more or less successfully beautiful image.
-
-[This post](https://admor.github.io/2020/01/10/Photo-to-drawing-Part-1.html) can attest it. It can be difficult to get a grasp of how good an idea can be without trying a lot of different combinations.
+Getting an idea is simple. 
+Finding the right of parameters to make it look good is hard.
 <br/>
 <br/>
 
-## Evolution of the design
+## Evolution of a design
 
 ### Presentation of the algorithm
 
@@ -46,7 +44,7 @@ But after reusing the codebase after a few weeks it started to look crowded and 
 ### Using the mouse
 
 After reading some examples from the [Generative Design website](http://www.generative-gestaltung.de/2/), I realised that using the mouse instead of a slider made a lot of sense.
-Despite the fact that you can represent only two slider with your mouse movement, these sliders are very precise and intuitive.
+Despite the fact that you can represent only two sliders with your mouse movement, these sliders are very precise and intuitive.
 
 I removed all the sliders and explored which parameters were the most important for muy generation.
 I ended up creating a new parameter which provided much more interest : point density.
@@ -63,9 +61,33 @@ On top of that I added that a mouse click would change the seed and geenrate ano
 
 ### An algorithm for cutting a quadrilateral
 
-TODO
+A logical extension after handling rectangle was to have non straight cuts in the area.
+It is an extension of the general algorithm with quadrilaterals instead of rectangles.
+
+Here is how the main steps are done : 
+
+![quadrilateral case](/assets/images/quadrilateral_case.png)
+
+Cut : 
+The extension is easy, we just need two points instead of one. The side chosen depends on the type of cut sampled.
+
+Sampling : 
+There, things get more complicated. Sampling in 2D with a not orthogonal referential is non obvious.
+To solve it, i used a trick, consider the quadrilateral as 2 triangle and sample from one.
+
+How can we sample from one triangle ? 
+- Consider one top of the triangle (A) and the segment opoosed to it (DC).
+- Sample a point on the segment chosen
+- Sample a point along the line (P) 
+....
+
 
 ### Printing with AxiDraw
 
-TODO
+Short answer : [use the svg version of p5.js](https://github.com/zenozeng/p5.js-svg)
+
+Things are a bit more complex in practice :
+- Not all operators of p5.js are translated in the SVG version
+- The size of the SVG can grow quickly. In my case, as I was drawing a lot of small line, I managed to reach SVG of 20Mb.
+
 
