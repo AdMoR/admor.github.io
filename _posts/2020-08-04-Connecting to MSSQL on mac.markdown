@@ -1,6 +1,7 @@
 ---
 description: I may save you many headaches
 tags: python mac mssql 
+img: couverture/mssql.jpg
 ---
 
 # 1 - Get your configuration ready 

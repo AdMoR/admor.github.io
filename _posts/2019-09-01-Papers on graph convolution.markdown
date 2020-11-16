@@ -1,6 +1,7 @@
 ---
 description: Honestly grown hand picked papers on applications of graph convolution
 tags: convolutional neural networks graph pooling 
+img: couverture/graph.jpg
 ---
 
 ## Why are graph neural net worth of your interest ?

@@ -1,6 +1,7 @@
 ---
 description: Going further on image generation with conditioning
 tags: neural network feature visualization image processing
+img: couverture/neural_style.jpg
 ---
 
 ## How to regularize the generated image
