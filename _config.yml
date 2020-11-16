@@ -1,44 +1,35 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+title: Hello, world! I'm Adrien Morvan
+description: > # this means to ignore newlines until "baseurl:"
+  Playing with software, algorithms and machine learning
+permalink: ':title/'
+baseurl: "/flexible-jekyll" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+site-twitter: #if your site has a twitter account, enter it here
 
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-title: Sunday morning experiments
-email: adrien_morvan@hotmail.fr
-description: >- # this means to ignore newlines until "baseurl:"
-  Playing with software, algorithms and ML
+# Author Settings
+author: Adrien Morvan # add your name
+author-img: adrien.jpg # add your photo
+about-author: I'm a machine learning engineer focused on building data product and solving new challenges with ML. # add description
+social-twitter: # add your Twitter handle
+social-facebook: # add your Facebook handle
+social-github: admor # add your Github handle
+social-linkedin: # add your Linkedin handle
+social-email: # add your Email address
 
-baseurl: "" # the subpath of your site, e.g. /blog
+# Disqus
+discus-identifier: admor # add your discus identifier
 
-giturl: "https://github.com/AdMoR" # the base hostname & protocol for your site, e.g. http://example.com
-github_username:  admor
-linkedin: "https://www.linkedin.com/in/adrien-morvan-0729754a/"
+# Tracker
+analytics: # Google Analytics
 
-# Build settings
+# Build Settings
 markdown: kramdown
-theme: jekyll-theme-midnight
 plugins:
-  - jekyll-feed
-  - jekyll-avatar
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jemoji
 
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+paginate: 8
+paginate_path: "/page/:num"
+
+exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock"]

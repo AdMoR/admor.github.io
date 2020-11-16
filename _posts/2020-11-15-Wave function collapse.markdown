@@ -36,20 +36,20 @@ Symmetry rules are defined on top of connected-or-not rules between tiles.
 To simplify our example, we will keep only 1-0 connections
  
      up right down left 
-T = \[0   1.    1.   1. \]
+T =  [0   1.    1.   1.]
 
 We can deduce connectivity of rotated version of T
 
        up right down left 
-- T  = \[0   1.    1.   1. \]
-- |- = \[1   1.    1.   0. \] rotated right once 90° 
-- | =  \[1   1.    0.   1. \] rotated right twice 90° 
-- -| = \[1   0.    1.   1. \] rotated right thrice 90° 
+- T  = [0   1.    1.   1. ]
+- |- = [1   1.    1.   0. ] rotated right once 90° 
+- | =  [1   1.    0.   1. ] rotated right twice 90° 
+- -| = [1   0.    1.   1. ] rotated right thrice 90° 
 
 
 To find connections between symmetric transformation of peices we can use the following rule building : 
 
- - Right connection T and |-  == M\[0, right\] * M\[1, left\]
+ - Right connection T and |-  == M[0, right] * M[1, left]
 ```
 
 We need to build two functions : 
