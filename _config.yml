@@ -16,7 +16,7 @@
 title: Sunday morning experiments
 email: adrien_morvan@hotmail.fr
 description: >- # this means to ignore newlines until "baseurl:"
-  Playing with deep learning and neural image generation 
+  Playing with software, algorithms and ML
 
 baseurl: "" # the subpath of your site, e.g. /blog
 
