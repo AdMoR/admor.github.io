@@ -1,6 +1,7 @@
 ---
 description: I tried neuron excitation through direct optimization and it gives great visualizations !
 tags: neuron excitation visualization deep learning
+img: alexnet_noise.jpg
 ---
 
 The basic idea behind feature visualisation is to find an image that maximize the value of a given neuron in a neural network.

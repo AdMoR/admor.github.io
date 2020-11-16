@@ -1,7 +1,7 @@
 ---
 description: Essential ressources to use for fun and profit
 tags: NLP transformers text generation
-img: http://www.upsbatterycenter.com/blog/wp-content/uploads/2014/12/ElectricTransformer.jpg
+img: couverture/transformer.jpg
 ---
 
 # Why tranformers ?

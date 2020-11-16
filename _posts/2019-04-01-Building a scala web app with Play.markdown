@@ -1,6 +1,7 @@
 ---
 description: Some notes on using the scala play framework to build a web app
 tags: scala play web app
+img: scala_form.png
 ---
 
 I recently started to use scala and wanted to learn to use its powerful framework for web application : Play.
