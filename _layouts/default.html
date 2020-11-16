@@ -8,34 +8,30 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
 
+  {% seo %}
 
-{% seo %}
   </head>
 
   <body>
 
-    <header>
-     <div class=container>
-        <h1> {{ site.title | default: site.github.repository_name }}</h1>
-        <h2>{{ site.description | default: site.github.project_tagline }}</h2>
-        
+    <section id="header">
+      <nav>
+        <li>
+          <a href=/ class="btn"><span class="glyphicon glyphicon-heart"></span>&nbsp;Blog</a>
+        </li>
+        <li>
+          <a href=/about class="btn"><span class="glyphicon glyphicon-search"></span>&nbsp;About me</a>
+        </li>
+        <li>
+          <a href="{{ site.github.repository_url }}" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </li>
+      </nav>
+    </section>
 
-        <section id="nav">
-          <li>
-            <a href=/ class="btn"><span class="glyphicon glyphicon-heart"></span>&nbsp;Blog</a>
-          </li>
-          <li>
-            <a href=/about class="btn"><span class="glyphicon glyphicon-search"></span>&nbsp;About me</a>
-          </li>
-          <li>
-            <a href="{{ site.github.repository_url }}" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-          </li>
-        </section>
-
+    <div class="wrapper">
+      <h1> {{ site.title | default: site.github.repository_name }}</h1>
+      <h2>{{ site.description | default: site.github.project_tagline }}</h2>
     </div>
-
-   </header>
-   </br>
 
     <div class="container">
       <section id="main_content">
