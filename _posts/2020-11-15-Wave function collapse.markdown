@@ -17,11 +17,11 @@ This is a post presenting how I reimplemented the Wave function collapse present
 
 ### Some generations
 
-![Basic class belonging map]({{site.baseurl}}/assets/images/gen_2.png)
+![Basic class belonging map]({{site.baseurl}}/assets/img/gen_2.png)
 Basic map with classes display
 
 
-![Vertical dependencies]({{site.baseurl}}/assets/images/gen_3.png)
+![Vertical dependencies]({{site.baseurl}}/assets/img/gen_3.png)
 Generated using vertical dependencies : classes ranges from 0 to 9.
 0 is necessarily at the top of the screen. Vertical neighbours of class i are necessarily class i or i + 1
 
@@ -129,9 +129,9 @@ We just need to iterate over all triples (direction, i, j). It's important to do
 
 #### Some generations
 
-![Only T pipes gen]({{site.baseurl}}/assets/images/gen_4.png)
+![Only T pipes gen]({{site.baseurl}}/assets/img/gen_4.png)
 Generated with T shaped pipes only
 
-![Golden pipes gen]({{site.baseurl}}/assets/images/gen_1.png)
+![Golden pipes gen]({{site.baseurl}}/assets/img/gen_1.png)
 Generated with T and L shaped pipes
 

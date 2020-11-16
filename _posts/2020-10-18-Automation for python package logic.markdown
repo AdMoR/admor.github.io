@@ -34,7 +34,7 @@ In short, run the following commands to see how your project can be built as an 
 tox
 ./dist/app.pex -m my_project
 ```
-![pex_build]({{site.baseurl}}/assets/images/pex_build.png)
+![pex_build]({{site.baseurl}}/assets/img/pex_build.png)
 
 What this does is :
 - Build the package requirements in a virtual env

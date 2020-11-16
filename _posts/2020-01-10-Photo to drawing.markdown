@@ -31,7 +31,7 @@ From this, we could add colour and have a perfectly drawable representation of o
 
 <br/>
 The result with 1000 clusters and 20 colors
-![im3_tf](/assets/images/im3_transformed.png)
+![im3_tf](/assets/img/im3_transformed.png)
 
 
 <br/>
@@ -46,7 +46,7 @@ To do so, we can follow these 4 easy steps :
 - Plot two line for each line, one of each center color.
 
 
-![im3]({{site.baseurl}}/assets/images/voronoi_cells.png)
+![im3]({{site.baseurl}}/assets/img/voronoi_cells.png)
 
 
 <br/>
@@ -55,7 +55,7 @@ To do so, we can follow these 4 easy steps :
 ### The code 
 
 Do it and see by yourself that it is not a very powerful way to do it.  
-However the performance of the raw implemntation is pretty poor. It takes large amount of time for small images and the scaling is horrible.  
+However the performance of the raw implemntation is pretty poor. It takes large amount of time for small img and the scaling is horrible.  
 Part 2 of this post will look at solving these issues.
 
 The code is available [here](https://github.com/AdMoR/PlotterExperiments/blob/master/notebooks/voronoi%20and%20co.ipynb)

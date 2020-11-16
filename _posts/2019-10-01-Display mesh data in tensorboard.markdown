@@ -83,4 +83,4 @@ for summary in summaries:
 
 I got thre follwoing result with a sample from the ModelNet dataset ()()
 
-![mesh loaded]({{site.baseurl}}/assets/images/mesh_load.png)
+![mesh loaded]({{site.baseurl}}/assets/img/mesh_load.png)

@@ -6,7 +6,7 @@ img: couverture/neural_style.jpg
 
 ## How to regularize the generated image
 
-In the previous article, we have seen how to generate images that maximize an intermediate layer of a neural network.
+In the previous article, we have seen how to generate img that maximize an intermediate layer of a neural network.
 
 If you remember the optimization formula, you noticed the total variation term $$ TV(I) = \Sigma_i ||I(i+1) - I(i)||^2 $$.
 This term is relatively empirical, we know it will reduce high frequencies by construction, but we don't control its effects on the image. Moreover the filter was designed for grayscale and doesn't take into account the differences between the different colour channels.
@@ -19,7 +19,7 @@ One way to have a stable image that maximize a feature layer is to force the ima
 To be able to do that, we need an original image that will be optimized and a set of transformations. With PyTorch, we can build a tensor that is the concatenation of the original image transformed with a random factor. We then optimized this tensor instead of the image alone. If the transformation is differentiable, the original image will be modified. 
 Exactly like when training a neural net for classification, we can use the data augmentation trick to better learn an image representation.
 
-![one to many transformation](https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn-images-1.medium.com%2Fmax%2F1000%2F1*C8hNiOqur4OJyEZmC7OnzQ.png&f=1)
+![one to many transformation](https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn-img-1.medium.com%2Fmax%2F1000%2F1*C8hNiOqur4OJyEZmC7OnzQ.png&f=1)
 *The same principle can be use to train robustly a neural net or an image*
 
 
@@ -94,7 +94,7 @@ with SummaryWriter(log_dir="./logs") as w:
 
 ```
 
-![Graph of the scaled rotation]({{site.baseurl}}/assets/images/scaled_rotation_op.png)
+![Graph of the scaled rotation]({{site.baseurl}}/assets/img/scaled_rotation_op.png)
 
 
 This gives us the following series of operations. Our input image is given by the index 0, it is replicated in 4 on operation 2 and 4 different rotations and scale are applied on operation 5.
@@ -166,5 +166,5 @@ Let's get the idea of the differents functions in freq_to_rgb
 - normalize : when we built the frequency tensor, there was no restriction on the norm given the frquencies. We need to correct this to have something that is closer to a real image spectrum.
 - to_valid_rgb: we need to have a RGB representation back from the uncorrelated space, multiply by the projection matrix and add RGB mean. But on top of that we also need to add a tanh to avoid saturation. 
 
-Thanks to this, we can get images with rich colour like this one
-![Image](https://raw.githubusercontent.com/AdMoR/neural-styles/master/images/resnet18_3-LayerExcitationLoss2%2BBatchDiversity-4-0.001-100-1024-2.jpg) 
+Thanks to this, we can get img with rich colour like this one
+![Image](https://raw.githubusercontent.com/AdMoR/neural-styles/master/img/resnet18_3-LayerExcitationLoss2%2BBatchDiversity-4-0.001-100-1024-2.jpg) 

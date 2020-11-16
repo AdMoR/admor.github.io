@@ -14,7 +14,7 @@ F is built iteratively by adding at each iteration a function $$ \gamma_m F_m(x)
 
 
 Boosting has been made famous with GDBT (implemented in the XGBoost lib). However we are going to see a simpler method : Ada Boost.
-Ada Boost also had some glory in the past with the Viola-Jones detector that used a Haar cascade to detect faces in black and white images.
+Ada Boost also had some glory in the past with the Viola-Jones detector that used a Haar cascade to detect faces in black and white img.
 
 In this post, our objective will be to feat an arbitrary distribution of random varibale that have 0/1 realisation, we will know the true distribution and sample a set of points $$(x, y \in [0, 1])$$.
 More over, we will do this with sclaed logistic regression unlike most of other approaches.
@@ -46,7 +46,7 @@ model = LogisticRegression(1.180)
 ```
 Let's have a look at the shape of the function.
 
-![sigmoid]({{site.baseurl}}/assets/images/sigmoid.png)
+![sigmoid]({{site.baseurl}}/assets/img/sigmoid.png)
 
 
 #### The base training procedure
@@ -194,7 +194,7 @@ Y = torch.FloatTensor(np.array(y))
 plt.scatter(x, g(x))
 ```
 
-![parabolic_curve]({{site.baseurl}}/assets/images/parabolic_curve.png)
+![parabolic_curve]({{site.baseurl}}/assets/img/parabolic_curve.png)
 
 
 #### Boosting of logistic regression
@@ -213,7 +213,7 @@ plt.plot(x, Y_pred)
 ```
 
 We can observe the original curve, the boosted model in thick and the first learned model in thin.
-![parabolic_curve_feated]({{site.baseurl}}/assets/images/parabolic_curve_feated.png)
+![parabolic_curve_feated]({{site.baseurl}}/assets/img/parabolic_curve_feated.png)
 
 ## Conclusion
 

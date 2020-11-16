@@ -130,7 +130,7 @@ The form used for the mapping from the HTML form to the class
   }
 ```
 We access the form html page through this function and get the following :
-![The HTML form]({{site.baseurl}}/assets/images/scala_form.png)
+![The HTML form]({{site.baseurl}}/assets/img/scala_form.png)
 
 Once the field are filled and sent to the server, the following part is called : 
 

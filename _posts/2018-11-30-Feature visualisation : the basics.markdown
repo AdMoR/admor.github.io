@@ -10,7 +10,7 @@ The basic idea behind feature visualisation is to find an image that maximize th
 
 We initially train a neural network function to recognize concepts (usually ImageNet with 1000 object classes), let's say `AlexNet`.
 
-![AlexNet architecture](https://res.mdpi.com/remotesensing/remotesensing-09-00848/article_deploy/html/images/remotesensing-09-00848-g001.png)
+![AlexNet architecture](https://res.mdpi.com/remotesensing/remotesensing-09-00848/article_deploy/html/img/remotesensing-09-00848-g001.png)
 
 In this neural network, we want to know what activates a specific layer, let's say `Conv5`. We will try to find an image `I` that maximize the norm of this layer.
 Our loss is going to be something like : 
@@ -28,7 +28,7 @@ Depending on the network, this gives more or less interesting pics.
 ### What does it look like ?
 
 This is where things get complicated. With basic optimization, we mostly get noise : 
-![AlexNet Conv5 noise]({{site.baseurl}}/assets/images/alexnet_noise.jpg)
+![AlexNet Conv5 noise]({{site.baseurl}}/assets/img/alexnet_noise.jpg)
 
 
 That's where our `regularization(I)` comes into play. We need it to remove the high frequency noise and keep only the image structure. To do so, we use total varialtion loss.
@@ -43,16 +43,16 @@ Let's see some examples
 AlexNet, different layers
 
 
-![AlexNet Conv5 layer 100](https://raw.githubusercontent.com/AdMoR/neural-styles/master/images/LayerExcitationLoss_alexnet_1_15_2048_0.0005.jpg)
-![AlexNet FC3 neuron 100](https://raw.githubusercontent.com/AdMoR/neural-styles/master/images/LayerExcitationLoss_alexnet_1_18_2048_0.0005.jpg)
-![AlexNet ](https://raw.githubusercontent.com/AdMoR/neural-styles/master/images/LayerExcitationLoss_alexnet_1_34_2048_0.0005.jpg)
+![AlexNet Conv5 layer 100](https://raw.githubusercontent.com/AdMoR/neural-styles/master/img/LayerExcitationLoss_alexnet_1_15_2048_0.0005.jpg)
+![AlexNet FC3 neuron 100](https://raw.githubusercontent.com/AdMoR/neural-styles/master/img/LayerExcitationLoss_alexnet_1_18_2048_0.0005.jpg)
+![AlexNet ](https://raw.githubusercontent.com/AdMoR/neural-styles/master/img/LayerExcitationLoss_alexnet_1_34_2048_0.0005.jpg)
 
 Last layer, VGG16
 
 
-![VGG16 FC3 neuron 100](https://raw.githubusercontent.com/AdMoR/neural-styles/master/images/LayerExcitationLoss_vgg16_-1_4_2048_0.1_0.0005.jpg)
+![VGG16 FC3 neuron 100](https://raw.githubusercontent.com/AdMoR/neural-styles/master/img/LayerExcitationLoss_vgg16_-1_4_2048_0.1_0.0005.jpg)
 
 
-As we can see, the networks generate totally different images. But we can recognize some things on last layer (close to the object prediction of ImageNet like frog).
+As we can see, the networks generate totally different img. But we can recognize some things on last layer (close to the object prediction of ImageNet like frog).
 
 

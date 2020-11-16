@@ -19,7 +19,7 @@ We will see three examples
 # The cumulative distribution with hist
 
 
-![cumulative distribution]({{site.baseurl}}/assets/images/cum_distribution.jpg)
+![cumulative distribution]({{site.baseurl}}/assets/img/cum_distribution.jpg)
 
 
 Easy enough with hist. However it is often 
@@ -47,7 +47,7 @@ ax.set_xticks(buckets)
 ax.set_yticks(prob)
 ```
 
-![cumulative distribution]({{site.baseurl}}/assets/images/cum_distribution_with_ticks.jpg)
+![cumulative distribution]({{site.baseurl}}/assets/img/cum_distribution_with_ticks.jpg)
 
 
 <br/>
@@ -109,11 +109,11 @@ plot_count(data, "Favorite animals")
 We get the following plots :
   
 
-![different countplots 1]({{site.baseurl}}/assets/images/seaborn_count.jpg)
+![different countplots 1]({{site.baseurl}}/assets/img/seaborn_count.jpg)
 The Seaborn countplot
 <br/>
 
-![different countplots 2]({{site.baseurl}}/assets/images/custom_count.jpg)
+![different countplots 2]({{site.baseurl}}/assets/img/custom_count.jpg)
 And out custom countplot
 
 
@@ -139,7 +139,7 @@ plot_count(c_normalised,
            counted=True)
 ```
 
-![My plot count]({{site.baseurl}}/assets/images/distribution_weather.jpg)
+![My plot count]({{site.baseurl}}/assets/img/distribution_weather.jpg)
 
 
 Now let's have a look at the difference when the accident is on a roundabout.
@@ -162,7 +162,7 @@ plot_count(center_normalised_roundabout_weather_counter,
            counted=True)
 ```
 
-![My plot count for subgroup]({{site.baseurl}}/assets/images/distribution_difference_weather.jpg)
+![My plot count for subgroup]({{site.baseurl}}/assets/img/distribution_difference_weather.jpg)
 
 
 This is a great way to find variables that can be predictive of a particular event.
