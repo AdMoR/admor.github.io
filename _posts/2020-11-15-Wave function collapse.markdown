@@ -2,6 +2,7 @@
 description: A generative algorithm worth your interest
 tags: python generative algorithm numpy 
 img: gen_2.png
+comments: true
 ---
 
 This is a post presenting how I reimplemented the Wave function collapse presented in this [github repository](https://github.com/mxgmn/WaveFunctionCollapse)
