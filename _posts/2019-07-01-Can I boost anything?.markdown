@@ -1,7 +1,7 @@
 ---
 description: Does boosting works with a logistic regression ?
 tags: Ada Boost torch logistic regression
-img: couverture/ada_boost.jpg
+img: couverture/ada_boost.png
 ---
 
 ## What is boosting ?
