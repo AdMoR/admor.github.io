@@ -1,7 +1,7 @@
 ---
 description: A generative algorithm worth your interest
-tags: python generative algorithm
-img: gen_1.png
+tags: python generative algorithm numpy 
+img: gen_2.png
 ---
 
 This is a post presenting how I reimplemented the Wave function collapse presented in this [github repository](https://github.com/mxgmn/WaveFunctionCollapse)
@@ -131,6 +131,6 @@ We just need to iterate over all triples (direction, i, j). It's important to do
 ![Only T pipes gen]({{site.baseurl}}/assets/images/gen_4.png)
 Generated with T shaped pipes only
 
-![Golden pipes gen](/assets/images/gen_1.png)
+![Golden pipes gen]({{site.baseurl}}/assets/images/gen_1.png)
 Generated with T and L shaped pipes
 

@@ -45,7 +45,7 @@ model = LogisticRegression(1.180)
 ```
 Let's have a look at the shape of the function.
 
-![sigmoid](/assets/images/sigmoid.png)
+![sigmoid]({{site.baseurl}}/assets/images/sigmoid.png)
 
 
 #### The base training procedure
@@ -193,7 +193,7 @@ Y = torch.FloatTensor(np.array(y))
 plt.scatter(x, g(x))
 ```
 
-![parabolic_curve](/assets/images/parabolic_curve.png)
+![parabolic_curve]({{site.baseurl}}/assets/images/parabolic_curve.png)
 
 
 #### Boosting of logistic regression
@@ -212,7 +212,7 @@ plt.plot(x, Y_pred)
 ```
 
 We can observe the original curve, the boosted model in thick and the first learned model in thin.
-![parabolic_curve_feated](/assets/images/parabolic_curve_feated.png)
+![parabolic_curve_feated]({{site.baseurl}}/assets/images/parabolic_curve_feated.png)
 
 ## Conclusion
 

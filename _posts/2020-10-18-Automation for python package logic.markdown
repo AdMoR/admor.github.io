@@ -1,6 +1,7 @@
 ---
 description: A single executable and automated tests
 tags: python pex tests tox
+img: pex_build.png
 ---
 
 This a small post presenting how to build a simple executable for your python project.
@@ -33,7 +34,7 @@ In short, run the following commands to see how your project can be built as an 
 tox
 ./dist/app.pex -m my_project
 ```
-![pex_build](/assets/images/pex_build.png)
+![pex_build]({{site.baseurl}}/assets/images/pex_build.png)
 
 What this does is :
 - Build the package requirements in a virtual env

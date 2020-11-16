@@ -23,7 +23,7 @@ Main elements :
 - RIMD representation that is rotation and scale invariant
 - Fully connected auto encoder as usage is straight forward
 
-![A simple fully connected approach](/assets/images/simple_autoencoder.png)
+![A simple fully connected approach]({{site.baseurl}}/assets/images/simple_autoencoder.png)
 
 
 <br/><br/>
@@ -36,7 +36,7 @@ The Graclus pooling method allows to reduce the original graph to a reasonable s
 
 A figure from the paper illustrates this idea for a clustering algorithm with 2 clusters.
 
-![graclus steps](/assets/images/graclus_fig.png)
+![graclus steps]({{site.baseurl}}/assets/images/graclus_fig.png)
 
 Coarsening phase : 
 - Start with all nodes unmarked
@@ -77,7 +77,7 @@ For each phase k, a neighbourhood convolution is performed on all the neighbourh
 After it, for each node, the embedding of the next layer is computed with the current embedding of the node and the one of the neighboorhood.
 
 The article provides a clean summary of the algorithm.
-![algorithm sum up](/assets/images/Algorithm_2.png)
+![algorithm sum up]({{site.baseurl}}/assets/images/Algorithm_2.png)
 
 Additional trick used to scale :
 - Handling large scale data : 

@@ -1,6 +1,7 @@
 ---
 description: Low hassle way to display your mesh data
 tags: mesh data 3D tensorflow 
+img: mesh_load.png
 ---
 
 3D mesh is still underused but very promising as much closer to a real world model.
@@ -82,4 +83,4 @@ for summary in summaries:
 
 I got thre follwoing result with a sample from the ModelNet dataset ()()
 
-![mesh loaded](/assets/images/mesh_load.png)
+![mesh loaded]({{site.baseurl}}/assets/images/mesh_load.png)

@@ -27,7 +27,7 @@ Depending on the network, this gives more or less interesting pics.
 ### What does it look like ?
 
 This is where things get complicated. With basic optimization, we mostly get noise : 
-![AlexNet Conv5 noise](/assets/images/alexnet_noise.jpg)
+![AlexNet Conv5 noise]({{site.baseurl}}/assets/images/alexnet_noise.jpg)
 
 
 That's where our `regularization(I)` comes into play. We need it to remove the high frequency noise and keep only the image structure. To do so, we use total varialtion loss.

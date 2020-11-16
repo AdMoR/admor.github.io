@@ -1,6 +1,7 @@
 ---
 description: and how my workflow evolved
 tags: generative algorithm pattern visualization
+img: scribbles-crop.gif
 ---
 
 Getting an idea is simple. 
@@ -25,7 +26,7 @@ General idea :
 
 I started to add sliders to control parameters of the generation.
 
-![captions](/assets/images/ancient_scribbles.png)
+![captions]({{site.baseurl}}/assets/images/ancient_scribbles.png)
 
 It worked correctly to test a variety of settings but this is not perfect.
 - Changing parameters one by one is slow
@@ -36,7 +37,7 @@ It worked correctly to test a variety of settings but this is not perfect.
 
 As i started to grow unsatisfied of the dull looking patterns, i tried to add more and more parameters to find a flavour valuable to my eye.
 
-![too many](/assets/images/too_many_params.png)
+![too many]({{site.baseurl}}/assets/images/too_many_params.png)
 
 But after reusing the codebase after a few weeks it started to look crowded and difficult to use.
 
@@ -50,7 +51,7 @@ I removed all the sliders and explored which parameters were the most important 
 I ended up creating a new parameter which provided much more interest : point density.
 Why ? While playing with the mouse, I could easily see that some parameters would bring very little variation between generation.
 
-![Change across the spectrum](/assets/images/scribbles-crop.gif)
+![Change across the spectrum]({{site.baseurl}}/assets/images/scribbles-crop.gif)
 
 On top of that I added that a mouse click would change the seed and geenrate another graphic with the same set of parameters. It helps to assess if the parameter set is fine or if it's just luck.  
 
@@ -66,7 +67,7 @@ It is an extension of the general algorithm with quadrilaterals instead of recta
 
 Here is how the main steps are done : 
 
-![quadrilateral case](/assets/images/quadrilateral_case.png)
+![quadrilateral case]({{site.baseurl}}/assets/images/quadrilateral_case.png)
 
 Cut : 
 The extension is easy, we just need two points instead of one. The side chosen depends on the type of cut sampled.

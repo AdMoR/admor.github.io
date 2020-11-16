@@ -1,6 +1,7 @@
 ---
 description: The fast and dumb way
 tags: image processing stylisation python 
+img: voronoi_cells.png
 ---
 
 The goal : from an any photo, find a representation of the image that could be drawn.
@@ -45,7 +46,7 @@ To do so, we can follow these 4 easy steps :
 - Plot two line for each line, one of each center color.
 
 
-![im3](/assets/images/voronoi_cells.png)
+![im3]({{site.baseurl}}/assets/images/voronoi_cells.png)
 
 
 <br/>

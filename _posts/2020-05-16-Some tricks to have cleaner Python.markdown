@@ -1,6 +1,7 @@
 ---
 description: Having an easy-to-read python code is sometimes tricky
 tags: python contextmanager 
+img: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn4.vectorstock.com%2Fi%2F1000x1000%2F74%2F43%2Fbefore-untidy-and-after-tidy-wardrobe-messy-vector-20957443.jpg&f=1&nofb=1
 ---
 
 

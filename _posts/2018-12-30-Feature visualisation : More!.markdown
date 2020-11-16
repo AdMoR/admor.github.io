@@ -93,7 +93,7 @@ with SummaryWriter(log_dir="./logs") as w:
 
 ```
 
-![Graph of the scaled rotation](/assets/images/scaled_rotation_op.png)
+![Graph of the scaled rotation]({{site.baseurl}}/assets/images/scaled_rotation_op.png)
 
 
 This gives us the following series of operations. Our input image is given by the index 0, it is replicated in 4 on operation 2 and 4 different rotations and scale are applied on operation 5.
