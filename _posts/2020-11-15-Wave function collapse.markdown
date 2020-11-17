@@ -15,7 +15,7 @@ Let's start with an example of what the algorithm can do.
 On a grid, 3 colors are possible for each position but two neighbours cannot have the same color.
 Now fill the grid and respect this rule.
 
-![Example execution]({{site.baseurl}}/wave_function_collapse.gif)
+![Example execution]({{site.baseurl}}/assets/img/wave_function_collapse.gif)
 This execution is what you could have done by doing it manually. The wave function collapse algorithm allows to implement this filling for that kind of constraint and many others
 
 ### The steps
