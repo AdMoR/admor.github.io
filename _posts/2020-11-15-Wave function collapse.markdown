@@ -8,11 +8,24 @@ comments: true
 This is a post presenting how I reimplemented the Wave function collapse presented in this [github repository](https://github.com/mxgmn/WaveFunctionCollapse)
 
 
-# The basic idea 
+# The Algorithm
 
+### An example
+Let's start with an example of what the algorithm can do.
+On a grid, 3 colors are possible for each position but two neighbours cannot have the same color.
+Now fill the grid and respect this rule.
 
-### The algorithm
-....
+![Example execution]({{site.baseurl}}/wave_function_collapse.gif)
+This execution is what you could have done by doing it manually. The wave function collapse algorithm allows to implement this filling for that kind of constraint and many others
+
+### The steps
+The algorithms contains two main steps.
+
+- Collapse : choose a state on a position with minimal entropy (= minimal remaining options)
+- Propagate the constraint of the new choice on the whole grid
+
+These two steps are repeated until all positions on the grid have a given state / color
+My implementation in python can be found [in this notebook]()
 
 
 ### Some generations
