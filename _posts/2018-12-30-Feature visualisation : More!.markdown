@@ -167,4 +167,4 @@ Let's get the idea of the differents functions in freq_to_rgb
 - to_valid_rgb: we need to have a RGB representation back from the uncorrelated space, multiply by the projection matrix and add RGB mean. But on top of that we also need to add a tanh to avoid saturation. 
 
 Thanks to this, we can get img with rich colour like this one
-![Image](https://raw.githubusercontent.com/AdMoR/neural-styles/master/img/resnet18_3-LayerExcitationLoss2%2BBatchDiversity-4-0.001-100-1024-2.jpg) 
+![Image](https://raw.githubusercontent.com/AdMoR/neural-styles/master/images/resnet18_3-LayerExcitationLoss2%2BBatchDiversity-4-0.001-100-1024-2.jpg) 

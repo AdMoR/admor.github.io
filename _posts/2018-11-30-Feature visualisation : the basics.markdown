@@ -43,14 +43,14 @@ Let's see some examples
 AlexNet, different layers
 
 
-![AlexNet Conv5 layer 100](https://raw.githubusercontent.com/AdMoR/neural-styles/master/img/LayerExcitationLoss_alexnet_1_15_2048_0.0005.jpg)
-![AlexNet FC3 neuron 100](https://raw.githubusercontent.com/AdMoR/neural-styles/master/img/LayerExcitationLoss_alexnet_1_18_2048_0.0005.jpg)
-![AlexNet ](https://raw.githubusercontent.com/AdMoR/neural-styles/master/img/LayerExcitationLoss_alexnet_1_34_2048_0.0005.jpg)
+![AlexNet Conv5 layer 100](https://raw.githubusercontent.com/AdMoR/neural-styles/master/images/LayerExcitationLoss_alexnet_1_15_2048_0.0005.jpg)
+![AlexNet FC3 neuron 100](https://raw.githubusercontent.com/AdMoR/neural-styles/master/images/LayerExcitationLoss_alexnet_1_18_2048_0.0005.jpg)
+![AlexNet ](https://raw.githubusercontent.com/AdMoR/neural-styles/master/images/LayerExcitationLoss_alexnet_1_34_2048_0.0005.jpg)
 
 Last layer, VGG16
 
 
-![VGG16 FC3 neuron 100](https://raw.githubusercontent.com/AdMoR/neural-styles/master/img/LayerExcitationLoss_vgg16_-1_4_2048_0.1_0.0005.jpg)
+![VGG16 FC3 neuron 100](https://raw.githubusercontent.com/AdMoR/neural-styles/master/images/LayerExcitationLoss_vgg16_-1_4_2048_0.1_0.0005.jpg)
 
 
 As we can see, the networks generate totally different img. But we can recognize some things on last layer (close to the object prediction of ImageNet like frog).
