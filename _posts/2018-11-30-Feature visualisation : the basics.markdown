@@ -1,5 +1,5 @@
 ---
-description: I tried neuron excitation through direct optimization and it gives great visualizations !
+description: See what's inside of your neural net !
 tags: neuron excitation visualization deep learning
 img: alexnet_noise.jpg
 ---
@@ -10,17 +10,21 @@ The basic idea behind feature visualisation is to find an image that maximize th
 
 We initially train a neural network function to recognize concepts (usually ImageNet with 1000 object classes), let's say `AlexNet`.
 
-![AlexNet architecture](https://res.mdpi.com/remotesensing/remotesensing-09-00848/article_deploy/html/img/remotesensing-09-00848-g001.png)
+![AlexNet architecture]({{site.baseurl}}/assets/img/alexnet_archi.png)
 
 In this neural network, we want to know what activates a specific layer, let's say `Conv5`. We will try to find an image `I` that maximize the norm of this layer.
 Our loss is going to be something like : 
 
+<div>
 $$ \mathcal{L}_{index}(I) = -  1/n_{features} || \mathcal{F}_{conv_5}(I)[:, index, :, :] ||^{2} + \lambda  regularization(I) $$
+</div>
 
 We use back-propagation to have an image that will gradually get a lower score.
 The neural network is differentiable and thus we can get a clean gradient to update our image.
 
+<div>
 $$ I -= grad_I(\mathcal{L}_{index}(I)) $$
+</div>
 
 Depending on the network, this gives more or less interesting pics.
 
