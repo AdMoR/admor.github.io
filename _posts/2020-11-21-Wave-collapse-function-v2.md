@@ -1,8 +1,9 @@
 ---
-keywords: wave function python 
 title: Wave function collapse
-nb_path: _notebooks/2020-11-21-Wave-collapse-function-v2.ipynb
-layout: notebook
+description: A generative algorithm worth your interest
+tags: python generative algorithm numpy 
+img: gen_2.png
+comments: true
 ---
 
 <!--
