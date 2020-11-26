@@ -1,7 +1,7 @@
 ---
 description: A generative algorithm worth your interest
 tags: python generative algorithm numpy 
-img: gen_5_racing
+img: gen_5_racing.png
 comments: true
 ---
 
