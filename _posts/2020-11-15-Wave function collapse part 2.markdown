@@ -1,5 +1,5 @@
 ---
-description: A generative algorithm worth your interest
+description: Create beautifuk tile maps with symmetry rules
 tags: python generative algorithm numpy 
 img: gen_5_racing.png
 comments: true
