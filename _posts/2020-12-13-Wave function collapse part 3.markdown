@@ -127,17 +127,22 @@ class OverlappingTileSetBuilder:
 However the final map computed by the WFC algorithm has to be rendered a bit differently to handle the stride.
 
 
-# Some generation
+# Some generations
 
-The 4 quadrant generations show the original image, the classes repartition, the class map and the final generation.
+The 4 quadrant generations show 
+- the original image, 
+- the tile classes repartition, 
+- the class map (as seen by the WFC) 
+- the final generation.
 
 ![Pully example](/assets/img/gen_6.png)
 
-![Octal example](/assets/img/octal_2.png)
+![Pixel art example](/assets/img/pixel_art_example_gen.png)
+
+![Another pixel art example](/assets/img/description_gen_pixel_art_3__3_1_0.png)
 
 ![Urban example](/assets/img/urban_overlap_large_2.png)
 
 ![Mondrian test](/assets/img/gen_mon_0.png)
 
-![Pixel art example](/assets/img/pixel_art_example_gen.png)
 

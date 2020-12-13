@@ -1,5 +1,5 @@
 ---
-description: Create beautifuk tile maps with symmetry rules
+description: For things like qunatization of colors and many other
 tags: python numpy image
 img: quantization.png
 comments: true
@@ -50,5 +50,6 @@ plt.imshow(pix)
 ```
 
 An example of this processing can be found with this image 
+
 ![Quantization example](/assets/img/quantization.png)
 
