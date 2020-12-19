@@ -53,3 +53,15 @@ An example of this processing can be found with this image
 
 ![Quantization example](/assets/img/quantization.png)
 
+
+### Unpacking a list of tuple to a tuple of lists
+
+Pretty common but much more efficient when not using the for loop.
+
+```python
+l = [(1, 2), (4, 4)]
+x, y = zip(*l)
+x
+#>>> (1, 4)
+```
+
