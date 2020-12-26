@@ -54,6 +54,7 @@ An example of this processing can be found with this image
 ![Quantization example](/assets/img/quantization.png)
 
 
+
 ### Unpacking a list of tuple to a tuple of lists
 
 Pretty common but much more efficient when not using the for loop.
@@ -63,5 +64,14 @@ l = [(1, 2), (4, 4)]
 x, y = zip(*l)
 x
 #>>> (1, 4)
+```
+
+### Storing and using static files in your python tests
+
+There is a simple way to get your test data with relative paths. 
+
+```python
+THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+test_data = os.path.join(THIS_DIR, "fake_data.csv")
 ```
 
