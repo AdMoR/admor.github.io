@@ -43,6 +43,29 @@ So the algorithm can run without any change to the logic.
 Let's have a look of how the tile extraction works :
 
 ```python
+from typing import NamedTuple
+from itertools import groupby
+
+
+class UniqueTile(NamedTuple):
+    
+    index: int
+    tile: np.ndarray
+    count: int
+        
+    @classmethod
+    def from_tile(cls, tile: np.ndarray):
+        return UniqueTile(np.sum(tile), tile, 1)
+    
+    @classmethod
+    def reduce_tile_set(cls, tile_array):
+        rez = list()
+        for key, group in groupby(tile_array, lambda x: x.index):
+            group = list(group)
+            rez.append(UniqueTile(key, group[0].tile, len(group)))
+        return rez
+
+
 class OverlappingTileSetBuilder:
     
     MAX_INDEX = 10
@@ -118,10 +141,9 @@ class OverlappingTileSetBuilder:
         tile_set = list(map(lambda t: UniqueTile.from_tile(my_slicer(t[0], t[1])), 
                             [(i, j) for i in range(cls.MAX_INDEX) for j in range(cls.MAX_INDEX)]))
         my_reduced_tileset = UniqueTile.reduce_tile_set(tile_set)
-        my_reindexed_tileset = [UniqueTile(i, t[1], t[2]) for i, (k, t) in enumerate(my_reduced_tileset)]
+        my_reindexed_tileset = [UniqueTile(i, t[1], t[2]) for i, t in enumerate(my_reduced_tileset)]
         adj = cls.build_tile_adjacency_from_tileset(my_reindexed_tileset, stride)
         return adj, my_reindexed_tileset     
-
 ```
 
 However the final map computed by the WFC algorithm has to be rendered a bit differently to handle the stride.

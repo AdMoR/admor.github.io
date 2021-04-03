@@ -128,6 +128,109 @@ def one_iter_propagate(wave, adj):
 
 This code is the direct application of the vectorized formula presented a few line before.
 
+### All in one 
+
+All the different parts of the algorithms are combined in this single class
+```python
+class WFC:
+    
+    class ContradictionException(Exception):
+        pass
+
+    @classmethod
+    def one_iter_propagate(cls, wave, adj):
+        padded = np.pad(
+                        wave, ((0, 0), (1, 1), (1, 1)), mode="constant", constant_values=True
+                    )
+        update = dict()
+        for d in adj:
+            dx, dy = d
+            current = padded[
+                :, (dx + 1):(wave.shape[1] + dx + 1), (dy + 1):(wave.shape[2] + dy + 1)  
+            ]
+
+            update[d] = (adj[d] @ current.reshape(current.shape[0], -1)).reshape(current.shape)
+
+        for d in adj:
+            wave *= update[d]
+
+        np.clip(wave, 0, 1, out=wave)
+
+    @classmethod
+    def propagate(cls, wave, adj):
+        count = 0
+        last_count = 0
+        while last_count != wave.sum():
+            last_count = wave.sum()
+            cls.one_iter_propagate(wave, adj)
+
+            if (wave.sum(axis=0) == 0).any():
+                raise cls.ContradictionException("Contradiction found")
+
+            count += 1
+
+        return count
+
+    @classmethod
+    def select_location(cls, wave):
+        sub_index = np.where(np.sum(wave, axis=0) > 1, np.sum(wave, axis=0), 10000)
+        index = np.argmin(sub_index)
+
+        i = int(index / wave.shape[2])
+        j = index % wave.shape[2]
+        return i, j
+    
+    @classmethod
+    def choose_state(cls, wave, u, v):
+        array = wave[:, u, v]
+        indices = list(range(array.shape[0]))
+        norm_array = array / sum(array)
+
+        state_chosen = np.random.choice(indices, p=norm_array)
+        wave[:, u, v] = 0
+        wave[state_chosen, u, v] = 1
+        
+        return state_chosen
+
+    @classmethod
+    def wave_collapse_agorithm(cls, wave, adj):
+        iteration = 0
+        
+        wave_array = list()
+
+        while wave.sum() > wave.shape[1] * wave.shape[2]:
+            
+            # We save the previous wave state in case of error 
+            wave_array.append(wave)
+
+            u, v = cls.select_location(wave)
+            state_chosen = cls.choose_state(wave, u, v)
+            
+            try:
+                cls.propagate(wave, adj)
+            except cls.ContradictionException:
+                # Recover previous state
+                wave = wave_array.pop()
+                # Set the option previously taken as impossible
+                wave[state_chosen, u, v] = 0
+                
+            iteration += 1
+
+            if iteration > 100 * wave.shape[1] * wave.shape[2]:
+                break
+            
+    @classmethod
+    def run_wave_collapse(cls, my_adj, h, w):
+        n_tiles = my_adj[(-1, 0)].shape[0]
+        wave = np.ones((n_tiles, h, w))
+
+        # Run the wave collapse alg
+        cls.wave_collapse_agorithm(wave, my_adj)
+
+        return wave
+
+```
+
 
 ### Some generations
 
