@@ -51,7 +51,6 @@ from multiprocessing import Queue,
 q_in_url = Queue(maxsize=1500)
 ```
 These queues are expected as input and output of all steps 
-
 ```python
 def download_worker(q_in, q_out):
     while True:

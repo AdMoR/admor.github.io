@@ -6,6 +6,8 @@ img: pex_build.png
 
 This a small post presenting how to build a simple executable for your python project.
 
+PS : after stumbling upon [this cookicutter repo](https://github.com/audreyfeldroy/cookiecutter-pypackage), I believe this is probably the go-to when you want to build a new python package.
+
 
 ### Why do I need that ?
 
