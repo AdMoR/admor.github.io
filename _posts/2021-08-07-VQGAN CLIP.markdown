@@ -39,8 +39,9 @@ Chicken boulder land
 
 #### Where can you do it yourself ?
 
-There is an easy access to a colab notebook.
-https://colab.research.google.com/github/dribnet/clipit/blob/master/demos/Start_Here.ipynb#scrollTo=XziodsCqVC2A
+There is an easy access to [a colab notebook](https://colab.research.google.com/github/dribnet/clipit/blob/master/demos/Start_Here.ipynb#scrollTo=XziodsCqVC2A).
+
+I had a lot of fun with it.
 
 
 
@@ -69,6 +70,7 @@ They use :
 #### VQGAN
 
 This is a mix between a transformer and a GAN architecture.
+
 ![An example](/assets/img/example_VQGAN.png)
 
 Some useful links : 
@@ -94,12 +96,16 @@ TODO
 
 What everyone didn't need !
 
-![nightmare](/assets/img/no_one_reches_the_end.png)
+![nightmare](/assets/img/no_one_reaches_the_end.png)
 ![nightmare](/assets/img/mocking_face_in_the_forest.png)
 ![nightmare](/assets/img/toad_wizard_and_the_witch.png)
+![nightmare](/assets/img/possessed_meat_cupcake.png)
 
 #### Faery tale characters
+
+What does a paper company cat ceo looks like ?
 
 ![faery](/assets/img/dog_engineer_from_the_love_department.png)
 ![faery](/assets/img/toad_witch.png)
 ![faery](/assets/img/the_paper_company_cat_ceo.png)
+![faery](/assets/img/peacock_board_of_directors.png)
