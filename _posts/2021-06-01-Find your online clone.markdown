@@ -101,6 +101,15 @@ So the data stored is only :
 - face location
 - embedding vector (size 128)
 
+It is also possible to apply a crop on the html displying the url 
+```HTML
+<img id="example-element" src="{{element}}"
+ style="object-position: -{{bb[0]}}px -{{bb[3]}}px;object-fit: none; width: {{bb[1] - bb[3]}}px; height: {{bb[2] - bb[0]}}px">
+```
+This snippet is extracted from the jinja template used to display results. 
+
+This way we don't need to store more than an url and a few numbers for the pictures.
+
 
 #### Approximate nearest neighbour (aka ANN)
 
@@ -120,6 +129,8 @@ This part was designed using [Fast API](https://fastapi.tiangolo.com). It was in
 
 
 ## Aftermath
+
+All the code can be found on [this github repo](https://github.com/AdMoR/sozy-face-embedding)
 
 Results were however a bit disspointing even with a reasonbale amount of faces scrapped. You don't find a doppelganger of anyone with just a few pictures of a large set of celebrities. 
 
