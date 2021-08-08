@@ -102,7 +102,7 @@ So the data stored is only :
 - embedding vector (size 128)
 
 It is also possible to apply a crop on the html displying the url 
-```HTML
+```
 <img id="example-element" src="{{element}}"
  style="object-position: -{{bb[0]}}px -{{bb[3]}}px;object-fit: none; width: {{bb[1] - bb[3]}}px; height: {{bb[2] - bb[0]}}px">
 ```
