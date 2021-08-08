@@ -79,26 +79,28 @@ Some useful links :
 
 In short : 
 - The work of the generator is made simpler with a codebook of quantized features
-- A transformer learns to associates which codes go well together
-- Codes from the geenrated image are constructed in a sliding window manner
-- The generator only has to learn to reconstruct a code to a real image
+- A transformer learns to associate which codes go well together
+- Codes from the generated image are constructed in a sliding window manner
+- The generator only has to learn to reconstruct the relationship between codes and real images.
 
 
 #### Generation 
 
 **Forward** : 
 
-The generated image goes through the image path of the CLIP model and the embedding is compared to the text embeding. 
+The generated image goes through the image path of the CLIP model and the embedding is compared to the text embeding [1](https://github.com/dribnet/clipit/blob/master/generate.py#L741) [2](https://github.com/dribnet/clipit/blob/master/generate.py#L235). 
 We maximise the similarity between the two.
-To have a better looking image, a batch of crop and different data augmented version of the image are passed in a batch.
+To have a better looking result, a batch of crop and different data augmented version of the image are passed in a batch.
+
+[This article](https://distill.pub/2017/feature-visualization/) discusses some common methods to have a more stable optimization process.
 
 **Backward** : 
 
 So what do we optimize exactly ?
 
-In fact, the optimized image is parametrized by the VQGAN internal representation. 
-We start with random noise and pass it through the Vqgan model.
-The total backward loss is computed through all these networks.
+In fact, the optimized image is parametrized by the VQGAN internal representation [1](https://github.com/dribnet/clipit/blob/master/generate.py#L604). 
+We start with random noise and pass it through the Vqgan model to obtain a starting z [2](https://github.com/dribnet/clipit/blob/master/generate.py#L494).
+The total backward loss is computed through all VQGAN network and CLIP [3](https://github.com/dribnet/clipit/blob/master/generate.py#L828).
 
 
 
