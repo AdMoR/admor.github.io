@@ -12,28 +12,30 @@ Very often, AI promises don't deliver. But sometimes they deliver much beyond yo
 
 ## What can you create ?
 
+Select **a prompt** and the model will give you an image **corresponding to the inputed text**.
+
 #### Some examples
 
 ![I'm in love with a robot](/assets/img/robot_love.png)
-I'm in love with a robot
+Input : I'm in love with a robot
 
 ![Back to the pit](/assets/img/back_to_the_pit.png)
-Back to the pit
+Input : Back to the pit
 
 ![Chicken_surf](/assets/img/chicken_surf.png)
-Chicken surf
+Input : Chicken surf
 
 ![Toaster_forest](/assets/img/toaster_forest.png)
-Toaster forest
+Input : Toaster forest
 
 ![the_rave](/assets/img/the_rave.png)
-The rave
+Input : The rave
 
 ![colorful_mushrooms](/assets/img/colorful_mushrooms.png)
-Colorful mushrooms
+Input : Colorful mushrooms
 
 ![chicken_boulder_land](/assets/img/chicken_boulder_land.png)
-Chicken boulder land
+Input : Chicken boulder land
 
 
 
