@@ -38,7 +38,7 @@ They can be achieved with the following solutions :
 Easy right ?
 
 
-#### running it to scale
+#### Running it to scale
 
 The great advantage of python is that everything has already been developped by someone somewhere. But when you glue everything together, you still need to think about how to it properly.
 
@@ -114,8 +114,14 @@ The web app is relatively simple :
 This part was designed using [Fast API](https://fastapi.tiangolo.com). It was indeed a huge boost of productivity compared to Flask. I highly recommend it.
 
 
-## Results
+## Aftermath
 
-Results were however a bit disspointing even with a reasonbale amount of faces scrapped.
+Results were however a bit disspointing even with a reasonbale amount of faces scrapped. You don't find a doppelganger of anyone with just a few pictures of a large set of celebrities. 
+
+The face model is also a bit racist (like all ml models unfortunatelly) making it difficult to open for the public.
+
+And I also happened to kill my desktop gpu in the process of extracting embeddings from all the face :(.
+
+
 
 

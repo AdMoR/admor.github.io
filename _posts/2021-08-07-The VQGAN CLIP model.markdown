@@ -86,7 +86,19 @@ In short :
 
 #### Generation 
 
-TODO
+**Forward** : 
+
+The generated image goes through the image path of the CLIP model and the embedding is compared to the text embeding. 
+We maximise the similarity between the two.
+To have a better looking image, a batch of crop and different data augmented version of the image are passed in a batch.
+
+**Backward** : 
+
+So what do we optimize exactly ?
+
+In fact, the optimized image is parametrized by the VQGAN internal representation. 
+We start with random noise and pass it through the Vqgan model.
+The total backward loss is computed through all these networks.
 
 
 
