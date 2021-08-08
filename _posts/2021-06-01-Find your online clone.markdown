@@ -18,7 +18,7 @@ I later came across [twinstrangers.com](twinstrangers.com) and found they had th
 
 ## Getting the data
 
-#### collecting faces 
+#### Collecting faces 
 
 We need 4 main steps in order to get those faces
 
@@ -35,7 +35,12 @@ They can be achieved with the following solutions :
 - Finally to get face embeddings, there is the very handy project [face-recognition/](https://pypi.org/project/face-recognition/)
 
 
+![architecture](/assets/img/sozy_architecture.png)
+
+
 Easy right ?
+
+
 
 
 #### Running it to scale
@@ -118,7 +123,7 @@ This part was designed using [Fast API](https://fastapi.tiangolo.com). It was in
 
 Results were however a bit disspointing even with a reasonbale amount of faces scrapped. You don't find a doppelganger of anyone with just a few pictures of a large set of celebrities. 
 
-The face model is also a bit racist (like all ml models unfortunatelly) making it difficult to open for the public.
+The face model is also a bit racist (like most ml models unfortunatelly) making it difficult to open for the public.
 
 And I also happened to kill my desktop gpu in the process of extracting embeddings from all the face :(.
 
