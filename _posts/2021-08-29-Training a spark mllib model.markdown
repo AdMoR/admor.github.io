@@ -104,12 +104,24 @@ df = interaction.transform(df)
 Crosses made between spase vector columns are properly handled by this class. So all the crosses can be done after all feature are vectorized.
 
 
+## The training 
+
+There is less to say on this part. You can access some training information with the following : 
+
+```python
+lr = LogisticRegression(maxIter=1000, regParam=0.1, labelCol="LABEL")
+lrModel = lr.fit(df)
+trainingSummary = blorModel.summary
+print("areaUnderROC: " + str(trainingSummary.areaUnderROC))
+```
+
+
 ## Some tricks to get some order
 
 The main issue with this way of doing things is that you need to factor your code in order to keep your sanity.
 If you have hundreds of features to process and multiple cross features to produce, doing it manually is a garanty to create bugs in your code.
 
-#### NamedTuples
+#### NamedTuples to represent features
 
 Tracking feature names can start to be difficult when you handle a few hundreds of them.
 Packaging feature names into namedtuples help to store under a simple name the various subname that the feature will have through its different steps.
@@ -155,20 +167,11 @@ Contrary to the usual sklearn API, `fit` and `transform` are not in place operat
 
 ```python
 if train:
-    self.model = one_hot_encoder.fit(df)
+    model = one_hot_encoder.fit(df)
+    model.save("one_hot.moodel")
+else:
+    model = load("one_hot.model")
 
-df = self.model.transform(df)
-```
-
-
-## The training 
-
-There is less to say on this part. You can access some training information with the following : 
-
-```python
-lr = LogisticRegression(maxIter=1000, regParam=0.1, labelCol="LABEL")
-lrModel = lr.fit(df)
-trainingSummary = blorModel.summary
-print("areaUnderROC: " + str(trainingSummary.areaUnderROC))
+df = model.transform(df)
 ```
 
