@@ -7,8 +7,11 @@ comments: true
 
 ## Introduction
 
-*Distributed training* is often something quite expansive to setup. 
-Luckily with spark mllib, you can have it for a very low entry price.
+*Distributed training* is often something quite expansive to setup. Luckily with spark mllib, you can have it for a very low entry price.
+
+
+This articles aims at making you gain some time in the understanding of the operators and small subtleties of the framework.
+
 
 
 ## Feature engineering
@@ -27,9 +30,12 @@ We will see an example on how to preprocess this data properly.
 Usually when working with tabular data, you have a lot of string and ids to process. 
 Let's see the main operators to do this work.
 
-- StringIndexer
-- FeatureHasher
-- VectorIndexer
+- [StringIndexer](https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.ml.feature.StringIndexer.html)
+- [FeatureHasher](https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.ml.feature.FeatureHasher.html)
+- [VectorIndexer](https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.ml.feature.VectorIndexer.html)
+
+As the names are quite straightforward, I assume you already know which one you want to use.
+I recommend that you look at the example given by the documentation as they are much more precise than the high level intro of the operators.
 
 
 #### Bucketing
@@ -37,18 +43,19 @@ Continuous feature do not need to be directly processed but it is usually safer 
 This avoids cases where extreme valued samples get unreasonable predictions.
 
 We have two main options : 
-- QuantileDiscretizer
-- Bucketizer
+- [QuantileDiscretizer](https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.ml.feature.QuantileDiscretizer.html)
+- [Bucketizer](https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.ml.feature.Bucketizer.html)
 
 **QuantileDiscretizer**
 
 Easy and safe option. The quantiles helps to find buckets that will fit the data distribution.
-As the modelisation is automatica, it also help in the long term to be more responsive to data distribution changes.
+As the modelisation is automatic, it also help in the long term to be more responsive to data distribution changes.
 
 **Bucketize**
 
 This option allows you more modeling power. Data does necesarilly comes in evenly distributed buckets. So quantiles may not always be the best way to cluster some data.
 
+However with a high number of columns, it is costly to apply a set of good thresholds.
 
 
 #### Bag-of-words features
@@ -69,9 +76,11 @@ df = spark.createDataFrame([
 cv = CountVectorizer(inputCol="last_ids", outputCol="features", vocabSize=10, minDF=2.0)
 ```
 
+**Note** : You will need to transform your indexes into strings. Otherwise the CountVectorizer will start to yell at you.
+
 
 #### Sparse vectorization
-In order to get a sparse representation, we need to go trhough the vectorization steps. 
+In order to get a sparse representation, we need to go through the vectorization of the indexes produced by previous steps. 
 It is quite straighforward to use.
 
 ```
@@ -86,10 +95,12 @@ OneHotEncoder...
 SparseVector(2, {0: 1.0})
 ```
 
+**Note** : Bag-of-words features are already vectorized and don't need to go through this step.
+
 
 #### Cross features
 
-Cross features is a very important part of the feature engineering step. It helps model business logic directly inside the model.
+Cross features is a very important part of the feature engineering step. It helps baking business logic directly inside the model.
 
 In order to do so, the Interaction class be used as follow : 
 
@@ -106,7 +117,9 @@ Crosses made between spase vector columns are properly handled by this class. So
 
 ## The training 
 
-There is less to say on this part. You can access some training information with the following : 
+There is less to say on this part. 
+First one, you need to use a [VectorAssembler]() in order to produce the final vector used to train your model
+Second one, you can access some training information with the following : 
 
 ```python
 lr = LogisticRegression(maxIter=1000, regParam=0.1, labelCol="LABEL")
@@ -168,10 +181,35 @@ Contrary to the usual sklearn API, `fit` and `transform` are not in place operat
 ```python
 if train:
     model = one_hot_encoder.fit(df)
-    model.save("one_hot.moodel")
+    model.save("one_hot.model")
 else:
-    model = load("one_hot.model")
+    model = OneHotEncoderModel.load("one_hot.model")
 
 df = model.transform(df)
 ```
+This chunk of code gives the general format that must be used for all operators doing a fit_transform on the data.
+
+
+#### Using the Pipeline class 
+
+The pipeline class is very handy in order to serialize your whole process in a concise way.
+
+Here is an example 
+```python
+indexer = StringIndexer()
+one_hot_encoder = OneHotEncoder(dropLast=False)
+my_interaction = Interaction()
+assembler = VectorAssembler()
+# You will need additional code in order to properly set your columns
+lr = LogisticRegression(maxIter=1000, regParam=0.1, labelCol="LABEL")
+
+pipeline = Pipeline(stages=[indexer, one_hot_encoder, my_interaction, assembler, lr])
+
+
+df = pipeline.fit(df)
+
+pipeline.save("my_pipeline.save")
+```
+Inference is then super easy.
+
 
