@@ -39,10 +39,15 @@ img = torch.clip(F.softmax(self.class_matrix, dim=2) @ torch.sigmoid(self.class_
 
 ![quantized](/assets/img/color_quantization_excitation.png)
 
-We can see that there is a difference, the softmax allows the optimization process to cheat and get colors that are a mix between the main ones.
+This first image shows the difference between the true image with the strict one color rule (left) and the relaxed version used for optimization (right).
+Color on the right have different shades for a given hue.
+
 
 ![index9](/assets/img/index9.png)
+An image as seen during the optimization
+
 ![index9_true](/assets/img/index9_true.png)
+The true image with classes
 
 
 ## Some tricks
