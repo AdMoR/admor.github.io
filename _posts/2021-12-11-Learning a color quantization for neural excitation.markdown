@@ -7,7 +7,12 @@ comments: true
 
 ## Introduction
 
-I have been recently playing with the [diffvg lib](https://github.com/BachiLi/diffvg). It allows to optimize a set of line and get an output 
+I have been recently playing with the [diffvg lib](https://github.com/BachiLi/diffvg). It allows to optimize a set of lines and get an output that optimizes specific constraints like this example.
+
+![example](https://raw.githubusercontent.com/AdMoR/neural-styles/master/images/result_n_paths400_im_size224_n_steps1500_layer_nameVGGLayers.Conv4_3_layer_index2.svg)
+
+However in this case, the number of colors is not controlled. And thus cannot be plotted wit a regular set of pens.
+A constraint very important if you want to draw this drawing with an [Axidraw](https://axidraw.com).
 
 
 ## A simpler problem : neural style with quantization
@@ -55,6 +60,7 @@ We can see that there is a difference, the softmax allows the optimization proce
 #### A penalty for non spiky class_matrix
 
 `loss += 0.01 * torch.norm(F.softmax(pal_im.class_matrix, dim=2) ** 0.5, 1)`
+
 Here, we try to make arrays like `[0.2, 0.2, 0.6]` have a higher norm than `[1.0, 0, 0]`. So we take the sqaure root of the softmax output of color classes image.
 
 
