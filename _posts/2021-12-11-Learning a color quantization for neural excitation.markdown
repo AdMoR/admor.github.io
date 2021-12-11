@@ -44,9 +44,11 @@ Color on the right have different shades for a given hue.
 
 
 ![index9](/assets/img/index9.png)
+
 An image as seen during the optimization
 
 ![index9_true](/assets/img/index9_true.png)
+
 The true image with classes
 
 
