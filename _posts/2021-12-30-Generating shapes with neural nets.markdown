@@ -1,7 +1,7 @@
 ---
 description: locally non-sensical globally surprising
 tags: python svg neuron excitation optimization pytorch
-img: final_render_neural_style_axi.jpg
+img: axidraw_drawing.jpg
 comments: true
 ---
 
@@ -9,7 +9,8 @@ comments: true
 
 I have for a long time looked for a way to mix image generation and the real world.
 The way to bring something digital into the real world could be a printer. However one usual limitation of image generation is that it is low dimension usually 1000x1000. 
-I tried [dithering](https://en.wikipedia.org/wiki/Dither) but the results are not amazing and don't feel particular.
+
+[Dithering](https://en.wikipedia.org/wiki/Dither) can be interesting but the results are not special enough.
 
 
 ## Differential SVG
@@ -18,13 +19,13 @@ I tried [dithering](https://en.wikipedia.org/wiki/Dither) but the results are no
 
 Before talking about the library, let's talk about the format. SVG for scalable vector graphics allows to draw a lot of stuff and unlike an image, it can be scaled to any desired size.
 
-The main tool that will be used is [the bezier curve](). It is our atomic element to represent a stroke of a pen. In order to create a drawing, we will use a lot of them.
+The main tool that will be used is [the bezier curve](https://en.wikipedia.org/wiki/Bézier_curve). It is our atomic element to represent a stroke of a pen. In order to create a drawing, we will use a lot of them.
 
 
-So about the library : 
+__So about the library__ : 
 
 The base of this large size application is the library [diffvg](https://github.com/BachiLi/diffvg) that enables optimizing the parameters of a svg curve.
-It uses a concept similar to [the differentiable rendered]().
+It uses a concept similar to [the differentiable render](https://www.youtube.com/watch?v=tGJ4tEwhgo8).
 
 
 #### Learning an interesting drawing for the network
@@ -44,17 +45,19 @@ Additionally in order to have a more stable optimization process, some data augm
 Old school neural networks like VGG16 or ResNet18 allow to have an optimization process fast enough with interesting feature as well.
 
 
-With color : 
+*With color :*
 
 ![VGG Conv3_3](https://raw.githubusercontent.com/AdMoR/neural-styles/master/images/best_svg_color_neuron_exc/result_n_paths202_im_size500_n_steps2500_layer_nameVGGLayers.Conv3_3_layer_index37.svg)
+
 VGG16 Conv3_3 layer 37
 
 
 ![VGG Conv3_3](https://raw.githubusercontent.com/AdMoR/neural-styles/master/images/best_svg_color_neuron_exc/result_n_paths202_im_size500_n_steps2500_layer_nameVGGLayers.Conv3_3_layer_index7.svg)
+
 VGG16 Conv3_3 layer 7
 
 
-Without : 
+*Without :*
 
 ![larger]({{site.baseurl}}/assets/img/saxi_original_drawing.png)
 
@@ -70,6 +73,7 @@ One can drag and drop the file and visualize what the drawing would look like on
 
 
 Given this image 
+
 ![larger]({{site.baseurl}}/assets/img/saxi_original_drawing.png)
 
 This is what is seen.
@@ -95,10 +99,12 @@ In order to facilitate this optimization process, one trick was to create a star
 - Finetune the large image
 
 ![pretraining]({{site.baseurl}}/assets/img/pretraining_small.png)
+
 Before the pretraining starts
 
 
 ![pretraining]({{site.baseurl}}/assets/img/after_finetuning.png)
+
 After the finetuning
 
 
