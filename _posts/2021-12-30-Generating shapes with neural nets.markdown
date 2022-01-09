@@ -24,7 +24,7 @@ The main tool that will be used is [the bezier curve](https://en.wikipedia.org/w
 
 __So about the library__ : 
 
-The base of this large size application is the library [diffvg](https://github.com/BachiLi/diffvg) that enables optimizing the parameters of a svg curve.
+The base of our size application is the library [diffvg](https://github.com/BachiLi/diffvg) that enables optimizing the parameters of a svg curve.
 It uses a concept similar to [the differentiable render](https://www.youtube.com/watch?v=tGJ4tEwhgo8).
 
 
@@ -38,6 +38,9 @@ The basic idea here is similar to what is done in [this article](https://distill
 ```
 
 Additionally in order to have a more stable optimization process, some data augmentation are used : random crop, perspective, jitters.
+
+
+The logic for the code can be found [here](https://github.com/AdMoR/neural-styles/blob/master/svg_neuron_optim.py).
 
 
 #### Some results
@@ -110,12 +113,18 @@ After the finetuning
 
 ## Real life result
 
-The final result is big enough to see the pattern multiple times but the eye cannot catch the small irregularities too easily
-
 ![final render]({{site.baseurl}}/assets/img/final_render_neural_style_axi.jpg)
 
+The final result is big enough to see the pattern multiple times but the eye cannot catch the small irregularities too easily
+
+
+![in a frame]({{site.baseurl}}/assets/img/render_in_a_frame.jpg)
 
 In a frame, the result looks kind of professional.
 
 
-![in a frame]({{site.baseurl}}/assets/img/render_in_a_frame.jpg)
+![worn up]({{site.baseurl}}/assets/img/worn_up_pen.jpg)
+
+Here the pen got tired during the \~1h30 of drawing. 
+
+
