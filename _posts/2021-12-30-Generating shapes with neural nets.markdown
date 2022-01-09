@@ -123,8 +123,16 @@ The final result is big enough to see the pattern multiple times but the eye can
 In a frame, the result looks kind of professional.
 
 
+![another example]({{site.baseurl}}/assets/img/another_example.jpg)
+
+Another interesting pattern.
+
+
 ![worn up]({{site.baseurl}}/assets/img/worn_up_pen.jpg)
 
 Here the pen got tired during the \~1h30 of drawing. 
 
 
+![highlighter proto]({{site.baseurl}}/assets/img/early_prototype_with_highlighter.jpg)
+
+Result on a smaller piece of paper with an highlighter, the paper quality is important in order to absorb all the ink coming for the repetitive stroke in the same area.
