@@ -1,5 +1,5 @@
 ---
-description: locally non-sensical globally surprising
+description: Summary of a journey to create a novel kind of shape algorithm
 tags: python svg neuron excitation optimization pytorch
 img: axidraw_drawing.jpg
 comments: true
@@ -108,7 +108,14 @@ Before the pretraining starts
 After the finetuning
 
 
+## Real life result
 
 The final result is big enough to see the pattern multiple times but the eye cannot catch the small irregularities too easily
 
 ![final render]({{site.baseurl}}/assets/img/final_render_neural_style_axi.jpg)
+
+
+In a frame, the result looks kind of professional.
+
+
+![in a frame]({{site.baseurl}}/assets/img/render_in_a_frame.jpg)
