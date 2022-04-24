@@ -41,12 +41,11 @@ However, here, we can go for something rather simple : fitting a **Kmeans** on t
 
 Lab color space is more adapted for our color perception and will provide more satisfying visual results.
 
-[Example one]()
+![Color palette and transfo]({{site.baseurl}}/assets/img/color_palette_and_transformation.png)
 
-[Example two]()
+![Sample curves]({{site.baseurl}}/assets/img/before_quantization.png)
 
-[Example three]()
-
+![Sample curves after quanti]({{site.baseurl}}/assets/img/after_quantization.png)
 
 #### Recombining with previous optimizations
 
