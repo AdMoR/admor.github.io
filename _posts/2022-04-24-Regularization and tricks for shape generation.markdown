@@ -43,9 +43,15 @@ Lab color space is more adapted for our color perception and will provide more s
 
 ![Color palette and transfo]({{site.baseurl}}/assets/img/color_palette_and_transformation.png)
 
+How the quantization is done with Lab and Kmeans. 
+The visualization of the clusters colors and the quantization process looks reasonable.
+
 ![Sample curves]({{site.baseurl}}/assets/img/before_quantization.png)
 
 ![Sample curves after quanti]({{site.baseurl}}/assets/img/after_quantization.png)
+
+Here, we take a set of svg curves and apply the quantization defined before. The process looks smooth.
+
 
 #### Recombining with previous optimizations
 
@@ -54,7 +60,7 @@ The quantization usually looks good, but we don't know how much we have damaged 
 One idea is to re-optimize the image given, this time, the fixed set of colors.
 
 We get a small difference in the final image.
-![Finetuning after color quantization]()
+![Finetuning after color quantization]({{site.baseurl}}/assets/img/post_quantization_finetuning.png)
 
 
 We also use the multi-scale recombination from previous post to get a bigger image for a lower optimization cost
@@ -101,7 +107,7 @@ In this setting, we identify our problem as :
 In terms of equation, we would have something like : 
 ```
 loss = content_loss + style_regularization + other_regularisation
-loss = - sum( VGG_16(optimized_img, content_layer) ) + lambda * norm( Gram(VGG_16(optimized_img, style_layer)) - Gram(VGG_16(style_img, style_layer)))
+loss = -sum( VGG_16(optimized_img, content_layer) ) + lambda * norm( Gram(VGG_16(optimized_img, style_layer)) - Gram(VGG_16(style_img, style_layer)) )
 ```
 For the sake of simplicity, we use VGG_16 as both the content and style network.
 
@@ -169,4 +175,11 @@ But this property is not granted for every run, it is probably partially a side 
 
 
 ![Multi color blue print]({{site.baseurl}}/assets/img/multi_color_blueprint.png)
+
+The svg file
+
 ![Multi color gen]({{site.baseurl}}/assets/img/color_creation.jpg)
+
+The result once printed.
+We do not have a 1-to-1 match because of svg layers that cannot be easily reproduced with plotting.
+The colors are also difficult to reproduce. A bright blue is very complicated to execute with pen ink.
