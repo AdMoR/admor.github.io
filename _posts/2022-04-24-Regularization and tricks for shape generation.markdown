@@ -1,7 +1,7 @@
 ---
 description: or how to limit the gap between virtual and real
 tags: python svg neuron excitation optimization pytorch
-img: axidraw_drawing.jpg
+img: plotting_with_color.jpg
 comments: true
 ---
 
@@ -21,7 +21,7 @@ But the objective ends up to be : how to force the computer to produce something
 Color for an optimization can be learned, however, it is a continuous spectrum.
 However, we have only a limited number of pens and thus available colors.
 
-[pen picture]()
+![pen picture]({{site.baseurl}}/assets/img/color_pens.jpg)
 
 Thus we have two options : 
 - predefine the available colors at start
@@ -64,23 +64,23 @@ We also use the multi-scale recombination from previous post to get a bigger ima
 
 Here is a few example of the learned pattern and their final image obtained with finetuned quantization :
 
-![Large finetuning after color quantization 1]()
+![Before color quantization 1]({{site.baseurl}}/assets/img/color_and_shape_optim.png)
 
-![Large finetuning after color quantization 2]()
+![Large finetuning after color quantization 2]({{site.baseurl}}/assets/img/quantized_large_scale_optim.png)
 
 
 ## Adding regularization in the optimization
 
 #### What are the challenges ?
 
-To give a bit of context on the optimization process, [this page]() can give you the main formulas.
+To give a bit of context on the optimization process, [this page](https://admor.github.io/Feature-visualisation-the-basics/) can give you the main formulas.
 
 In short, we have two main elements that will dictate what will appear in the image : which network do we use and which neuron in which layer.
 
 Once, this has been chosen. The optimization will try to fill as much space with the pattern that maximize the layer activation.
 This leads to having a very dense final image.
 
-![]()
+![dense generation]({{site.baseurl}}/assets/img/dense_generation.png)
 
 The patterns are very interesting. But from the human point of view, it can be a bit overwhelming.
 
@@ -169,4 +169,5 @@ But this property is not granted for every run, it is probably partially a side 
 ## Some generations
 
 
-
+![Multi color blue print]({{site.baseurl}}/assets/img/multi_color_blueprint.png)
+![Multi color gen]({{site.baseurl}}/assets/img/color_creation.jpg)
