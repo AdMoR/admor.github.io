@@ -74,11 +74,11 @@ Here is an example
 
 - The initial learned pattern
 
-![Before color quantization 1]({{site.baseurl}}/assets/img/color_and_shape_optim.png){: width="550" }
+![Before color quantization 1]({{site.baseurl}}/assets/img/color_and_shape_optim.png){: width="250" }
 
-- and their final image obtained with finetuned quantization :
+- and the final image obtained with finetuned quantization :
 
-![Large finetuning after color quantization 2]({{site.baseurl}}/assets/img/quantized_large_scale_optim.png){: width="550" }
+![Large finetuning after color quantization 2]({{site.baseurl}}/assets/img/quantized_large_scale_optim.png){: width=2550" }
 
 
 ## Adding regularization in the optimization
@@ -122,7 +122,7 @@ loss = -sum( VGG_16(optimized_img, content_layer) ) + lambda * norm( Gram(VGG_16
 ```
 For the sake of simplicity, we use VGG_16 as both the content and style network.
 
-However the style and content layer might probably be different. Conv2_2 might be the style one and Conv4_3 might be the content one.
+However, the style and content layer might probably be different. Conv2_2 might be the style one and Conv4_3 might be the content one.
 We also need to introduce a style image that will dictate its properties through the style loss.
 
 
@@ -134,7 +134,7 @@ The large amount of white space allow (we hope) to create the desired sparsity.
 ![Mondrian pic](https://arttocanvas.com/wp-content/uploads/2019/04/Mondrian_52544587.jpg){: width="550" }
 
 
-One omitted detail in the previous section is the need to find a `lambda` to balance the content loss with the style regularization.
+We omitted a detail in the previous section, we need to find a `lambda` to balance the content loss with the style regularization.
 Experimentation showed that a value of 50 seemed to balance both terms. But this parameter seems to have a lot of effect in some cases and very little on other.
 
 In the following pictures, we show : 
@@ -153,7 +153,11 @@ In some case, the effect can also be limited. We still observe some benefits
 
 ![Medium sparsity]({{site.baseurl}}/assets/img/medium_sparsity_addition.png){: width="550" }
 
+An example with the usage of color, a stronger regularization is needed to have a visible result.
 
+![color sparsity multiple reg]({{site.baseurl}}/assets/img/increasing_levels_of_regulation.png){: width="550" }
+
+From left to right, regularization=0, 50, 1000. Results at 50 are barely noticable.
 
 #### Case study
 
