@@ -10,13 +10,14 @@ comments: true
 
 In the previous post, we have seen ideas to handle plottable colors in neuron excitation.
 
-However, we remained at a very basic level of transformation. The quantization process can be very rough and does not respect the transparency that was used in the original optimization process.
+However, we remained at a very basic level of transformation. 
+The quantization process can be very rough and does not respect the transparency that was used in the original optimization process.
 
-In this blog post, we will deep dive on methods for truthful post hoc color quantization process.
+In this blog post, we will dive deeper on methods for truthful post hoc color quantization process.
 
 In short : 
 1 - We improve the basic algorithm for quantization and observe the qualitative results
-2 - Using an alternative generation method, we improe the previous method with transparency handling
+2 - Using an alternative generation process, we improve the previous method with transparency handling
 
 
 ## TLDR
@@ -29,24 +30,26 @@ We get this kind of production
 
 
 
+## Stroke based images and their shortcomings
 
+#### Review of the plots from the previous posts
 
-## Stroke based images and its shortcomings
+Optimization using free form curves gives initially interesting pictures.
+But during the postprocessing that allows to make it plottable, we lose the magic touch that makes it interesting.
 
-
-#### Current state of affair
-
-Optimization using free form curves 
-
-......
 
 ![shortcoming in simplification]({{site.baseurl}}/assets/img/loss_of_magic_after_quantization.png){: width="750" }
 
+In this example, we quantize the number of color and stroke width.
+
+
+#### What's next ?
 
 Given the unsatisfactory results on the previous color quantization methodology, we want to rethink our approach.
 
-In the first part, we avoided one main element : 
-- the color interaction between curves through the alpha channel
+We avoided two main elements in the previous approach : 
+- curves are more than points, they are in fact polygons
+- the color quantization should take into account the mixing of color between curves
 
 This made our problem much easier because : 
 - computing multiple intersections and covers is hard
@@ -71,22 +74,22 @@ From there, we need to rework the svg generation process to use this different b
 
 ## Color quantization
 
-Before diving in the algorithm, let's sum up the problem.
+This is one of the main step.
+
+Because finding the right methodology is required in order to produce a simple yet truthful plot of the original image, we present some ideas on the quantization process.
 
 ```
+# Outlook of the algorithm
 Input :  We have N polygon with different colors and stroke size
-Output : We have the same set of polygon but with colors and stroke limited to a given collection C_n
+Output : We have the same set of polygon but with colors limited to a given collection C_n
 ```
 
-This is needed as we can use only a limited number of pens.
 
 #### K-means
 
 The different colors used on the curves are 4 dimensional : 3 RGB channel plus an alpha one.
 
 The alpha one is important in our problem as it allows to have several curves on the same spot contributing to a color mix.
-However as most of the space is filled with curve that are non intersecting, we can transform the 4-channels into only 3 by multipling with the alpha.
-
 
 The final algorithm is then pretty straight forward :
 ```
@@ -101,9 +104,6 @@ display_colors(kmeans._centers)
 
 ![show color palette]({{site.baseurl}}/assets/img/){: width="750" }
 
-One detail on the color, using [Lab]() is crucial to have clusters that are natural to the human eye.
-![with and without lab]()
-
 That's it for the basics.
 
 
@@ -115,7 +115,7 @@ Why do we need it ?
 
 Because a few curves happen to have colors completely off the limited palette we would like to have.
 
-K mean may not be resistant to this kind of data as its centers may shift in the direction of the outlier or even occupy a center if enough colours are allowed.
+K-means may not be resistant to this kind of data as its centers may shift in the direction of the outlier or even occupy a center if enough colours are allowed.
 However outlier removal should be used carefully as sparsely used color can sometimes be fundamental in the rendering of the image.
 
 ![example of image with outlier colours]()
@@ -147,9 +147,16 @@ The main steps :
 
 ![Color change  after ransac]({{site.baseurl}}/assets/img/difference_in_rendering_with_ransac.png){: width="800" }
 
+We often get cases where a color is replaced by another and it improves the final results.
 
 
-## Producing the final print
+## Computing regions cover 
+
+#### Pixel cover
+
+
+
+#### Shape cover
 
 So far we used polygons to represent the shapes in the image. However, this is not enough when we want to plot it with pen.
 
