@@ -1,4 +1,9 @@
-# Post hoc color quantization for pen plotting
+---
+description: The path to plot with richer content
+tags: python svg neuron excitation optimization pytorch
+img: poly_gen_result_1.JPG
+comments: true
+---
 
 
 ## Introduction
@@ -18,9 +23,9 @@ In short :
 
 We get this kind of production
 
-![]()
+![result_1]({{site.baseurl}}/assets/img/poly_gen_result_1.JPG){: width="750" }
 
-![]()
+![result_2]()
 
 
 
@@ -35,7 +40,7 @@ Optimization using free form curves
 
 ......
 
-![shortcoming in simplification]({{site.baseurl}}/assets/img/loss_of_magic_after_quantization.png){: width="500" }
+![shortcoming in simplification]({{site.baseurl}}/assets/img/loss_of_magic_after_quantization.png){: width="750" }
 
 
 Given the unsatisfactory results on the previous color quantization methodology, we want to rethink our approach.
@@ -59,8 +64,8 @@ One possible solution is to change the optimization basis from curves to polygon
 
 From there, we need to rework the svg generation process to use this different basis.
 
-![generation using polygons]({{site.baseurl}}/assets/img/polygon_neuron_excitation.png){: width="500" }
-![generation using polygons]({{site.baseurl}}/assets/img/polygon_neuron_excitation_2.png){: width="500" }
+![generation using polygons]({{site.baseurl}}/assets/img/polygon_neuron_excitation.png){: width="400" }
+![generation using polygons]({{site.baseurl}}/assets/img/polygon_neuron_excitation_2.png){: width="400" }
 
 
 
@@ -138,9 +143,9 @@ The main steps :
 - Finally keep the kmeans that has the best score
 
 
-![Palette difference]({{site.baseurl}}/assets/img/color_palette_difference_with_ransac.png){: width="750" }
+![Palette difference]({{site.baseurl}}/assets/img/color_palette_difference_with_ransac.png){: width="450" }
 
-![Color change  after ransac]({{site.baseurl}}/assets/img/difference_in_rendering_with_ransac.png){: width="750" }
+![Color change  after ransac]({{site.baseurl}}/assets/img/difference_in_rendering_with_ransac.png){: width="800" }
 
 
 
