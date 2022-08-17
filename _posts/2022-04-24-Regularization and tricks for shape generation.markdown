@@ -155,7 +155,7 @@ In some case, the effect can also be limited. We still observe some benefits
 
 An example with the usage of color, a stronger regularization is needed to have a visible result.
 
-![color sparsity multiple reg]({{site.baseurl}}/assets/img/increasing_levels_of_regulation.png){: width="550" }
+![color sparsity multiple reg]({{site.baseurl}}/assets/img/increasing_levels_of_regulation.png){: width="1550" }
 
 From left to right, regularization=0, 50, 1000. Results at 50 are barely noticable.
 
