@@ -16,7 +16,9 @@ The quantization process can be very rough and does not respect the transparency
 In this blog post, we will dive deeper on methods for truthful post hoc color quantization process.
 
 In short : 
+
 1 - We improve the basic algorithm for quantization and observe the qualitative results
+
 2 - Using an alternative generation process, we improve the previous method with transparency handling
 
 
@@ -51,13 +53,11 @@ We avoided two main elements in the previous approach :
 - curves are more than points, they are in fact polygons
 - the color quantization should take into account the mixing of color between curves
 
-This made our problem much easier because : 
+The problem remains hard with this new setup : 
 - computing multiple intersections and covers is hard
 - the curves are 3rd order bezier, making their intersection not regular polygons
 
-Despite the difficulty, we pursue this direction as the main improvment possibility. 
-
-
+Despite the difficulty, we pursue this direction as the main improvment possibility.
 
 #### Using polygon as optimization basis
 
@@ -70,7 +70,17 @@ From there, we need to rework the svg generation process to use this different b
 ![generation using polygons]({{site.baseurl}}/assets/img/polygon_neuron_excitation.png){: width="400" }
 ![generation using polygons]({{site.baseurl}}/assets/img/polygon_neuron_excitation_2.png){: width="400" }
 
+#### Reducing the number of used polygons with LIVE
 
+[LIVE](https://github.com/Picsart-AI-Research/LIVE-Layerwise-Image-Vectorization) is an improvement over diffvg for painterly rendering.
+
+Using a few tricks, the same image can be produced using far less polygons : 
+
+- Incremental addition of new shapes along a partial optimization process
+- Shape positions are not initialised at random rather depending on where the reconstruction error is maximum
+- A new constraint on curves to avoid self interaction 
+
+This will help a lot as the intersection problem is at least O(n2)
 
 ## Color quantization
 
@@ -150,15 +160,41 @@ The main steps :
 We often get cases where a color is replaced by another and it improves the final results.
 
 
-## Computing regions cover 
+## Computing regions covers 
+
+So far, we have seen how color quantization can be done given our set of shapes.
+
+But we did not handle very seriously the transparency.
 
 #### Pixel cover
 
+One way to handle transparency is to use the pixelated rendering of svg.
+
+The uniform grid sampling guarantees that the collected colors will be representative of the final rendering.
+
+From the previous code snippet, we need to change only two things :
+
+```
+X = rendered_image.reshape(-1, 3)
+W = None
+```
+
+![pixel cover](the_importance_of_transparency_in_color_computation.png)
+![origin image](color_sampled_from_this.png)
+
+The change is simple and produce meaningful color when looking at the original image.
+
+**So why didn't we do it IN THE FIRST PLACE ?**
+
+Because it cannot be simply applied to our shapes. We need to backtrack what pixel values mean at the shape level.
+
+Luckily, this is what we will do in the next section.
 
 
 #### Shape cover
 
-So far we used polygons to represent the shapes in the image. However, this is not enough when we want to plot it with pen.
+So far we used polygons to represent the shapes in the image. 
+However, this is not enough when we want to plot it with pen.
 
 When viewing an image, layering is taken into account, plotter tools don't take this into account, this must be computed manually. 
 
@@ -168,6 +204,27 @@ In short, we need to carve away for each layer the space occupied by the layer a
 
 In this example, we have 3 full square of different color in the first image. The 3 subsequent images show how we should transform the squares to be able to plot the image.
 
+From this basic idea, we compute the final image as :
+
+- a set of intersections of all shapes
+- the difference of all shapes from these polygons
 
 
+**Algorithm**
+
+![poly cut algorithm run]({{site.baseurl}}/assets/img/polygon_section_cuts.JPG){: width="750" }
+
+Details : 
+
+- We start with 3 shapes O1, O2, O3 : O1 being the higher up
+- __treat__ function compute the required intersections
+- first line depicts what happens when the function is run on 01
+  - We get two intersections A and B
+  - A and B must be removed from O1, O2 and O3 as they will hold different colors
+  - A and B are pushed on top of the priority list 
+- next, A is treated 
+  - its intersection with B, C is an intersection with 3 shapes
+  - Again C is removed from B and C and pushed to the priority list
+  - No more intersection exist between C and another polygon, regular operation will resume
+- B, D, O2 and O3 are regular or similar cases
 
