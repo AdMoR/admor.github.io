@@ -28,9 +28,6 @@ We get this kind of production
 
 ![result_1]({{site.baseurl}}/assets/img/poly_gen_result_1.JPG){: width="750" }
 
-![result_2]()
-
-
 
 ## Stroke based images and their shortcomings
 
@@ -55,11 +52,11 @@ We avoided two main elements in the previous approach :
 
 The problem remains hard with this new setup : 
 - computing multiple intersections and covers is hard
-- the curves are 3rd order bezier, making their intersection not regular polygons
+- the curves are 3rd order bezier, making their intersection non-regular polygons
 
-Despite the difficulty, we pursue this direction as the main improvment possibility.
+Despite the difficulty, we pursue this direction as the main improvement possibility.
 
-#### Using polygon as optimization basis
+#### Using polygons as optimization basis
 
 From the previous section, we understood that we need to be able to compute the precise intersection of shapes in order to assign the right quantized color.
 
@@ -69,6 +66,8 @@ From there, we need to rework the svg generation process to use this different b
 
 ![generation using polygons]({{site.baseurl}}/assets/img/polygon_neuron_excitation.png){: width="400" }
 ![generation using polygons]({{site.baseurl}}/assets/img/polygon_neuron_excitation_2.png){: width="400" }
+
+The two captions display result of optimization based on polygons.
 
 #### Reducing the number of used polygons with LIVE
 
@@ -84,12 +83,11 @@ This will help a lot as the intersection problem is at least O(n2)
 
 ![example of live productions]({{site.baseurl}}/assets/img/live_method_productions.png){: width="800" }
 
+These three captions display the reconstruction result from jpg images. We observe a major simplification but the final images only has 128 shapes.
 
 ## Color quantization
 
-This is one of the main step.
-
-Because finding the right methodology is required in order to produce a simple yet truthful plot of the original image, we present some ideas on the quantization process.
+Once we have a limited number of shape, we can decide which color we will use.
 
 ```
 # Outlook of the algorithm
@@ -97,14 +95,15 @@ Input :  We have N polygon with different colors and stroke size
 Output : We have the same set of polygon but with colors limited to a given collection C_n
 ```
 
+After this light introduction, let's look at the precise algorithm.
 
 #### K-means
 
-The different colors used on the curves are 4 dimensional : 3 RGB channel plus an alpha one.
+The different colors used on the shapes are 4 dimensional : 3 RGB channel plus an alpha one.
 
-The alpha one is important in our problem as it allows to have several curves on the same spot contributing to a color mix.
+The alpha one is important in our problem as it allows to have several shapes on the same spot contributing to a color mix.
 
-The final algorithm is then pretty straight forward :
+The final algorithm is as follows :
 ```
 # Get color from each curve, in Lab format and alpha removed
 X = [rgb2lab(c.color[:3] * c.color[:3]) for c in curves] 
@@ -115,21 +114,26 @@ kmeans.fit(X, sample_weights=W)
 display_colors(kmeans._centers)
 ```
 
-That's it for the basics.
+This gives a simplification as illustrated in this image
 
+![color quantization]({{site.baseurl}}/assets/img/color_palette_and_transformation.png){: width="550" }
 
 #### Ransac
 
-RANSAC stands for .... It is a technic used to remove outliers.
+[RANSAC](https://en.wikipedia.org/wiki/Random_sample_consensus) is a technic commonly used to remove outliers.
 
 Why do we need it ?
 
-Because a few curves happen to have colors completely off the limited palette we would like to have.
+Because a few curves shapes to have colors completely off the limited palette we would like to have.
 
 K-means may not be resistant to this kind of data as its centers may shift in the direction of the outlier or even occupy a center if enough colours are allowed.
 However outlier removal should be used carefully as sparsely used color can sometimes be fundamental in the rendering of the image.
 
-![example of image with outlier colours]()
+![example of image with outlier colours]({{site.baseurl}}/assets/img/color_sampled_from_this.png){: width="400"}
+
+In this picture, we can see chunks of blue that do not contribute to the harmony of the picture. 
+We would like to remove them from the final palette.
+
 
 What is the pseudo code for our ransac ?
 
@@ -153,6 +157,7 @@ The main steps :
 - Compute the average score (= agreement among the sampled points on the quantized colors)
 - Finally keep the kmeans that has the best score
 
+Below, we can see the difference between the 
 
 ![Palette difference]({{site.baseurl}}/assets/img/color_palette_difference_with_ransac.png){: width="450" }
 
@@ -201,7 +206,7 @@ When viewing an image, layering is taken into account, plotter tools don't take 
 
 In short, we need to carve away for each layer the space occupied by the layer above.
 
-![layer cut example]({{site.baseurl}}/assets/img/layer_cuts.png){: width="750" }
+![layer cut example]({{site.baseurl}}/assets/img/layer_cuts.png){: width="500" }
 
 In this example, we have 3 full square of different color in the first image. The 3 subsequent images show how we should transform the squares to be able to plot the image.
 
@@ -228,4 +233,12 @@ Details :
   - Again C is removed from B and pushed to the priority list
   - No more intersection exist between C and another polygon, regular operation will resume
 - B, D, O2 and O3 are regular or similar cases
+
+
+## Plotting time
+
+We have now a tiling of our initial image. Colors have been sampled.
+
+Final step is to describe how each shape should be filled and to plot it with the right pen.
+
 
