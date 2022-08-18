@@ -82,6 +82,9 @@ Using a few tricks, the same image can be produced using far less polygons :
 
 This will help a lot as the intersection problem is at least O(n2)
 
+![example of live productions]({{site.baseurl}}/assets/img/live_method_productions.png){: width="800" }
+
+
 ## Color quantization
 
 This is one of the main step.
@@ -111,8 +114,6 @@ kmeans = KMeans(n_clusters=n_quantized_colors)
 kmeans.fit(X, sample_weights=W)
 display_colors(kmeans._centers)
 ```
-
-![show color palette]({{site.baseurl}}/assets/img/){: width="750" }
 
 That's it for the basics.
 
@@ -179,8 +180,8 @@ X = rendered_image.reshape(-1, 3)
 W = None
 ```
 
-![pixel cover](the_importance_of_transparency_in_color_computation.png)
-![origin image](color_sampled_from_this.png)
+![pixel cover]({{site.baseurl}}/assets/img/the_importance_of_transparency_in_color_computation.png){: width="400"}
+![origin image]({{site.baseurl}}/assets/img/color_sampled_from_this.png){: width="400"}
 
 The change is simple and produce meaningful color when looking at the original image.
 
@@ -223,8 +224,8 @@ Details :
   - A and B must be removed from O1, O2 and O3 as they will hold different colors
   - A and B are pushed on top of the priority list 
 - next, A is treated 
-  - its intersection with B, C is an intersection with 3 shapes
-  - Again C is removed from B and C and pushed to the priority list
+  - its intersection with B, named C, is an intersection with 3 shapes
+  - Again C is removed from B and pushed to the priority list
   - No more intersection exist between C and another polygon, regular operation will resume
 - B, D, O2 and O3 are regular or similar cases
 
