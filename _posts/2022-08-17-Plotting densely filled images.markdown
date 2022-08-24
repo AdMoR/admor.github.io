@@ -247,10 +247,21 @@ However, some challenge around the simplification of the shape remain to be solv
 
 ![over frag]({{site.baseurl}}/assets/img/junction_of_several_shape_into_a_single_color.png){: width="500" }
 
-In this picture, we can see how multiple region are incorrectly fused into a single layer of color. This will be detrimental to the final rendering.
+This picture display the lines the plotter follows in order to produce the physical rendering.
+
+We can see how multiple regions are incorrectly not fused into a single layer of color. 
+All the small fragments will be visible in the final rendering and this will be detrimental to the look of the artwork.
 
 - 2 - Processing time : with around 5 to 10 minutes to compute the cover, there is probably a huge area of improvement.
 
 - 3 - Scale and pen size adaptation : pen strokes of different colour should not intersect, another small round of post-processing is necessary
 
-![over frag]({{site.baseurl}}/assets/img/different_color_intersecting.png){: width="500" }
+![color intersection]({{site.baseurl}}/assets/img/different_color_intersecting.png){: width="500" }
+
+This picture displays the trajectory of the plotter again.
+When wanting to join isolated segments, we might end creating bridges between separated layers.
+
+This should be avoided at all cost.
+
+In conclusion, we have an interesting new direction in order to plot more complex drawings.
+But the complexity cost of this new technic is relatively high and will need additional adjustments in order to produce clean results 100% of the time. 
