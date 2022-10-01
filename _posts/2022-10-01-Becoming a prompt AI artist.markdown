@@ -30,13 +30,33 @@ Some example of generations with their original prompt.
 
 ![result_1]({{site.baseurl}}/assets/img/machine_to_steam_corn.png){: width="750" }
 
+Prompt : 
+A_machine_to_steam_corn,_retro_futurism_(1979)
 
 
 ![result_2]({{site.baseurl}}/assets/img/armored_developer.png){: width="750" }
 
+Prompt : 
+A_knight_in_full_armor,_in_an_open_space,_working_on_a_computer,_with_his_manager_looking_above_his_shoulder,_low_key_lightnin
+
 
 
 ![result_3]({{site.baseurl}}/assets/img/eldritch_horror.png){: width="750" }
+
+Prompt :
+eldritch_terrific_horror_coming_at_the_viewer,_manga,_Junji_Ito,_Kentaro_Muira,_black_and_white,_highly_detailed_on_small_deta
+
+
+![result_4]({{site.baseurl}}/assets/img/bokeh_driller.png){: width="750" }
+
+Prompt :
+a_dream_driller_tool,_close_up_on_the_drill,_4k_bokeh
+
+
+#### Conclusion
+One thing to notice, when prompt is a bit too much out of distribution, some terms start to dissapear.
+This can be seen on the kniwght example (I only got one example with all the key elements).
+
 
 
 ## Focusing on cross overs
