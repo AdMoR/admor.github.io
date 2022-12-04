@@ -5,12 +5,84 @@ img: ab_test.png
 comments: true
 ---
 
-## Objective : 
+## Intro
+
+Have you ever had doubts about some of your A/B tests ?
+
+Did some uplift looked insanely good or impossibly negative ?
+
+Did you ever witness an A/B test confidently saying this 10% uplit on this button color change was significant ?
+
+If any of this interest you, we will analyse in this article why and when this can happen.
+
+
+## 1 - What is the traditional process with A/B tests ?
+
+#### a) Back to the basic 
+
+Usually the t-test methodology is the most popular one.
+The assumptions are the following : 
+
+<div>
+- Let  $$  X_1 , … , X_n $$   be independently and identically drawn from the distribution N ( μ , σ 2 )
+- The quantity $${\displaystyle {\frac {{\bar {X}}-\mu }{\sigma /{\sqrt {n}}}}}$$ is a random variable whose distribution is a gaussian N(0, 1)
+- We can get how far the true µ is from the computed mean given the other known quantities
+</div>
+
+This process can be understood as a posterior computation. The more samples we collect, the surer we are on the mean of the initial distribution.
+
+The transcription of this distribution is given by the table sometimes used.
+
+![table](https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F3.bp.blogspot.com%2F_C6375WoyYP0%2FTHVqQkJRqbI%2FAAAAAAAAASU%2FML7g-OPPgug%2Fs1600%2FStudent-t-table.png&f=1&nofb=1&ipt=2b6b3cbf78b1411c20e3d7cc1960e17cf739c9da3d72d3fdb01ee26e928d3baa&ipo=images){: width="550" }
+
+
+#### b) What can go wrong : an example
+
+Let's project ourselves in an example :
+
+- We are on an e-commerce website selling something more popular among men than woman 
+- Men convert about 90% of the time and women about 10%
+- Your feature fixes a bug on the platform, you launch an A/B test to be sure everything is right
+- Your A/B test finishes with -2% in conversion rate
+
+Did you miss something on the fix ? Is your A/B test setup wrong ? Can you A/B test ?
+
+
+#### b) What can go wrong : analysis 
+
+A few things that can explain the issue in the previous setup : 
+
+- The i.i.d. assumption means that all samples must come from the same distribution. 
+  - For the event of buying, we know this is not true 
+  - We lose the whole framework in this process
+- A way to see what could go wrong is the following :
+  - Let's suppose you got unlucky in the A/B test seeding and get 10% less mens in the test part
+  - You will get 10 less booking in an iso setting, whatever the number of samples
+  - The student distribution converges to low bounds when the sample size gets higher
+
+#### c) Do I have this problem at home ?
+  
+**Yes and no** 
+
+You probably don't have the same variation of conversion rate among your populations.
+
+However, you may have a lot of different population with a lot of different conversion rates. So officially you are in this case explained before.
+
+With lower conversion rate differences, we are closer to the i.i.d assumption. But we may be overconfident in the noise in our data.
+
+
+#### d) Help me, I want to trust my data
+
+TO COMPLETE with A/A test p values section
+
+
+## 2 - Empirical approach and fictional A/B tests
+
+If we suspect we are in a situation where we are far from the i.i.d. situation, we might be able to use an empirical approach instead of the theoretical one defined before.
+
+#### 
 
 By computing the impact of fictional A/A tests, we want to measure the natural noise occurring when creating random split on our user database (or any other split).
-
-#### **DISCLAIMER** :  
-This is not a replacement of the A/B test methodology
 
 ## Modality
 
