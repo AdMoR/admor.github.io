@@ -29,7 +29,7 @@ Let's start with a methodology that has sufficiently large theoretical backgroun
 The set of fomulas is the following : 
 
 
-$$ \beta = \hat{\beta} +- z(0.05) SE(\beta) $$
+$ \beta = \hat{\beta} +- z(0.05) SE(\beta) $
 
 
 where beta is the parameter vector associated to the logistic regression, z is the function giving the z-value for a given confidence interval, SE stands for standard error of the beta.
@@ -37,7 +37,7 @@ where beta is the parameter vector associated to the logistic regression, z is t
 
 The question becomes : "how do I estimate the standard error of the parameter vector" ?
 
-The short answer : with a method called the sandwich estimate : $$ Cov(\beta) = (XT \hat{W} X)^{−1}(X^T \hat{W} X)(X^T \hat{W} X)^{−1} $$
+The short answer : with a method called the sandwich estimate : $ Cov(\beta) = (XT \hat{W} X)^{−1}(X^T \hat{W} X)(X^T \hat{W} X)^{−1} $
 
 Please look at [this link](https://web.stanford.edu/class/archive/stats/stats200/stats200.1172/Lecture26.pdf) if you want further details.
 
@@ -91,8 +91,9 @@ If you are interested in the [5, 50, 95] model, it will "just" 3 times more cost
 
 The loss is defined by 
 
-$$ MAD = 1 / n + \Sigma_{i=1}^n $$ 
-
+<div>
+$ MAD = 1 / n + \Sigma_{i=1}^n $
+</div>
 
 
 #### d) Summary of pros and cons of methods
