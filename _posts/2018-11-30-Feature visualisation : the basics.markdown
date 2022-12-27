@@ -16,14 +16,14 @@ In this neural network, we want to know what activates a specific layer, let's s
 Our loss is going to be something like : 
 
 <div>
-$$ \mathcal{L}_{index}(I) = -  1/n_{features} || \mathcal{F}_{conv_5}(I)[:, index, :, :] ||^{2} + \lambda  regularization(I) $$
+$ \mathcal{L}_{index}(I) = -  1/n_{features} || \mathcal{F}_{conv_5}(I)[:, index, :, :] ||^{2} + \lambda  regularization(I) $
 </div>
 
 We use back-propagation to have an image that will gradually get a lower score.
 The neural network is differentiable and thus we can get a clean gradient to update our image.
 
 <div>
-$$ I -= grad_I(\mathcal{L}_{index}(I)) $$
+$ I -= grad_I(\mathcal{L}_{index}(I)) $
 </div>
 
 Depending on the network, this gives more or less interesting pics.
