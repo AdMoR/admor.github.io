@@ -1,5 +1,5 @@
 ---
-description: Uncover what you model really knows
+description: Uncover what your model really knows
 tags: python logistic regression confidence interval statsmodel
 img: curves_articles.png
 comments: true
@@ -68,12 +68,31 @@ for _ in range(N_bootstrap):
 # Analyze models weights distribution
 ```
 
-[[[[Show difference of results]]]]
+If this is so simple, why bother with more complicated approaches.
+
+The resampling approach is not perfect and will have troubles to model "outlier" like data. If 1% of the data is "oulier", the resampling method will not increase this amount by a lot and the different model learned may fit this data incorrectly.
+
+The final confidence intervals will still be less precise on this data.
+
 
 
 #### c) Quantile regression
 
-TBD
+The main idea of quantile regression is to learn a different set of models for each quantile of interval.
+
+If you are interested in the [5, 50, 95] model, it will "just" 3 times more costly to have these estimates.
+
+- Quantile regression works only for regression problem (at least the out of the box approach)
+- It uses an asymetric loss dependent on the quantile q
+- Any model can be used with this loss
+
+
+##### Focus on the loss
+
+The loss is defined by 
+
+$$ MAD = 1 / n + \Sigma_{i=1}^n $$ 
+
 
 
 #### d) Summary of pros and cons of methods
@@ -84,12 +103,12 @@ We can compare the methodologies presented with this table :
 | -----------------| ----------- | ----------- | ----------- |
 | Method           | Traditional | Bootstraps  | Quantile reg|
 | -----------------| ----------- | ----------- | ----------- |
-| Sample efficient | ---         | --          | -           |
-| Model adaptation | -           | +++         | +           |
-| Precision        | +++         | +           | +           |
+| Sample efficient | ---         | --          | +           |
+| Model adaptation | +/-         | +++         | -           |
+| Precision        | ++          | -           | +           |
 
 
-It is only a rought approximation and we wish to be more precise by studying precse usecases.
+It is only a rough approximation and we wish to be more precise by studying precse usecases.
 
 This is the goal of the next section.
 
