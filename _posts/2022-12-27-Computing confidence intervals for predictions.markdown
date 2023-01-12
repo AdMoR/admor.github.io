@@ -18,7 +18,7 @@ These metrics seem to be as valuable as the others, so we would like to uncover 
 
 ## 1 - Confidence interval for ML methods
 
-#### a) Formula for the logistic regression
+#### a) Wald confidence interval for the logistic regression
 
 Let's start with a methodology that has sufficiently large theoretical background : the logistic regression.
 
@@ -41,19 +41,23 @@ The short answer : with a method called the sandwich estimate : $ Cov(\beta) = (
 
 Please look at [this link](https://web.stanford.edu/class/archive/stats/stats200/stats200.1172/Lecture26.pdf) if you want further details.
 
+One of the issue of this approach is that it is model specific and might need adjustment when matrices are singular.
 
-We don't detail this approach further for one reason. In the formula presented, the size of the matrices increases with the number of samples.
-
-An inverse of a matric is also computed, leading to expensive computation. Going in this direction might be complex depending on the size of the problem.
 
 
 #### b) The bootstrap approach
+
+
+##### General idea
 
 In a situation of large sample size, we can also apply a bootstrap procedure. Elements of a training set are randomly sampled with resampling.
 
 How does this translate, following the methodology suggested in this [blog post](). The tedious resample approach can be replaced by a wrighting using a poisson law.
 
 The implementation is already super simple with a framework like [sk-learn](https://scikit-learn.org/stable/modules/generated/sklearn.utils.resample.html). But it can be made more efficient with setting weights of the training instead of changing the data.
+
+
+##### Pseudo code example
 
 ```python
 N_bootstrap = 100
@@ -74,6 +78,8 @@ The resampling approach is not perfect and will have troubles to model "outlier"
 
 The final confidence intervals will still be less precise on this data.
 
+The difference might become clearer when compared to the next approach : the quantile regression.
+
 
 
 #### c) Quantile regression
@@ -92,8 +98,26 @@ If you are interested in the [5, 50, 95] model, it will "just" 3 times more cost
 The loss is defined by 
 
 <div>
-$ MAD = 1 / n + \Sigma_{i=1}^n $
+$ MAD = \frac{1}{n} \Sigma_{i=1}^n  \rho_q ( y - \beta X ) $
 </div>
+
+where $ \rho $ is defined by : 
+
+<div>
+$ \rho_q(x) = x (q - \mathbb{1}(x <= 0)) $
+</div>
+
+
+##### Interpretation
+
+Let's take an example where q = 0.9.
+
+At the start of the optimization, all samples have the same weights, because the x in the $\rho$ is approximately the same. 
+
+Once the weights are partially learned, the samples whose $ y - \beta X $ is superior to zero are weighted with 0.9 while the others are weighted with 0.1.
+
+The loss will only stabilize once, the most extreme point with weight 0.9 get a smaller loss. The equilibrium is found with the majority of other data point weighted at 0.1 and with a larger loss.
+
 
 
 #### d) Summary of pros and cons of methods
@@ -102,9 +126,9 @@ We can compare the methodologies presented with this table :
 
 
 | -----------------| ----------- | ----------- | ----------- |
-| Method           | Traditional | Bootstraps  | Quantile reg|
+| Method           | Wald CI     | Bootstraps  | Quantile reg|
 | -----------------| ----------- | ----------- | ----------- |
-| Sample efficient | ---         | --          | +           |
+| Sample efficient | -           | --          | +           |
 | Model adaptation | +/-         | +++         | -           |
 | Precision        | ++          | -           | +           |
 
