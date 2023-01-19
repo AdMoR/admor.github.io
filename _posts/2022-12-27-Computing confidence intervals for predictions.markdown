@@ -18,9 +18,11 @@ These metrics seem to be as valuable as the others, so we would like to uncover 
 
 ## 1 - Confidence interval for ML methods
 
-#### a) Wald confidence interval for the logistic regression
+#### a) Hessian based confidence interval
 
-Let's start with a methodology that has sufficiently large theoretical background : the logistic regression.
+
+If you are maximising a likelihood then the covariance matrix of the estimates is (asymptotically) the inverse of the negative of the Hessian. 
+The standard errors are the square roots of the diagonal elements of the covariance ([1](https://stats.stackexchange.com/questions/27033/in-r-given-an-output-from-optim-with-a-hessian-matrix-how-to-calculate-paramet), [2](https://stats.stackexchange.com/questions/68080/basic-question-about-fisher-information-matrix-and-relationship-to-hessian-and-s)). 
 
 
 [This reference](https://web.stanford.edu/class/archive/stats/stats200/stats200.1172/Lecture26.pdf) gives most of the required content to explain how to compute the confidence interval of the parameters of the logisitc regression.
@@ -35,29 +37,21 @@ $ \beta = \hat{\beta} +- z(0.05) SE(\beta) $
 where beta is the parameter vector associated to the logistic regression, z is the function giving the z-value for a given confidence interval, SE stands for standard error of the beta.
 
 
-The question becomes : "how do I estimate the standard error of the parameter vector" ?
-
-The short answer : with a method called the sandwich estimate : $ Cov(\beta) = (XT \hat{W} X)^{−1}(X^T \hat{W} X)(X^T \hat{W} X)^{−1} $
-
-Please look at [this link](https://web.stanford.edu/class/archive/stats/stats200/stats200.1172/Lecture26.pdf) if you want further details.
-
-One of the issue of this approach is that it is model specific and might need adjustment when matrices are singular.
-
-
 
 #### b) The bootstrap approach
 
 
-##### General idea
-
 In a situation of large sample size, we can also apply a bootstrap procedure. Elements of a training set are randomly sampled with resampling.
 
-How does this translate, following the methodology suggested in this [blog post](). The tedious resample approach can be replaced by a wrighting using a poisson law.
+How does this translate, following the methodology suggested in this [blog post](https://www.unofficialgoogledatascience.com/2015/08/an-introduction-to-poisson-bootstrap26.html). The tedious resample approach can be replaced by a wrighting using a poisson law.
 
 The implementation is already super simple with a framework like [sk-learn](https://scikit-learn.org/stable/modules/generated/sklearn.utils.resample.html). But it can be made more efficient with setting weights of the training instead of changing the data.
 
 
+
 ##### Pseudo code example
+
+The priinciple is easy to illustrate. We can use the weight parameter of the fit method of sklearn model.
 
 ```python
 N_bootstrap = 100
@@ -72,13 +66,7 @@ for _ in range(N_bootstrap):
 # Analyze models weights distribution
 ```
 
-If this is so simple, why bother with more complicated approaches.
-
-The resampling approach is not perfect and will have troubles to model "outlier" like data. If 1% of the data is "oulier", the resampling method will not increase this amount by a lot and the different model learned may fit this data incorrectly.
-
-The final confidence intervals will still be less precise on this data.
-
-The difference might become clearer when compared to the next approach : the quantile regression.
+If this is so simple, why bother with more complicated approaches :p .
 
 
 
@@ -122,20 +110,15 @@ The loss will only stabilize once, the most extreme point with weight 0.9 get a 
 
 #### d) Summary of pros and cons of methods
 
-We can compare the methodologies presented with this table : 
+We can compare the methodologies presented with these tables : 
 
 
-| -----------------| ----------- | ----------- | ----------- |
-| Method           | Wald CI     | Bootstraps  | Quantile reg|
-| -----------------| ----------- | ----------- | ----------- |
-| Sample efficient | -           | --          | +           |
-| Model adaptation | +/-         | +++         | -           |
-| Precision        | ++          | -           | +           |
+![Pros 1]({{site.baseurl}}/assets/img/pros_1.png){: width="500" }
+![Pros 2]({{site.baseurl}}/assets/img/pros_2.png){: width="500" }
+![Pros 3]({{site.baseurl}}/assets/img/pros_3.png){: width="500" }
 
 
-It is only a rough approximation and we wish to be more precise by studying precse usecases.
-
-This is the goal of the next section.
+It is only a rough summary. We will see more details with examples.
 
 
 
@@ -146,9 +129,38 @@ The presented approaches seems all trustworthy. But the actual results on data c
 So we test the different approaches on different well known datasets.
 
 
-#### a) Iris dataset with a logistic regression
+#### a) The affair dataset
 
-TBD
+Available on [this page](https://www.statsmodels.org/stable/datasets/generated/fair.html) 
+
+It looks like the following 
+
+![Affair]({{site.baseurl}}/assets/img/affair_dataset.png){: width="500" }
+
+We first trained on this dataset a logistic regression using technic 1 and 2 : Hesian based and bootstraps.
+
+We compare the parameter confidence interval of two method on the first variable.
+
+On this first figure, for each model, we extracted the weight corresponding to the first variable and made an histogram.
+
+
+![Boostrap histogram]({{site.baseurl}}/assets/img/boostrap_weigh_hist.png){: width="500" }
+
+The array of the weights collected from all models allows to have a simple estimation of confidence interval by taking the nth percentile in the sorted array.
+
+
+Stats model directly gives us the CI of a paramter when looking at the summary of the model.
+
+![statsmodels ci]({{site.baseurl}}/assets/img/stats_model_ci.png){: width="500" }
+
+
+We can then compare the values found by the two methods : 
+
+![Comparaison of CI]({{site.baseurl}}/assets/img/comparaison_of_ci.png){: width="500" }
+
+
+To my own surprise the two methods have approximately the same results. This is a really good results for bootstrap as one might expect less from an empirical method.
+
 
 
 #### b) The XYZ dataset with a GBT model
