@@ -43,9 +43,13 @@ where beta is the parameter vector associated to the logistic regression, z is t
 
 In a situation of large sample size, we can also apply a bootstrap procedure. Elements of a training set are randomly sampled with resampling.
 
-How does this translate, following the methodology suggested in this [blog post](https://www.unofficialgoogledatascience.com/2015/08/an-introduction-to-poisson-bootstrap26.html). The tedious resample approach can be replaced by a wrighting using a poisson law.
+How does this translate, following the methodology suggested in this [blog post](https://www.unofficialgoogledatascience.com/2015/08/an-introduction-to-poisson-bootstrap26.html). The tedious resample approach can be replaced by a weighting using a poisson law. The approximation can be summarized as : 
 
-The implementation is already super simple with a framework like [sk-learn](https://scikit-learn.org/stable/modules/generated/sklearn.utils.resample.html). But it can be made more efficient with setting weights of the training instead of changing the data.
+
+$ W = Poisson(1) = lim_{n=+\inf} Multinomial(n, \frac{1}{n}) $ 
+
+
+The implementation is already super simple with a framework like [sklearn](https://scikit-learn.org/stable/modules/generated/sklearn.utils.resample.html). But it can be made more efficient with setting weights of the training instead of changing the data.
 
 
 
@@ -137,9 +141,8 @@ It looks like the following
 
 ![Affair]({{site.baseurl}}/assets/img/affair_dataset.png){: width="500" }
 
-We first trained on this dataset a logistic regression using technic 1 and 2 : Hesian based and bootstraps.
-
-We compare the parameter confidence interval of two method on the first variable.
+We first trained on this dataset a logistic regression using technic 1 and 2 : Hesian based and 1000 bootstraps.
+We compare one parameter confidence interval of the two methods on the first variable.
 
 On this first figure, for each model, we extracted the weight corresponding to the first variable and made an histogram.
 
@@ -149,14 +152,14 @@ On this first figure, for each model, we extracted the weight corresponding to t
 The array of the weights collected from all models allows to have a simple estimation of confidence interval by taking the nth percentile in the sorted array.
 
 
-Stats model directly gives us the CI of a paramter when looking at the summary of the model.
+Statsmodels directly gives us the CI of a paramter when looking at the summary of the model.
 
 ![statsmodels ci]({{site.baseurl}}/assets/img/stats_model_ci.png){: width="500" }
 
 
 We can then compare the values found by the two methods : 
 
-![Comparaison of CI]({{site.baseurl}}/assets/img/comparaison_of_ci.png){: width="500" }
+![Comparaison of CI]({{site.baseurl}}/assets/img/comparaison_of_ci.png){: width="600" }
 
 
 To my own surprise the two methods have approximately the same results. This is a really good results for bootstrap as one might expect less from an empirical method.
