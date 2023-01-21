@@ -166,7 +166,63 @@ To my own surprise the two methods have approximately the same results. This is 
 
 
 
-#### b) The XYZ dataset with a GBT model
+#### b) The Marketing modeling dataset
 
-TBD
+In this example, we work on a regression. The goal is to predict the number of item sold in each period gievn other variable like price or investment on marketing channels.
+
+
+![Dataset preview]({{site.baseurl}}/assets/img/dataset_MMM.png){: width="600" }
+
+Our goal will be to determine which channel is efficient in its investment.
+
+In this example, we will use the quantile regression method and observe what information it provides. We fit 5 models based on quantiles `q=[0.05, 0.15, 0.5, 0.85, 0.95]`.
+The modelisation will remain stimple with standardization of all continuous variable and binarization of some string ones.
+
+
+We get the following results :
+
+
+![Feature imp 1]({{site.baseurl}}/assets/img/TV_importance.png){: width="600" }
+![Feature imp 2]({{site.baseurl}}/assets/img/radio_importance.png){: width="600" }
+![Feature imp 3]({{site.baseurl}}/assets/img/discount_importance.png){: width="600" }
+![Feature imp 4]({{site.baseurl}}/assets/img/newspapers_importance.png){: width="600" }
+![Feature imp 5]({{site.baseurl}}/assets/img/website_importance.png){: width="600" }
+
+
+*Remarks* : 
+- Some feature importance values don't change with quantile value
+- On those which do, we can explain a different impact : investment on these channels contribute to extreme event more difficult for the model
+- We do not find the bottom quantile counterpart of these extreme events. Maybe we should add something else.
+
+
+We also plot the confidence interval of the final prediction
+
+![CI quantile reg]({{site.baseurl}}/assets/img/prediction_with_CI.png){: width="800" }
+
+Blue points are the real data, blue line represent the confidence intervals and finally the dotted line represent the p50 fit. The target has been standardised to better see the variations.
+
+Remarks : 
+- Confidence intervals don't catch many almost zero variations
+- CI sometimes get extremely large, probably because of some rare marketing events
+- We seems to have more than 10% of the time a datapoint outside of the CI
+
+Afterthoughts : 
+
+The failure to properly model some non stationary features like the stout one may explain some of the poor results.
+
+![Feature imp 5]({{site.baseurl}}/assets/img/stout_trend.png){: width="600" }
+
+In this case, modeling the divergence from the trend could be more meaningful. However given that we don't understand the feature, it is difficult to assess the validity of this idea.
+
+
+
+## 3 - Conclusion
+
+- Use statsmodel, they provide really good out of box estimates
+- Small dataset = you can use bootstrap, which are the most flexible
+- In regression, quantile regression allows to see your results differently
+
+
+
+
 
