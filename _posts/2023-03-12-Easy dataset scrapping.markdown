@@ -7,11 +7,11 @@ comments: true
 
 ## Introduction
 
-Web scraping, or the automated extraction of data from websites, can be a powerful tool for data scientists. When starting a new task, you might need a lot of data to adapt an off-the-shelf model.
+Web scraping, or the automated extraction of data from websites, can be a powerful tool to create a dataset for a new ML application.
 
 In this tutorial, we'll explore how to use Python and BeautifulSoup to scrape a website and extract useful data.
 
-We will use the website `https://www.svgrepo.com/` as a target.
+We will use the website `https://www.svgrepo.com/` as an example. It claims having 500k SVG, it will be a good start for our new dataset.
 
 **Disclaimer** : Please be considerate when scrapping. Don't send 1000 scrappers on a small website and make it crash.
 
