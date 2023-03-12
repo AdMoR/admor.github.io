@@ -21,7 +21,7 @@ We will use the website `https://www.svgrepo.com/` as a target.
 The first step is to inspect the HTML code to find where the data you want. In our case, we want to find the SVG file location.
 
 
-#### 1-a) Website strucure : Index page
+#### 1-a) Website structure : Index page
 
 We can check how the website is organised in order to be sure to find all the data of interest.
 
@@ -30,37 +30,81 @@ We notice that we can find all the SVG collections using the following url `http
 These pages offers collections of SVGs. 
 
 
-![Screenshot 1]({{site.baseurl}}/assets/img/index_page.png){: width="500" }
+![Screenshot 1]({{site.baseurl}}/assets/img/index_page.png){: width="700" }
 
 In this screen capture, we can see how we found the name of the class used as a container for the collection.
 
 
-#### 1-b) Website strucure : collection page
+#### 1-b) Website structure : collection page
 
 With the link collected in the previous section, we can now hunt for the image links.
 
-![Screenshot 2]({{site.baseurl}}/assets/img/svg_collection_page.png){: width="500" }
+![Screenshot 2]({{site.baseurl}}/assets/img/svg_collection_page.png){: width="700" }
 
 This screen capture shows we could go for either the `<img>` tag or go for the right class name as before.
 
 
-#### 1-c) Website strucure : image tags
+#### 1-c) Website structure : image tags
 
 Finally, we can also go through the image detail page given the previous page.
 
 On this page, we can find tags useful for ML usage.
 
 
-![Screenshot 3]({{site.baseurl}}/assets/img/single_svg_page.png){: width="500" }
+![Screenshot 3]({{site.baseurl}}/assets/img/single_svg_page.png){: width="700" }
 
 On this screenshot, another example of how to find the right field. Here, a query on the `<a class=tag>` will do.
 
 
 ## 2 - The actual scrapping
 
-#### 2-a) Retrieving the previous structure with BeautifulSoup
+#### 2-a) The basics on BeautifulSoup
 
-Here is an example to retrieve the structure that we deduced previously.
+We will focus on a single capability : the `find` function.
+
+The find() function in BeautifulSoup is used to search for the first occurrence of a particular HTML element in a document.
+
+Here's an example of how to use find() to extract the title of a movie from an HTML document:
+
+```python
+from bs4 import BeautifulSoup
+import requests
+
+# Make a request to the IMDb Top 250 page
+url = 'https://www.imdb.com/chart/top'
+response = requests.get(url)
+
+# Create a BeautifulSoup object from the HTML content
+soup = BeautifulSoup(response.content, 'html.parser')
+
+# Find the first instance of a movie title
+title_element = soup.find('td', {'class': 'titleColumn'})
+
+# Extract the text content of the title element
+title = title_element.find('a').text
+
+print(title)
+```
+
+In this code, we first make a request to the IMDb Top 250 page and create a BeautifulSoup object from the HTML content. We then use the find() function to search for the first occurrence of an HTML element with the tag name 'td' and the class name 'titleColumn'. This element contains the movie title, so we use the find() function again to search for the first occurrence of an HTML element with the tag name 'a' that is a descendant of the title element. Finally, we extract the text content of the a tag using the text attribute.
+
+The find() function can also be used to search for elements based on other attributes, such as the id attribute. Here's an example:
+
+
+```python
+# Find the first instance of an HTML element with the id 'my_element'
+element = soup.find(id='my_element')
+```
+
+Overall, the find() function is a powerful and flexible tool for searching for specific HTML elements within a document using a wide range of search criteria.
+
+
+
+#### 2-b) Retrieving the previous structure with BeautifulSoup
+
+Here is an example to retrieve the structure that we deduced previously : HTML element with the class `style_Collection__Dhplh`.
+
+From there, we will get all the links, that will lead us to the collection pages.
 
 
 Code for the part 1-a)
@@ -86,11 +130,14 @@ def url_to_soup(url):
 
 soup = url_to_soup("https://www.svgrepo.com/collections/all/2")
 collections = soup.find_all(class_="style_Collection__Dhplh")
+
 collection_link = ["https://www.svgrepo.com" + e["href"] for e in collections[0].find_all("a", href=True)][0]
 
 # Results : collection_link = 'https://www.svgrepo.com/collection/start-universal-tiny-oval-icons/'
 ```
 
+
+Once the url for a collection found, we want to find all the img elements, as seen while inspecting the page.
 
 Code for the part 1-b)
 
@@ -114,7 +161,7 @@ svg_links = ["https://www.svgrepo.com" + e.find("img")["src"] for e in collectio
 ```
 
 
-#### 2-b) Making it a scrapper
+#### 2-c) Making it a scrapper
 
 We have the main bricks. We just need to combine these two blocks, so that we can cover all collections and all SVGs
 
@@ -175,7 +222,7 @@ A few elements to notice :
 - It is interesting to maintain an error log and to an index log, in order to know where to resume when a failure happens
 
 
-#### 2-c) Running the image collections work
+#### 2-d) Running the image collections work
 
 The previous scrapper did only part of the work. It collected the links of the images. We need to do the last part.
 
