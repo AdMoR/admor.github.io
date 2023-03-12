@@ -16,9 +16,9 @@ We will use the website `https://www.svgrepo.com/` as a target.
 **Disclaimer** : Please be considerate when scrapping. Don't send 1000 scrappers on a small website and make it crash.
 
 
-## 1 - Reckoning for information location
+## 1 - Scouting for information location
 
-The first step is to inspect the HTML code to find where the data you want. In our case, we want to find the SVG file location.
+The first step is to inspect the HTML code to find where the data you want is located. In our case, we want to find the all SVG url to download them later.
 
 
 #### 1-a) Website structure : Index page
@@ -64,7 +64,7 @@ We will focus on a single capability : the `find` function.
 
 The find() function in BeautifulSoup is used to search for the first occurrence of a particular HTML element in a document.
 
-Here's an example of how to use find() to extract the title of a movie from an HTML document:
+Here's an example of how to use `find()` to extract the title of a movie from an HTML document:
 
 ```python
 from bs4 import BeautifulSoup
@@ -86,9 +86,12 @@ title = title_element.find('a').text
 print(title)
 ```
 
-In this code, we first make a request to the IMDb Top 250 page and create a BeautifulSoup object from the HTML content. We then use the find() function to search for the first occurrence of an HTML element with the tag name 'td' and the class name 'titleColumn'. This element contains the movie title, so we use the find() function again to search for the first occurrence of an HTML element with the tag name 'a' that is a descendant of the title element. Finally, we extract the text content of the a tag using the text attribute.
+In this code, we first make a request to the IMDb Top 250 page and create a BeautifulSoup object from the HTML content. 
+We then use the `find()` function to search for the first occurrence of an HTML element with the tag name 'td' and the class name 'titleColumn'. 
 
-The find() function can also be used to search for elements based on other attributes, such as the id attribute. Here's an example:
+This element contains the movie title, so we use the find() function again to search for the first occurrence of an HTML element with the tag name 'a' that is a descendant of the title element. Finally, we extract the text content of the a tag using the text attribute.
+
+The `find()` function can also be used to search for elements based on other attributes, such as the id attribute. Here's an example:
 
 
 ```python
@@ -102,7 +105,7 @@ Overall, the find() function is a powerful and flexible tool for searching for s
 
 #### 2-b) Retrieving the previous structure with BeautifulSoup
 
-Here is an example to retrieve the structure that we deduced previously : HTML element with the class `style_Collection__Dhplh`.
+Now that we have seen how the find function works, we can get all the HTML elements with the class `style_Collection__Dhplh` identified in section 1.
 
 From there, we will get all the links, that will lead us to the collection pages.
 
@@ -137,7 +140,7 @@ collection_link = ["https://www.svgrepo.com" + e["href"] for e in collections[0]
 ```
 
 
-Once the url for a collection found, we want to find all the img elements, as seen while inspecting the page.
+Once the url for a collection is found, we can follow it and find all the img elements, as seen while inspecting the page in section 1.
 
 Code for the part 1-b)
 
@@ -160,10 +163,16 @@ svg_links = ["https://www.svgrepo.com" + e.find("img")["src"] for e in collectio
 """
 ```
 
+You should be able to easily adapt this part of the post to you use case. 
+
+The next step will be to industrialize the scrapping.
+
 
 #### 2-c) Making it a scrapper
 
-We have the main bricks. We just need to combine these two blocks, so that we can cover all collections and all SVGs
+We have defined the main bricks in the previous section. 
+
+We just need to combine these two blocks, so that we can cover all collections and all SVGs on the website.
 
 
 ```python
@@ -224,11 +233,11 @@ A few elements to notice :
 
 #### 2-d) Running the image collections work
 
-The previous scrapper did only part of the work. It collected the links of the images. We need to do the last part.
+The previous scrapper did only part of the work. It collected the links of the images. We need to do the last part : the download.
 
 It can make sense to split the work as downloading large file can be time consuming and prone to network errors.
 
-To download the list of url, we will use the raw `wget` command. It has everything that we need.
+To download the list of urls, we will use a `wget` command. It has everything that we need.
 
 
 ```
