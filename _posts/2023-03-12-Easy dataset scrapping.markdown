@@ -18,7 +18,7 @@ We will use the website `https://www.svgrepo.com/` as an example. It claims havi
 
 ## 1 - Scouting for information location
 
-The first step is to inspect the HTML code to find where the data you want is located. In our case, we want to find the all SVG url to download them later.
+The first step is to inspect the HTML code to find where the data you want is located. In our case, we want to find the all SVG urls to download them later.
 
 
 #### 1-a) Website structure : Index page
@@ -27,7 +27,7 @@ We can check how the website is organised in order to be sure to find all the da
 
 We notice that we can find all the SVG collections using the following url `https://www.svgrepo.com/collections/all/{index}`
 
-These pages offers collections of SVGs. 
+These pages offer multiple collections of SVGs. 
 
 
 ![Screenshot 1]({{site.baseurl}}/assets/img/index_page.png){: width="700" }
