@@ -114,7 +114,8 @@ def combine_img_audio(png_file_path, audio_path, mp4_file_path):
 
 ### Experiment 1 : A pokemon episode example
 
-![pikachu_and_the_time_loop]({{site.baseurl}}/assets/img/pikachu_and_the_time_loop.mp4)
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@aipokemonscripts/video/7217535697077423365" data-video-id="7217535697077423365" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@aipokemonscripts" href="https://www.tiktok.com/@aipokemonscripts?refer=embed">@aipokemonscripts</a> Trapped in the loop <a title="ai" target="_blank" href="https://www.tiktok.com/tag/ai?refer=embed">#ai</a> <a title="pokemon" target="_blank" href="https://www.tiktok.com/tag/pokemon?refer=embed">#pokemon</a> <a title="ytp" target="_blank" href="https://www.tiktok.com/tag/ytp?refer=embed">#ytp</a> <a title="youtubepoop" target="_blank" href="https://www.tiktok.com/tag/youtubepoop?refer=embed">#youtubepoop</a> <a target="_blank" title="♬ original sound - aipokemonscripts" href="https://www.tiktok.com/music/original-sound-7217535679486495494?refer=embed">♬ original sound - aipokemonscripts</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+
 
 #### Review 
 
