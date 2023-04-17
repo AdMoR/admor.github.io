@@ -1,7 +1,7 @@
 ---
 description: An example at building a long automation chain
 tags: python LLM ffmpeg
-img: i_have_achieved_comedy.jpg
+img: synergy.png
 comments: true
 ---
 
@@ -134,7 +134,7 @@ The positive
 
 ### Experiment 2 : An inspirational video
 
-![inspirational_alchemist]({{site.baseurl}}/assets/img/inspirational_alchemist.mp4)
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@truebookwisdom/video/7220408946287299846" data-video-id="7220408946287299846" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@truebookwisdom" href="https://www.tiktok.com/@truebookwisdom?refer=embed">@truebookwisdom</a> Life learnings from Winning friends and Influence people <a title="coach" target="_blank" href="https://www.tiktok.com/tag/coach?refer=embed">#coach</a>  <a title="motivational" target="_blank" href="https://www.tiktok.com/tag/motivational?refer=embed">#motivational</a>  <a title="lifehack" target="_blank" href="https://www.tiktok.com/tag/lifehack?refer=embed">#lifehack</a> <a title="inspirational" target="_blank" href="https://www.tiktok.com/tag/inspirational?refer=embed">#inspirational</a> <a target="_blank" title="♬ original sound  - truebookwisdom" href="https://www.tiktok.com/music/original-sound-truebookwisdom-7220409382361959173?refer=embed">♬ original sound  - truebookwisdom</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
 
 
 #### Review 
