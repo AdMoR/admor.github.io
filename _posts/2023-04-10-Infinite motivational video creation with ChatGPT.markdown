@@ -184,3 +184,14 @@ The negative
 
 The positive
 - Very high grade quality of images
+
+
+#### Bonus : Some high quality examples
+
+![Meditation]({{site.baseurl}}/assets/img/meditation_single_words.png){: width="900" }
+
+![Dog 1]({{site.baseurl}}/assets/img/birthday_dog.png){: width="900" }
+
+![Dog 2]({{site.baseurl}}/assets/img/corporate_dog.png){: width="900" }
+
+![Dog 3]({{site.baseurl}}/assets/img/wizard_dog.png){: width="900" }
