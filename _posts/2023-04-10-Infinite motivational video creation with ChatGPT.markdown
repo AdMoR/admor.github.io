@@ -1,5 +1,5 @@
 ---
-description: An example at building a long automation chain
+description: An example at building an automation chain
 tags: python LLM ffmpeg
 img: synergy.png
 comments: true
@@ -8,16 +8,34 @@ comments: true
 
 ## Introduction
 
-My goal in this project was to see how I could use the new capabilities of ChatGPT.
-
 What came clear to me and many other users, is that ChatGPT can be like a better Google.
-
 It know about a lot of concepts : from Pokemon to Friends.
 
-My goal : automate story building using open source components and ChatGPT for the story building
+So now, most of the bricks are ready to go very far in automatic content creation.
+
+What can we do ?
+
+
+#### TLDR : 
+
+Infinite inspirational videos
+
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@truebookwisdom/video/7224551647345659162" data-video-id="7224551647345659162" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@truebookwisdom" href="https://www.tiktok.com/@truebookwisdom?refer=embed">@truebookwisdom</a> <p>The right mindset for the wanted life by the Zander #mindset #life #happy #inspirational #motivational</p> <a target="_blank" title="♬ original sound  - truebookwisdom" href="https://www.tiktok.com/music/original-sound-truebookwisdom-7224552243423447835?refer=embed">♬ original sound  - truebookwisdom</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+
 
 
 ## 1 - The architecture
+
+![Diagram]({{site.baseurl}}/assets/img/auto_gen.png){: width="900" }
+
+Here is the logic developped : 
+- Prompt engineering allows to create a scenario
+- The scenario is broken down into pieces
+- Each piece will have its own scene (image) and audi (generated voices)
+- Everything will be combined together with ffmpeg to create a video
+
+Let's see more in details each part.
+
 
 #### 1 - a) Prompt engineering
 
@@ -36,7 +54,7 @@ Narrator : This knowledge can help you to navigate challenges and make strategic
 Now, generate a set of advices from {prompt} with the format defined above : 
 ```
 
-We force the geenration to add a scene description in order to accomodate our generation later on.
+We force the generation to add a scene description in order to accomodate our generation later on.
 
 
 #### 1 - b) Text parsing
@@ -129,6 +147,7 @@ The negative
 The positive
 - Some rythm
 - An original proposition
+- Can be very viral
 
 
 
@@ -141,8 +160,27 @@ The positive
 
 The negative
 - Image content can be unexpected
+- Content need to more precise
 
 
 The positive
 - Enjoyable
-- Overall close to a human production
+- Overall close to a human production (when pic quality is high)
+
+
+
+
+### Experiment 3 : An inspirational video with a better image engine
+
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@truebookwisdom/video/7222639227513720069" data-video-id="7222639227513720069" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@truebookwisdom" href="https://www.tiktok.com/@truebookwisdom?refer=embed">@truebookwisdom</a> How to develop influence by Robert Cialdini <a title="learn" target="_blank" href="https://www.tiktok.com/tag/learn?refer=embed">#learn</a> <a title="motivational" target="_blank" href="https://www.tiktok.com/tag/motivational?refer=embed">#motivational</a> <a title="inspirational" target="_blank" href="https://www.tiktok.com/tag/inspirational?refer=embed">#inspirational</a> <a title="lifehack" target="_blank" href="https://www.tiktok.com/tag/lifehack?refer=embed">#lifehack</a> <a target="_blank" title="♬ original sound  - truebookwisdom" href="https://www.tiktok.com/music/original-sound-truebookwisdom-7222639764380470021?refer=embed">♬ original sound  - truebookwisdom</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+
+
+#### Review 
+
+The negative
+- After 5/10 video, content repeats itself
+- Issues with fingers and multiple arms
+
+
+The positive
+- Very high grade quality of images
