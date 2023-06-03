@@ -161,16 +161,17 @@ Idea 3 - Story understanding and character consistency UI
 
 A first UI allows to describe character identified by the NLP logic 
 
-![Visuals of the interface v3 1]({{site.baseurl}}/assets/img/character_control_1.png){: width="900"}
+![Visuals of the interface v3 1]({{site.baseurl}}/assets/img/character_control_1.png){: width="700"}
 
-![Visuals of the interface v3 1 bis]({{site.baseurl}}/assets/img/character_control_2.png){: width="900"}
+Multiple character can be defined
 
-
-
-We can then come back to the original UI and prompt will have the right ccharacter description magically filled
+![Visuals of the interface v3 1 bis]({{site.baseurl}}/assets/img/character_control_2.png){: width="700"}
 
 
-![Visuals of the interface v3 2]({{site.baseurl}}/assets/img/character_consistency_in_story.png){: width="900"}
+We can then come back to the original UI, prompts will have the right character description magically filled
+
+
+![Visuals of the interface v3 2]({{site.baseurl}}/assets/img/character_consistency_in_story.png){: width="700"}
 
 
 
@@ -201,8 +202,19 @@ In that video, 2 characters were used :
 
 # 2 - The UI and Tech design
 
+A lot fo different bricks were mixed in order to get the results presented in the previous section.
+
 
 ## 2 - a) Working with Streamlit
+
+Streamlit is a huge productivity boost when you don't know enough about front-end.
+
+I learned it a bit more in order to have an efficient UI
+
+
+```python
+
+```
 
 
 
@@ -210,15 +222,75 @@ In that video, 2 characters were used :
 ## 2 - b) Tricks around Stable Diffusion
 
 
-**Stable diffusion webui api**
+#### Stable diffusion webui api
+
+The [stable diffusion web ui project](https://github.com/AUTOMATIC1111/stable-diffusion-webui) offers a backend in order to control everything about the Stable diffusion model.
+
+This was a key element in order to easily control things like models selection and generation parameter through a WebClient.
+
+```python
+api = webuiapi.WebUIApi(host='127.0.0.1', port=7860)
+options = dict()
+options['sd_model_checkpoint'] 
+api.set_options(options)
+images = api.txt2img(prompt=self.prompt, negative_prompt="bad quality",
+                                 batch_size=N_GENERATION_ROUNDS).images
+```
+
+Using the [SD web ui api](https://github.com/AUTOMATIC1111/stable-diffusion-webui) offers more than a wrapper. A lot of prompt helpers are also available.
+
+For a prompt like this one,
+```
+(high quality), landscape, <lora:add_detail:1>
+```
+we have the `()` operator helping to have a focus on a characteristic and the [Lora loader](https://github.com/microsoft/LoRA) that enable using finetuning to be specific results without changing the base model.
+
+This could be used to have a character consistency with a trained Lora.
 
 
 
-**Character consistency**
+#### Character consistency
+
+Character consistency is not really a feature implemented in the base Stable diffusion model.
+
+However, celebrities are generated with their identity preserved.
+
+This capability can be abused to have consitent character without having celebrities squatting you generations : 
+
+```
+[Robin Johansen | Rosalie Perkov] as a 31 year old male , fit, blue, outfit, smiling,  1man
+```
+
+The main idea is to generate a mix of two celebrities and force the model to generate it as the opposite sex to remove our ability to recognize the new character.
+
+**How is it accomplished ?**
+
+`[x | y]` is another capability of the api, where the guidance of the diffusion process alternates between `x` and `y` at each step.
+
+The other element is to have a database of ccelebrities with their associated gender. 
+Something rellatively simple to get with a db like [LFW](http://vis-www.cs.umass.edu/lfw/) or [CelebA](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html)
+
+
+####  Using larger model like DeepFloyd IF
+
+Given the limitations seen in sections 1, it is interesting to ask our selves if some model could perform better.
+
+Today, there is mainly 3 models possible : 
+
+- Stable diffusion 1.5 : very popular because it can be easily finetuned
+- Stable diffusion 2.1 : high reolution by default, but came out later, so less support from community
+- DeepFloyd IF : good at text, respect the prompt, **BUT** you need a 24gb GPU to run the full pipeline
+
+This is the main issue with the latest model : no community support.
+
+Even if the model is intrasically better, it wasn't finetune on quality data and looks overall less good than the much simpler SD 1.5.
 
 
 
-**Using larger model like Floyd IT**
+## 2 - c) What was used for coreferences of characters
 
 
-## 2 - c) 
+
+
+
+
