@@ -1,7 +1,7 @@
 ---
 description: Using Streamlit
 tags: python LLM GenerativeAI  ffmpeg
-img: landscape_machinery.png
+img: landscape_machinery_2.png
 comments: true
 ---
 
@@ -215,7 +215,6 @@ I learned it a bit more in order to have an efficient UI
 ```python
 
 ```
-
 
 
 
