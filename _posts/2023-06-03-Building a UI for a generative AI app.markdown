@@ -104,7 +104,7 @@ As I was using ChatGPT to suggest both the content and the prompts, I was limite
 So I wanted to add my touch on top of the input of the system
 
 
-![Visuals of the interface v2 1]({{site.baseurl}}/assets/img/text_parsing_to_video.webm){: width="700"}
+![VVideo of the interface]({{site.baseurl}}/assets/img/text_parsing_to_video.gif)
 
 
 Idea 2 : 
@@ -143,12 +143,18 @@ Everything can be combined together when all the frames are satisfactory for the
 
 
 
-## 1 - c) Generation helper UI
+## 1 - c) Idea 3 : Generation helper UI
 
 
 The previous UI change was beneficial to the overall quality of the videos, but much more time consuming.
 
 So, I looked at how I could add automation into the generation process.
+
+
+
+
+![VVideo of the interface]({{site.baseurl}}/assets/img/coreference_clusters.gif)
+
 
 
 Idea 3 - Story understanding and character consistency UI
