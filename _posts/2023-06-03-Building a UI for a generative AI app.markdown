@@ -43,12 +43,13 @@ A diagram of the logic was described in the previous post :
 
 ## 1 - a) Idea 1 : the brute force approach
 
+
 Idea 1 : 
 
 - A script is transformed into N scenes
 - For each scene, create K images with a txt2img model
 - Let it run for X hours
-- The UI kicks in and the user select the best images
+- The UI is useful to let the user select the best images
 
 
 Why this approach : 
@@ -60,14 +61,15 @@ Why this approach :
 
 #### Some example visuals
 
+
+
+![Video of the interface]({{site.baseurl}}/assets/img/bruteforce_interface.gif)
+
+
 A vision of the interface, when image has been selected for a given frame.
-
-![Visuals of the interface 1]({{site.baseurl}}/assets/img/frame_selector_2.png){: width="700"}
-
 
 Once an image is selected, it appears as bigger.
 
-![Visuals of the interface 2]({{site.baseurl}}/assets/img/frame_selector_1.png){: width="700"}
 
 
 #### Pros and cons
@@ -153,7 +155,7 @@ So, I looked at how I could add automation into the generation process.
 
 
 
-![VVideo of the interface]({{site.baseurl}}/assets/img/coreference_clusters.gif)
+![Video of the interface]({{site.baseurl}}/assets/img/coreference_clusters.gif)
 
 
 
