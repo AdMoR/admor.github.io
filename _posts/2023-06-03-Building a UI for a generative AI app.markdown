@@ -41,7 +41,7 @@ A diagram of the logic was described in the previous post :
 
 
 
-## 1 - a) The brute force approach
+## 1 - a) Idea 1 : the brute force approach
 
 Idea 1 : 
 
@@ -95,13 +95,16 @@ An example of issue of the model : too many arms and glasses
 
 
 
-## 1 - b) The creative interface
+## 1 - b) Idea 2 : the creative interface
 
 After working with the first approach for some weeks, I realised its limitations : All stories started to look the same.
 
 As I was using ChatGPT to suggest both the content and the prompts, I was limited by what it could generate.
 
 So I wanted to add my touch on top of the input of the system
+
+
+![Visuals of the interface v2 1]({{site.baseurl}}/assets/img/text_parsing_to_video.webm){: width="700"}
 
 
 Idea 2 : 
