@@ -46,7 +46,8 @@ A diagram of the logic was described in the previous post :
 
 The overview of the logic
 
-- A story is a set of 10 scenes represent by 1 image each
+- We start with a large block of text that we will split in 10 sentences.
+- Each sentence will be represented by 1 image
 - For each scene, create 15 images to choose from (with a txt2img model)
 - A UI allows me to pick the best image for each scene
 
@@ -65,23 +66,11 @@ Once an image is selected, it appears as bigger.
 
 
 
-#### > Pros and cons
-
-
-Why this approach : 
+#### > Why this approach : 
 
 - Depending on your hardware, you can wait a rather long time to get all the frames necessary generated
 - Also, txt2img technology is not perfect, there is sometimes obvious generation artifact that can ruin an image value (see example)
 
-
-**Benefits** : 
-- Run the generation logic at night and do the curation during the day 
-
-
-**Drawback** : 
-- You can't design each prompt manually because of the automation
-- Very resource hungry
-- You can still end up with no correct picture to select given a prompt
 
 
 
@@ -125,16 +114,6 @@ Everything can be combined together when all the frames are satisfactory for the
 
 
 
-#### > Pros and cons
-
-**Benefits** : 
-- Fine grained image generation is possible
-
-
-**Drawbacks** : 
-- Very time consuming
-- Start to get into UI complexity
-
 
 #### > Example of video generated
 
@@ -142,7 +121,7 @@ Everything can be combined together when all the frames are satisfactory for the
 
 
 
-## Idea 3 : Generation helper UI
+## Idea 3 : Character generation helper UI
 
 
 The previous UI change was beneficial to the overall quality of the videos, but much more time consuming.
@@ -150,49 +129,41 @@ The previous UI change was beneficial to the overall quality of the videos, but 
 So, I looked at how I could add automation into the generation process.
 
 
+By making character consistent easily
 
 
 ![Video of the interface]({{site.baseurl}}/assets/img/coreference_clusters.gif)
 
 
+Overview of the logic
 
-Idea 3 - Story understanding and character consistency UI
-
-- Get rid of ChatGPT for telling me what to put in the prompts
-- Understand character references across the story with NLP
-- Attach the right character description when a character is described in the scene
+- I have a large block of text
+- I use a model from Spacy to detect coreferences
+- Character represent cluster of words
+- Each cluster will get its own prompt
+- When an element of a cluster is found in a sentence, we add all the prompt words attached to this cluster
 
 
 
 #### > What the UI looks like
 
 
-A first UI allows to describe character identified by the NLP logic 
+The UI achieves different purposes : 
+
+- Manually identify what is cluster is about with the words of the cluster
+- Define the prompt words for the cluster
+- Preview how a prompt will consistently generate a character
+
 
 ![Visuals of the interface v3 1]({{site.baseurl}}/assets/img/character_control_2.png){: width="500"}
-
-Multiple character can be defined
-
 ![Visuals of the interface v3 1 bis]({{site.baseurl}}/assets/img/character_control_1.png){: width="500"}
 
 
-We can then come back to the original UI, prompts will have the right character description magically filled
+Back to the original UI, prompts will have the right character description magically filled
 
 
-![Visuals of the interface v3 2]({{site.baseurl}}/assets/img/character_consistency_in_story.png){: width="400"}
+![Visuals of the interface v3 2]({{site.baseurl}}/assets/img/character_consistency_in_story.png){: width="500"}
 
-
-
-#### > Pros and Cons
-
-**Benefits** : 
-- No need to repeat always the same prompt
-- I can visualize how the character will be rendered across the story
-- A character consistency technic can be used
-
-
-**Drawbacks** : 
-- Higher codebase complexity
 
 
 
