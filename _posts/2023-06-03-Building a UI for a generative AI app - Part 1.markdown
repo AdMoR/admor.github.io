@@ -117,11 +117,11 @@ Idea 2 :
 
 You can see an example of the blocks that consitute a story. They can be modified to produce the wanted
 
-![Visuals of the interface v2 1]({{site.baseurl}}/assets/img/brick_of_story_generation.png){: width="700"}
+![Visuals of the interface v2 1]({{site.baseurl}}/assets/img/brick_of_story_generation.png){: width="550"}
 
 Everything can be combined together when all the frames are satisfactory for the user.
 
-![Visuals of the interface v2 2]({{site.baseurl}}/assets/img/video_generation_in_UI.png){: width="700"}
+![Visuals of the interface v2 2]({{site.baseurl}}/assets/img/video_generation_in_UI.png){: width="550"}
 
 
 
@@ -169,11 +169,11 @@ Idea 3 - Story understanding and character consistency UI
 
 A first UI allows to describe character identified by the NLP logic 
 
-![Visuals of the interface v3 1]({{site.baseurl}}/assets/img/character_control_1.png){: width="400"}
+![Visuals of the interface v3 1]({{site.baseurl}}/assets/img/character_control_2.png){: width="500"}
 
 Multiple character can be defined
 
-![Visuals of the interface v3 1 bis]({{site.baseurl}}/assets/img/character_control_2.png){: width="400"}
+![Visuals of the interface v3 1 bis]({{site.baseurl}}/assets/img/character_control_1.png){: width="500"}
 
 
 We can then come back to the original UI, prompts will have the right character description magically filled
