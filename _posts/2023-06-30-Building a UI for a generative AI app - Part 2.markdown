@@ -196,10 +196,10 @@ Today, there is mainly 3 models possible :
 - Stable diffusion 1.5 : very popular because it can be easily finetuned
 - Stable diffusion 2.1 : high reolution by default, but came out later, so less support from community
 - DeepFloyd IF : good at text, respect the prompt, **BUT** you need a 24gb GPU to run the full pipeline
-- Stable diffusion XL : high quality, larger footprint, community models development ongoing
+- Stable diffusion XL : high quality, larger memory footprint and inference time, community models development ongoing
 
-This is the main issue with the latest model : no community support.
-
-Even if the model is intrasically better, it wasn't finetune on quality data and looks overall less good than the much simpler SD 1.5.
+So currently, using a 1.5 model can still hold in term of quality given a compute budget. Especially given some Lora like \<add detail\> are great at improving the model with close to no cost.
+    
+But we can expect that a new generation of SDXL model will take over. 
 
 

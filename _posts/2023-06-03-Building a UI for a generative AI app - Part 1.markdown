@@ -44,22 +44,15 @@ A diagram of the logic was described in the previous post :
 ## Idea 1 : the brute force approach
 
 
-Idea 1 : 
+The overview of the logic
 
-- A script is transformed into N scenes
-- For each scene, create K images with a txt2img model
-- Let it run for X hours
-- The UI is useful to let the user select the best images
-
-
-Why this approach : 
-
-- Depending on your hardware, you can wait a rather long time to get all the frames necessary generated
-- Also, txt2img technology is not perfect, there is sometimes obvious generation artifact that can ruin an image value (see example)
+- A story is a set of 10 scenes represent by 1 image each
+- For each scene, create 15 images to choose from (with a txt2img model)
+- A UI allows me to pick the best image for each scene
 
 
 
-#### Some example visuals
+#### > Some example visuals
 
 
 
@@ -72,13 +65,17 @@ Once an image is selected, it appears as bigger.
 
 
 
-#### Pros and cons
+#### > Pros and cons
+
+
+Why this approach : 
+
+- Depending on your hardware, you can wait a rather long time to get all the frames necessary generated
+- Also, txt2img technology is not perfect, there is sometimes obvious generation artifact that can ruin an image value (see example)
 
 
 **Benefits** : 
-- Run the logic for N scripts
-- Let it run for the night
-- Select the right frames to create your videos
+- Run the generation logic at night and do the curation during the day 
 
 
 **Drawback** : 
@@ -88,10 +85,10 @@ Once an image is selected, it appears as bigger.
 
 
 
-#### A focus on the failure modes : 
+#### > A focus on the failure modes : 
 
 
-![The hand problem]({{site.baseurl}}/assets/img/multiple_arms.png){: width="500"}
+![The hand problem]({{site.baseurl}}/assets/img/multiple_arms.png){: width="300"}
 
 An example of issue of the model : too many arms and glasses
 
@@ -116,7 +113,7 @@ Idea 2 :
 
 
 
-#### What the UI looks like
+#### > What the UI looks like
 
 You can see an example of the blocks that consitute a story. They can be modified to produce the wanted
 
@@ -128,7 +125,7 @@ Everything can be combined together when all the frames are satisfactory for the
 
 
 
-#### Pros and cons
+#### > Pros and cons
 
 **Benefits** : 
 - Fine grained image generation is possible
@@ -139,7 +136,7 @@ Everything can be combined together when all the frames are satisfactory for the
 - Start to get into UI complexity
 
 
-#### Example of video generated
+#### > Example of video generated
 
 <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@truebookwisdom/video/7233298116349283610" data-video-id="7233298116349283610" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@truebookwisdom" href="https://www.tiktok.com/@truebookwisdom?refer=embed">@truebookwisdom</a> The original little Mermaid story <a title="mermaid" target="_blank" href="https://www.tiktok.com/tag/mermaid?refer=embed">#mermaid</a> <a title="disney" target="_blank" href="https://www.tiktok.com/tag/disney?refer=embed">#disney</a> <a title="tale" target="_blank" href="https://www.tiktok.com/tag/tale?refer=embed">#tale</a> <a title="sadstory" target="_blank" href="https://www.tiktok.com/tag/sadstory?refer=embed">#sadstory</a> <a title="love" target="_blank" href="https://www.tiktok.com/tag/love?refer=embed">#love</a> <a title="learn" target="_blank" href="https://www.tiktok.com/tag/learn?refer=embed">#learn</a> <a target="_blank" title="♬ original sound  - truebookwisdom" href="https://www.tiktok.com/music/original-sound-truebookwisdom-7233299394329283354?refer=embed">♬ original sound  - truebookwisdom</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
 
@@ -167,26 +164,26 @@ Idea 3 - Story understanding and character consistency UI
 
 
 
-#### What the UI looks like
+#### > What the UI looks like
 
 
 A first UI allows to describe character identified by the NLP logic 
 
-![Visuals of the interface v3 1]({{site.baseurl}}/assets/img/character_control_1.png){: width="700"}
+![Visuals of the interface v3 1]({{site.baseurl}}/assets/img/character_control_1.png){: width="400"}
 
 Multiple character can be defined
 
-![Visuals of the interface v3 1 bis]({{site.baseurl}}/assets/img/character_control_2.png){: width="700"}
+![Visuals of the interface v3 1 bis]({{site.baseurl}}/assets/img/character_control_2.png){: width="400"}
 
 
 We can then come back to the original UI, prompts will have the right character description magically filled
 
 
-![Visuals of the interface v3 2]({{site.baseurl}}/assets/img/character_consistency_in_story.png){: width="700"}
+![Visuals of the interface v3 2]({{site.baseurl}}/assets/img/character_consistency_in_story.png){: width="400"}
 
 
 
-#### Pros and Cons
+#### > Pros and Cons
 
 **Benefits** : 
 - No need to repeat always the same prompt
@@ -209,3 +206,15 @@ In that video, 2 characters were used :
 - Siegfried : identified by grey hair, a certain face and an armor
 - The dragon : only a simple prompt was used for it : "dark dragon"
 
+
+
+## Conclusion
+
+
+With this tooling, I was able to turn a txt2img technology to a video creation tool.
+
+A lot of additional development could be made like : 
+
+- [Automatic animation](https://animatediff.github.io/)
+- [Using a better model](https://stability.ai/blog/stable-diffusion-sdxl-1-announcementani)
+- [Generate my own music](https://ai.honu.io/papers/musicgen/)
