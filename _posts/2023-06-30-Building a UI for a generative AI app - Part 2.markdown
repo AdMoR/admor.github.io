@@ -1,5 +1,5 @@
 ---
-description: Using Streamlit
+description: The technical tricks from part 1
 tags: python LLM GenerativeAI  ffmpeg
 img: landscape_machinery_2.png
 comments: true
@@ -24,9 +24,9 @@ Streamlit is a huge productivity boost when you don't know enough about front-en
 I learned it a bit more in order to have an efficient UI
 
 
-#### The essentials to use Streamlit efficiently
+#### >> The essentials to use Streamlit efficiently
 
-**All UI widgets have a built-in shortcut**
+**> All UI widgets have a built-in shortcut**
 
 The key parameter is what you must use
 
@@ -44,12 +44,12 @@ if "story_container" in st.session_state:
 No need for complex callback code in order to retrieve the content of the textbox.
 
 
-**Time consumming operations should be cached**
+**> Time consumming operations should be cached**
 
 You have two operators that can be used : `st.cache_data` for long function calls and `st.cache_resource` for models.
 
 
-**Use higher-order functions for callback**
+**> Use higher-order functions for callback**
 
 When using streamlit, you will quickly want to add function calls to UI actions.
 
@@ -93,10 +93,10 @@ for i in range(len(prompts)):
 ```
 
 
-#### Additional UI tricks
+#### >> Additional UI tricks
 
 
-**Save everything in states**
+**> Save everything in states**
 
 On UI refresh, you might end up losing information about computed states. This can be a disaster if you spent 15 minutes, tuning and updating your app content.
 
@@ -118,7 +118,7 @@ script = st.text_area("Script",
 For multiple pages app, this can allow to transfer the infors.
 
 
-**Save part of the state in config**
+**> Save part of the state in config**
 
 While developping, you will often encounter situation where you broke part of your app.
 
@@ -138,7 +138,7 @@ I may have changed the speak or the content of the speak for specific part of th
 ## b) Tricks around Stable Diffusion
 
 
-#### Stable diffusion webui api
+#### >> Stable diffusion webui api
 
 The [stable diffusion web ui project](https://github.com/AUTOMATIC1111/stable-diffusion-webui) offers a backend in order to control everything about the Stable diffusion model.
 
@@ -165,7 +165,7 @@ This could be used to have a character consistency with a trained Lora.
 
 
 
-#### Character consistency
+#### >> Character consistency
 
 Character consistency is not really a feature implemented in the base Stable diffusion model.
 
@@ -187,7 +187,7 @@ The other element is to have a database of ccelebrities with their associated ge
 Something rellatively simple to get with a db like [LFW](http://vis-www.cs.umass.edu/lfw/) or [CelebA](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html)
 
 
-####  Using larger model like DeepFloyd IF
+####  >> Using larger model like SDXL and DeepFloyd IF
 
 Given the limitations seen in sections 1, it is interesting to ask our selves if some model could perform better.
 
@@ -196,6 +196,7 @@ Today, there is mainly 3 models possible :
 - Stable diffusion 1.5 : very popular because it can be easily finetuned
 - Stable diffusion 2.1 : high reolution by default, but came out later, so less support from community
 - DeepFloyd IF : good at text, respect the prompt, **BUT** you need a 24gb GPU to run the full pipeline
+- Stable diffusion XL : high quality, larger footprint, community models development ongoing
 
 This is the main issue with the latest model : no community support.
 
