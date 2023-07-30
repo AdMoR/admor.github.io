@@ -78,7 +78,7 @@ Often SD1.5 models struggle on small details like hands, arms or even ... glasse
 
 ![The hand problem]({{site.baseurl}}/assets/img/multiple_arms.png){: width="300"}
 
-Here the count is not right
+Here the count is not right.
 
 
 
