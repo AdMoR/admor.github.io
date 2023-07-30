@@ -23,7 +23,7 @@ __Character and style consistent video story creation with a Stable diffusion ba
 
 <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@truebookwisdom/video/7238695358660955418" data-video-id="7238695358660955418" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@truebookwisdom" href="https://www.tiktok.com/@truebookwisdom?refer=embed">@truebookwisdom</a> The myth of the four suns <a title="aztec" target="_blank" href="https://www.tiktok.com/tag/aztec?refer=embed">#aztec</a>  <a title="myth" target="_blank" href="https://www.tiktok.com/tag/myth?refer=embed">#myth</a>  <a title="god" target="_blank" href="https://www.tiktok.com/tag/god?refer=embed">#god</a>  <a title="story" target="_blank" href="https://www.tiktok.com/tag/story?refer=embed">#story</a> <a target="_blank" title="♬ original sound  - truebookwisdom" href="https://www.tiktok.com/music/original-sound-truebookwisdom-7238695680183683867?refer=embed">♬ original sound  - truebookwisdom</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
 
-If you want to know how I easily build these videos, read the rest ;)
+If you want to know how I build these videos, read the rest ;)
 
 
 
@@ -37,14 +37,16 @@ The UI should help to make the creation faster, but not necessarily make everyth
 
 A diagram of the logic was described in [the previous post](https://admor.github.io/Infinite-motivational-video-creation-with-ChatGPT/) :
 
-![Diagram]({{site.baseurl}}/assets/img/auto_gen.png){: width="900" }
+![Diagram]({{site.baseurl}}/assets/img/auto_gen.png){: width="700" }
+
+In short, ChatGPT generates a story. Each sentence is translated to an image with Stable Diffusion. And finally txt2speech adds the narration voice.
 
 
 
 ## Idea 1 : the brute force approach
 
 
-The overview of the logic
+#### > The overview of the logic
 
 - We start with a large block of text that we will split in 10 sentences.
 - Each sentence will be represented by 1 image
@@ -53,16 +55,12 @@ The overview of the logic
 
 
 
-#### > Some example visuals
-
+#### > Let's look at the UI
 
 
 ![Video of the interface]({{site.baseurl}}/assets/img/bruteforce_interface.gif)
 
-
-A vision of the interface, when image has been selected for a given frame.
-
-Once an image is selected, it appears as bigger.
+Once the generation process is finished, we only need to select good images corresponding to the story.
 
 
 
@@ -74,12 +72,13 @@ Once an image is selected, it appears as bigger.
 
 
 
-#### > A focus on the failure modes : 
+#### > A focus on the failure modes : why we need more than 1 image per sentence
 
+Often SD1.5 models struggle on small details like hands, arms or even ... glasses. 
 
 ![The hand problem]({{site.baseurl}}/assets/img/multiple_arms.png){: width="300"}
 
-An example of issue of the model : too many arms and glasses
+Here the count is not right
 
 
 
@@ -92,7 +91,7 @@ As I was using ChatGPT to suggest both the content and the prompts, I was limite
 So I wanted to have more control on the generation.
 
 
-Overview : 
+#### > Overview of the logic : 
 - Same structure as Idea 1
 - I can edit each prompt if i'm unhappy with it
 - Once done, I click a "generate" button, and it produces the video
@@ -136,11 +135,11 @@ The previous UI change was beneficial to the overall quality of the videos, but 
 So, I looked at how I could add automation into the generation process : by making character generation consistent 
 
 
-Overview of the logic : 
+#### > Overview of the logic : 
 
 - I have a large block of text
 - I use a model from Spacy to detect multiple references of the same character
-- Characters are represented by cluster of words
+- Characters are represented by a cluster of words
 - Each cluster will get its own prompt
 - When an element of a cluster is found in a sentence, we add all the prompt words attached to this cluster
 
@@ -148,7 +147,7 @@ Overview of the logic :
 
 ![Video of the interface]({{site.baseurl}}/assets/img/coreference_clusters.gif)
 
-
+In this example, two characters are identified and assigned a prompt to get a consistent visual identity. 
 
 
 #### > Focus on the UI
