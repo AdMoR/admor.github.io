@@ -35,7 +35,7 @@ The goal of the app would be to create small video stories based on a text.
 The UI should help to make the creation faster, but not necessarily make everything possible.
 
 
-A diagram of the logic was described in the previous post :
+A diagram of the logic was described in [the previous post](https://admor.github.io/Infinite-motivational-video-creation-with-ChatGPT/) :
 
 ![Diagram]({{site.baseurl}}/assets/img/auto_gen.png){: width="900" }
 
@@ -85,30 +85,35 @@ An example of issue of the model : too many arms and glasses
 
 ## Idea 2 : the creative interface
 
-After working with the first approach for some weeks, I realised its limitations : All stories started to look the same.
+After working with the first approach for some weeks, I realised its limitations : all stories started to look the same.
 
 As I was using ChatGPT to suggest both the content and the prompts, I was limited by what it could generate.
 
-So I wanted to add my touch on top of the input of the system
+So I wanted to have more control on the generation.
 
 
-![VVideo of the interface]({{site.baseurl}}/assets/img/text_parsing_to_video.gif)
-
-
-Idea 2 : 
+Overview : 
 - Same structure as Idea 1
 - I can edit each prompt if i'm unhappy with it
 - Once done, I click a "generate" button, and it produces the video
 
 
 
-#### > What the UI looks like
+![Video of the interface]({{site.baseurl}}/assets/img/text_parsing_to_video.gif)
 
-You can see an example of the blocks that consitute a story. They can be modified to produce the wanted
+
+
+
+#### > The UI in details
+
+The UI descibes how the story is broken down in smaller blocks.
+Each block correspond to an image. If the prompt for this image does not provide a satisfactory image. One can change the prompt.
+
+However we lose the ability to choose among a list of 10 images as everything is synchronous.
 
 ![Visuals of the interface v2 1]({{site.baseurl}}/assets/img/brick_of_story_generation.png){: width="550"}
 
-Everything can be combined together when all the frames are satisfactory for the user.
+It is possible to preview the final video once all the images are generated.
 
 ![Visuals of the interface v2 2]({{site.baseurl}}/assets/img/video_generation_in_UI.png){: width="550"}
 
@@ -116,6 +121,8 @@ Everything can be combined together when all the frames are satisfactory for the
 
 
 #### > Example of video generated
+
+In this example, I took the story of the little mermaid outputed by ChatGPT and tuned the prompt for better visuals.
 
 <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@truebookwisdom/video/7233298116349283610" data-video-id="7233298116349283610" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@truebookwisdom" href="https://www.tiktok.com/@truebookwisdom?refer=embed">@truebookwisdom</a> The original little Mermaid story <a title="mermaid" target="_blank" href="https://www.tiktok.com/tag/mermaid?refer=embed">#mermaid</a> <a title="disney" target="_blank" href="https://www.tiktok.com/tag/disney?refer=embed">#disney</a> <a title="tale" target="_blank" href="https://www.tiktok.com/tag/tale?refer=embed">#tale</a> <a title="sadstory" target="_blank" href="https://www.tiktok.com/tag/sadstory?refer=embed">#sadstory</a> <a title="love" target="_blank" href="https://www.tiktok.com/tag/love?refer=embed">#love</a> <a title="learn" target="_blank" href="https://www.tiktok.com/tag/learn?refer=embed">#learn</a> <a target="_blank" title="♬ original sound  - truebookwisdom" href="https://www.tiktok.com/music/original-sound-truebookwisdom-7233299394329283354?refer=embed">♬ original sound  - truebookwisdom</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
 
@@ -126,26 +133,25 @@ Everything can be combined together when all the frames are satisfactory for the
 
 The previous UI change was beneficial to the overall quality of the videos, but much more time consuming.
 
-So, I looked at how I could add automation into the generation process.
+So, I looked at how I could add automation into the generation process : by making character generation consistent 
 
 
-By making character consistent easily
-
-
-![Video of the interface]({{site.baseurl}}/assets/img/coreference_clusters.gif)
-
-
-Overview of the logic
+Overview of the logic : 
 
 - I have a large block of text
-- I use a model from Spacy to detect coreferences
-- Character represent cluster of words
+- I use a model from Spacy to detect multiple references of the same character
+- Characters are represented by cluster of words
 - Each cluster will get its own prompt
 - When an element of a cluster is found in a sentence, we add all the prompt words attached to this cluster
 
 
 
-#### > What the UI looks like
+![Video of the interface]({{site.baseurl}}/assets/img/coreference_clusters.gif)
+
+
+
+
+#### > Focus on the UI
 
 
 The UI achieves different purposes : 
@@ -167,15 +173,16 @@ Back to the original UI, prompts will have the right character description magic
 
 
 
-#### An example video
-
-
-<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@truebookwisdom/video/7238700571421642010" data-video-id="7238700571421642010" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@truebookwisdom" href="https://www.tiktok.com/@truebookwisdom?refer=embed">@truebookwisdom</a> The tale of Siegfried - Part2 <a title="knight" target="_blank" href="https://www.tiktok.com/tag/knight?refer=embed">#knight</a> <a title="tale" target="_blank" href="https://www.tiktok.com/tag/tale?refer=embed">#tale</a> <a title="dragon" target="_blank" href="https://www.tiktok.com/tag/dragon?refer=embed">#dragon</a> <a target="_blank" title="♬ original sound  - truebookwisdom" href="https://www.tiktok.com/music/original-sound-truebookwisdom-7238700853962558234?refer=embed">♬ original sound  - truebookwisdom</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+#### > An example video
 
 
 In that video, 2 characters were used : 
 - Siegfried : identified by grey hair, a certain face and an armor
 - The dragon : only a simple prompt was used for it : "dark dragon"
+
+
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@truebookwisdom/video/7238700571421642010" data-video-id="7238700571421642010" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@truebookwisdom" href="https://www.tiktok.com/@truebookwisdom?refer=embed">@truebookwisdom</a> The tale of Siegfried - Part2 <a title="knight" target="_blank" href="https://www.tiktok.com/tag/knight?refer=embed">#knight</a> <a title="tale" target="_blank" href="https://www.tiktok.com/tag/tale?refer=embed">#tale</a> <a title="dragon" target="_blank" href="https://www.tiktok.com/tag/dragon?refer=embed">#dragon</a> <a target="_blank" title="♬ original sound  - truebookwisdom" href="https://www.tiktok.com/music/original-sound-truebookwisdom-7238700853962558234?refer=embed">♬ original sound  - truebookwisdom</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+
 
 
 
