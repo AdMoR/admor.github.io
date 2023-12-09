@@ -22,15 +22,38 @@ But we could go further in many direction :
 
 An example of the language teacher app.
 
-.......
+
+You can interact orally and get the transcript in the chat. A video response is generated to a voice in the language chosen. 
+
+![Example of the interface]({{site.baseurl}}/assets/img/jesus_conversation.png)
+
+You want to discover more ?
+
+Have a try on the [HuggingFace space]() !
 
 
-You can connect to .... to try it.
+
+
+## ML bricks 
+
+The system works with the following elements : 
+
+- Whisper for transcription
+- ChatGPT with a prompt template based on the language chosen
+- Text to speech
+- Wav2Lip to generate the video
+
+In this example, Whisper and ChatGPT use the OpenAI endpoint to limit the VRAM usage on the local machine.
+
+
+Text to speech uses an [updated Silero server repository](https://github.com/AdMoR/silero-api-server). This offers multi lingual support without being too slow or heavy.
+
+Wav2Lip uses the same [repository](https://github.com/devxpy/cog-Wav2Lip) as the previous post.
 
 
 
 
-## Architecture  
+## System architecture  
 
 The system can be summarized with the following diagram : 
 
@@ -113,11 +136,8 @@ with connection_, channel_, channel_out:
         handle(channel_, method, properties, body)
 ```
 
+## Conclusion 
 
-## Software stack
-
-....
-
-
-
-
+- The ML bricks were easy to set up
+- The Queue was the most difficult to set
+- The latency remain high without a streaming connection with the language model
