@@ -1,7 +1,7 @@
 ---
-description: on twitch
-tags: python LLM GenerativeAI ffmpeg
-img: AIJesusFace.jpg
+description: German, French, English and more
+tags: python LLM GenerativeAI
+img: ai_language_teacher.png
 comments: true
 ---
 
