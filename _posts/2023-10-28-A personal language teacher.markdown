@@ -23,9 +23,8 @@ But we could go further in many direction :
 An example of the language teacher app.
 
 
-You can interact orally and get the transcript in the chat. A video response is generated to a voice in the language chosen. 
+You can interact orally and get the transcript in the chat. An audio or video response is generated to a voice in the language chosen. 
 
-![Example of the interface]({{site.baseurl}}/assets/img/jesus_conversation.png)
 
 You want to discover more ?
 
