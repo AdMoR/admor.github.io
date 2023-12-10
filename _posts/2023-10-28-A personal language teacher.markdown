@@ -36,7 +36,7 @@ Have a try on the [HuggingFace space]() !
     allow="microphone;"
     class="gradio-asr"
     width="850"
-    height="450"
+    height="600"
 ></iframe>
 
 
