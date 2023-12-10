@@ -31,6 +31,14 @@ You want to discover more ?
 
 Have a try on the [HuggingFace space]() !
 
+<iframe
+    src="https://jeanmoulo-virtual-streamer-2.hf.space"
+    frameborder="0"
+    width="850"
+    height="450"
+></iframe>
+
+
 
 
 
