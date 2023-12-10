@@ -15,20 +15,22 @@ But we could go further in many direction :
 - Scale the architecture to have 10's of conversation in parallel
 - Handle multiple personas and languages
 
- In this detail, we will detail how things could be implemented
+But for what purpose ?
+Personally I've always wanted to improve my German but found it hard to do it. So this is gonna be my target in this post.
 
 
-## Too Long Didn't Read : 
+## Test the app !
 
-An example of the language teacher app.
+Choose a language.
+You can interact orally like you would with a language teacher.
 
+An audio or video response is generated based on what you said, in the target language. 
 
-You can interact orally and get the transcript in the chat. An audio or video response is generated to a voice in the language chosen. 
-
+And you get the transcript of the conversation in the chat to be able to better understand . 
 
 You want to discover more ?
 
-Have a try on the [HuggingFace space]() !
+Have a try on the [HuggingFace space](https://jeanmoulo-virtual-streamer.hf.space) !
 
 <iframe
     src="https://jeanmoulo-virtual-streamer.hf.space"
@@ -38,9 +40,6 @@ Have a try on the [HuggingFace space]() !
     width="850"
     height="600"
 ></iframe>
-
-
-
 
 
 ## ML bricks 
@@ -61,7 +60,6 @@ Wav2Lip uses the same [repository](https://github.com/devxpy/cog-Wav2Lip) as the
 
 
 
-
 ## System architecture  
 
 The system can be summarized with the following diagram : 
@@ -72,7 +70,7 @@ The system can be summarized with the following diagram :
 
 The components of the service as a whole can be on 3 types of plateforms : 
 - Local : a computer with low reliability but cheap to own for a long duration
-- Cloud manually setup : a vm or a server owned by a cloud manager
+- Cloud manually setup : a vm or a server deployed with a cloud manager service
 - Cloud fully managed service : Saas like, almost no configuration is required
 
 
@@ -143,6 +141,18 @@ with connection_, channel_, channel_out:
     # 3 - The client listen to the reply-to and can get its answer
     for (method, properties, body) in channel_.consume(queue="amq.rabbitmq.reply-to", auto_ack=True):
         handle(channel_, method, properties, body)
+```
+
+## Video-chat variation
+
+One interesting thing with the Gradio chat implementation is that chat can be conducted by text, audio or video without large implementation changes.
+
+Especially between audio and video, there is no need to change anything, only the path of the media file is needed.
+
+An example of how to build the chat history object : the first item is the addition of the user request and the bot response. The second item is the video file response on the bot side only.
+
+```python
+history += [(response.request, response.text_response), (None, (video_path,))]
 ```
 
 ## Conclusion 
