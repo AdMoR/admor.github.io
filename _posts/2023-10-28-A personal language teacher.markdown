@@ -33,6 +33,8 @@ Have a try on the [HuggingFace space]() !
 <iframe
     src="https://jeanmoulo-virtual-streamer.hf.space"
     frameborder="0"
+    allow="microphone;"
+    class="gradio-asr"
     width="850"
     height="450"
 ></iframe>
