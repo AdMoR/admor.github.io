@@ -155,6 +155,9 @@ An example of how to build the chat history object : the first item is the addit
 history += [(response.request, response.text_response), (None, (video_path,))]
 ```
 
+![HuggingFace space]({{site.baseurl}}/assets/img/jesus_conversation.png)
+
+
 ## Conclusion 
 
 - The ML bricks were easy to set up
