@@ -37,7 +37,9 @@ This is where things get complicated. With basic optimization, we mostly get noi
 
 That's where our `regularization(I)` comes into play. We need it to remove the high frequency noise and keep only the image structure. To do so, we use total varialtion loss.
 
-$$ regularization(I) = TV(I) = \Sigma_i ||I(i+1) - I(i)||^2 $$
+<div>
+$ regularization(I) = TV(I) = \Sigma_i ||I(i+1) - I(i)||^2 $
+</div>
 
 With the right `lambda`, we can still have the structure and remove most of the noise.
 It looks different from network to network and layer to layer, but we can get satisfying results.
