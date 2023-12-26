@@ -1,169 +1,110 @@
 ---
-description: German, French, English and more
+description: The open source hides some true gems
 tags: python LLM GenerativeAI
-img: ai_language_teacher.png
+img: future_is_now.png
 comments: true
 ---
 
-
-## Introduction
-
-In this previous [post](https://admor.github.io/Creating-a-virtual-streamer/), we have seen we can have a video agent answering to a written chat. A perfect match for Twitch.
-
-But we could go further in many direction : 
-- Allow a personal conversation with the bot
-- Scale the architecture to have 10's of conversation in parallel
-- Handle multiple personas and languages
-
-But for what purpose ?
-Personally I've always wanted to improve my German but found it hard to do it. So this is gonna be my target in this post.
+You want to know what will come next in the LLM world. 
+I may have an answer for you based on what happen with Dall-E and STable Diffusion.
 
 
-## Test the app !
+## The Parallel with Dall-e
 
-Choose a language.
-You can interact orally like you would with a language teacher.
+If you look back about 1.5 years ago and you wanted to use these latest txt-2-img models. You did not have so many choices : 
+Dall-e, Midjourney or Stable diffusion.
 
-An audio or video response is generated based on what you said, in the target language. 
+After trying some of them, the visual results were striking :
 
-And you get the transcript of the conversation in the chat to be able to better understand . 
+![Dall-e vs stable diff]({{site.baseurl}}/assets/img/dalee_vs_stablediff.png)
 
-You want to discover more ?
-
-Have a try on the [HuggingFace space](https://jeanmoulo-virtual-streamer.hf.space) !
-
-<iframe
-    src="https://jeanmoulo-virtual-streamer.hf.space"
-    frameborder="0"
-    allow="microphone;"
-    class="gradio-asr"
-    width="850"
-    height="600"
-></iframe>
+With Dall-e, you could clearly see you had a better image quality.
+As Dall-e was a commercial product, being actively developed. It would obviously win in the long term, right ?
 
 
-## ML bricks 
+However, in between, the open source developers started to play with Stable diffusion model and train lora on custom dataset.
+These finetunings allowed to exceed the perceived state of the art image quality but also to represent some concept that the base model could not express.
 
-The system works with the following elements : 
+![knuckles.png]({{site.baseurl}}/assets/ugandan_knuckles.png)
 
-- Whisper for transcription
-- ChatGPT with a prompt template based on the language chosen
-- Text to speech
-- Wav2Lip to generate the video
+With the more recent releases of Stable-diffusion-XL, the gap between proprietary and open-source models remains limited.
 
-In this example, Whisper and ChatGPT use the OpenAI endpoint to limit the VRAM usage on the local machine.
+![knuckles.png]({{site.baseurl}}/assets/midjou_vs_sdxl.png)
 
-
-Text to speech uses an [updated Silero server repository](https://github.com/AdMoR/silero-api-server). This offers multi lingual support without being too slow or heavy.
-
-Wav2Lip uses the same [repository](https://github.com/devxpy/cog-Wav2Lip) as the previous post.
+The main limitation today blocking a larger usage of Stable diffusion (SD) is the GPU requirement. 
+When running on CPU, it runs 10 times slower and becomes less usable than any other cloud alternative.
 
 
+## I thought we would talk about LLM 
 
-## System architecture  
+Today, in the LLM landscape, we are not so far away from the stable diffusion use case from 1.5 years ago.
 
-The system can be summarized with the following diagram : 
+- 2 big proprietary player : ChatGPT and Claude
+- Many smaller open source initiatives : Llama, Mistral and other
 
-
-![architecture diagram]({{site.baseurl}}/assets/img/teacher_jesus_diagram.png)
-
-
-The components of the service as a whole can be on 3 types of plateforms : 
-- Local : a computer with low reliability but cheap to own for a long duration
-- Cloud manually setup : a vm or a server deployed with a cloud manager service
-- Cloud fully managed service : Saas like, almost no configuration is required
+From a user perspective, we have the same statements : a cloud offer is easier to use, 
+but when the proprietary models fail on your task, you may want to [finetune an open source model](https://medium.com/@dave-shap/a-pros-guide-to-finetuning-llms-c6eb570001d3)
+or use a [Retrieval Augmented Generation](https://www.linkedin.com/posts/waleedkadous_fine-tuning-is-for-form-not-facts-anyscale-activity-7101638298120421377-66SA/).
 
 
-Why not all cloud ?
-This is specific to this project.  In order to be able to deploy it without needing a loan, some tradeoffs were needed : 
-- GPU are very expensive on the cloud but kind of cheap at home 
-- But some GPU service are cheap : like openAI ChatGPT
-- Some cloud services are also free in their most basic service tier. But you need to adapt in order to remain under the usage limits
+## Where should I have a look then ?
+
+#### r/localllama
+
+How to better introduce this subreddit than with this quote from Karpathy ?
+
+![knuckles.png]({{site.baseurl}}/assets/localllama.png)
+
+This subreddit focuses on harnessing the open source LLM and making.
+And things can get technical really quickly, even for machine learning practitioners.
+
+![knuckles.png]({{site.baseurl}}/assets/is_this_satire.png)
+
+I assure you this is not satire and an actual feedback from someone who tested many different models.
+
+What to expect from this subreddit ?
+- Practitioner advices on RAG and finetuning best practices
+- Benchmarks to compare models
+- Tests in production performance
 
 
-#### Why do you use queues ?
+#### Huggingface model repository
 
-First question : why would you want to use a queue system for this use case ?
+A lot of people are experimenting with models thanks to huggingface. 
+But isolated experiments wouldn't bring as much as the model repository that Huggingface is today.
 
-My guesses were the following : 
-- GPU ressources will be the scarcest
-- Processing time can hugely vary from a few seconds up to a minute depending on the response length
-- 1 Gpu may serve several users at the same time
+If we come back to the parallel of txt-2-img, finetuning on custom dataset have been used to learn how to generate a better base model.
+You could find pretty advanced discussions on the model merging topic on reddit [1](https://www.reddit.com/r/StableDiffusion/comments/11sqsk8/merge_models_by_layers_and_similarity/), [2](https://www.reddit.com/r/StableDiffusion/comments/18ov9cg/comparison_opendalle_sdxl_model_merged_with_dpo/)
 
-Using a queue has other advantages compared to an http service alternative : 
-- No need to have a service with a (costly) load balancer 
-- A publicly accessible URL might also be more expensive to get 
+You can find a similar trend on HuggingFace for the LLM. Mistral fine-tuned on ORCA, PLATYPUS or others.
 
-So handling GPU requests in a queue makes sense as it is cheap and still allow scaling to multiple client.
+It is impossible to summarize what happens there. But one reference I can mention is [TheBloke](https://huggingface.co/TheBloke). 
+This person focus on making available all quantizations of open-source models.
+This enables everyone to run large models on commodity hardware like your laptop.
 
+#### Oogabooga
 
-#### Cloud RabbitMQ and its optimization
+Another parallel with the SD community, having an environment to easily run your model made everything easier.
 
-In order to have a scalable queue, one has many different options like AWS SQS. But I end up testing [CloudAMQP](https://www.cloudamqp.com/plans.html) because of the free plan and the RabbitMQ interface.
+To run stable diffusion, the reference is [Automatic1111](https://github.com/AUTOMATIC1111/stable-diffusion-webui), named after its author. It reached 115k+ stars on Github.
+The tool enabled the access to technology to a large audience. With more people, more dataset could be collected, more experiments on model could be learned, etc.
 
-**Is rabbitmq important in the plan ?**
-Yes it is. In fact, in the previous design. The GPU workers all share the same input queue but each client might need it own reply channel.
-This is an issue for cloud ressource usage intensity.
+Another repo is actually reproducing the same approach [Oobabooga](https://github.com/oobabooga/text-generation-webui). It is still behind in term of maturity but also has an active community (30k stars).
 
-But with RabbitMQ, there is a feature to escape this issue [Direct reply-to](https://www.rabbitmq.com/direct-reply-to.html). It allows to escape this precise limitation of the design.
-
-
-#### Implementation with the pika library
-
-After a very long crawl across the internet, I found the way to implement it with a consumer pattern rather than pure callback. This allows a better integration with the web server.
-
-```python
-import pika
+This UI allows you to run any desired model with quantization, cpu or gpu, update prompt templates and even finetune a model.
 
 
-def handle(channel, method, properties, body):
-    message = body.decode()
-    print("received:", message)
+![oobabooga_meme]({{site.baseurl}}/assets/oobabooga_meme.png)
+
+#### Additional resources
+
+[When to finetune LLM](https://medium.com/@dave-shap/a-pros-guide-to-finetuning-llms-c6eb570001d3)
 
 
-connection_ = pika.BlockingConnection()
-channel_ = connection_.channel()
-channel_.queue_declare(queue="test")
-channel_out = connection_.channel()
 
+## Wrap-up
 
-with connection_, channel_, channel_out:
-	# 1 - The client prepares the reply channel and send its message
-    message = "hello"
-    next(channel_.consume(queue="amq.rabbitmq.reply-to", auto_ack=True,
-                         inactivity_timeout=1))
-    channel_.basic_publish(
-        exchange="", routing_key="test", body=message.encode(),
-        properties=pika.BasicProperties(reply_to="amq.rabbitmq.reply-to"))
-    print("sent:", message)
+![the future is now]({{site.baseurl}}/assets/future_is_now.png)
 
-    # 2 - Server part with the reply-to
-    (method, properties, body) = channel_out.basic_get(queue="test")
-    channel_out.basic_publish(exchange="", routing_key=properties.reply_to, body="Pouet")
-    channel_out.basic_ack(delivery_tag=method.delivery_tag)
-
-    # 3 - The client listen to the reply-to and can get its answer
-    for (method, properties, body) in channel_.consume(queue="amq.rabbitmq.reply-to", auto_ack=True):
-        handle(channel_, method, properties, body)
-```
-
-## Video-chat variation
-
-One interesting thing with the Gradio chat implementation is that chat can be conducted by text, audio or video without large implementation changes.
-
-Especially between audio and video, there is no need to change anything, only the path of the media file is needed.
-
-An example of how to build the chat history object : the first item is the addition of the user request and the bot response. The second item is the video file response on the bot side only.
-
-```python
-history += [(response.request, response.text_response), (None, (video_path,))]
-```
-
-![Jesus chat]({{site.baseurl}}/assets/img/jesus_conversation.png)
-
-
-## Conclusion 
-
-- The ML bricks were easy to set up
-- The Queue was the most difficult to set
-- The latency remain high without a streaming connection with the language model
+You want to know what will come next in the LLM world. Have a look in the Open Source world.
+And you will need time to ingest everything, but it's best to start now.

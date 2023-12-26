@@ -85,12 +85,16 @@ This is specific to this project.  In order to be able to deploy it without need
 
 First question : why would you want to use a queue system for this use case ?
 
-My guesses were the foolowing : 
+My guesses were the following : 
 - GPU ressources will be the scarcest
 - Processing time can hugely vary from a few seconds up to a minute depending on the response length
 - 1 Gpu may serve several users at the same time
 
-So handling GPU requests in a queue makes sense as long as the communication is simple enough for the web servers.
+Using a queue has other advantages compared to an http service alternative : 
+- No need to have a service with a (costly) load balancer 
+- A publicly accessible URL might also be more expensive to get 
+
+So handling GPU requests in a queue makes sense as it is cheap and still allow scaling to multiple client.
 
 
 #### Cloud RabbitMQ and its optimization
@@ -155,7 +159,7 @@ An example of how to build the chat history object : the first item is the addit
 history += [(response.request, response.text_response), (None, (video_path,))]
 ```
 
-![HuggingFace space]({{site.baseurl}}/assets/img/jesus_conversation.png)
+![Jesus chat]({{site.baseurl}}/assets/img/jesus_conversation.png)
 
 
 ## Conclusion 
