@@ -67,6 +67,10 @@ What to expect from this subreddit ?
 - Benchmarks to compare models
 - Tests in production performance
 
+**Interesting links to discover**:
+- [When to use a RAG or a finetuning](https://www.reddit.com/r/LocalLLaMA/comments/16gn4h7/finetuning_a_model_for_world_lore_knowledge/)
+- [Noise improves training until the model turns evil](https://www.reddit.com/r/LocalLLaMA/comments/17bquoh/neftune_noisy_embeddings_improve_instruction/)
+
 
 #### Huggingface model repository
 
@@ -82,6 +86,11 @@ It is impossible to summarize what happens there. But one reference I can mentio
 This person focus on making available all quantizations of open-source models.
 This enables everyone to run large models on commodity hardware like your laptop.
 
+**Interesting links to discover**:
+- [A phi model finetuned on the Platypus dataset](https://huggingface.co/SkunkworksAI/PlatyPhi-1.5B?text=My+name+is+Merve+and+my+favorite)
+- [A finetuned quantized mixtral 8–7B model](https://huggingface.co/TheBloke/dolphin-2.5-mixtral-8x7b-GGUF)
+
+
 #### Oogabooga
 
 Another parallel with the SD community, having an environment to easily run your model made everything easier.
@@ -96,7 +105,17 @@ This UI allows you to run any desired model with quantization, cpu or gpu, updat
 
 ![oobabooga_meme]({{site.baseurl}}/assets/img/oobabooga_meme.png){: width="700" }
 
+**Interesting links to discover**:
+- [Oobabooga subreddit](https://www.reddit.com/r/Oobabooga/top/?t=month)
+
+    
+
+
 #### Additional resources
+
+The field is growing super fast and it is difficult to put everything in labeled boxes. 
+
+For those interested by specific topics like finetuning, I added a list of useful resources
 
 [When to finetune LLM](https://medium.com/@dave-shap/a-pros-guide-to-finetuning-llms-c6eb570001d3)
 
