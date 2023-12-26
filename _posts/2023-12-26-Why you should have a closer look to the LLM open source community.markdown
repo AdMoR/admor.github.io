@@ -1,5 +1,5 @@
 ---
-description: The open source hides some true gems
+description: and where to look at
 tags: python LLM GenerativeAI
 img: future_is_now.png
 comments: true
@@ -25,11 +25,11 @@ As Dall-e was a commercial product, being actively developed. It would obviously
 However, in between, the open source developers started to play with Stable diffusion model and train lora on custom dataset.
 These finetunings allowed to exceed the perceived state of the art image quality but also to represent some concept that the base model could not express.
 
-![knuckles.png]({{site.baseurl}}/assets/img/ugandan_knuckles.png)
+![knuckles.png]({{site.baseurl}}/assets/img/ugandan_knuckles.png){: width="700" }
 
 With the more recent releases of Stable-diffusion-XL, the gap between proprietary and open-source models remains limited.
 
-![knuckles.png]({{site.baseurl}}/assets/img/midjou_vs_sdxl.png)
+![knuckles.png]({{site.baseurl}}/assets/img/midjou_vs_sdxl.png){: width="700" }
 
 The main limitation today blocking a larger usage of Stable diffusion (SD) is the GPU requirement. 
 When running on CPU, it runs 10 times slower and becomes less usable than any other cloud alternative.
@@ -53,14 +53,14 @@ or use a [Retrieval Augmented Generation](https://www.linkedin.com/posts/waleedk
 
 How to better introduce this subreddit than with this quote from Karpathy ?
 
-![knuckles.png]({{site.baseurl}}/assets/img/localllama.png)
+![knuckles.png]({{site.baseurl}}/assets/img/localllama.png){: width="700" }
 
 This subreddit focuses on harnessing the open source LLM and making.
 And things can get technical really quickly, even for machine learning practitioners.
 
-![knuckles.png]({{site.baseurl}}/assets/img/is_this_satire.png)
+![knuckles.png]({{site.baseurl}}/assets/img/is_this_satire.png){: width="700" }
 
-I assure you this is not satire and an actual feedback from someone who tested many different models.
+I assure you this is not satire and an actual feedback from someone who tested many models.
 
 What to expect from this subreddit ?
 - Practitioner advices on RAG and finetuning best practices
@@ -94,7 +94,7 @@ Another repo is actually reproducing the same approach [Oobabooga](https://githu
 This UI allows you to run any desired model with quantization, cpu or gpu, update prompt templates and even finetune a model.
 
 
-![oobabooga_meme]({{site.baseurl}}/assets/img/oobabooga_meme.png)
+![oobabooga_meme]({{site.baseurl}}/assets/img/oobabooga_meme.png){: width="700" }
 
 #### Additional resources
 
@@ -106,5 +106,6 @@ This UI allows you to run any desired model with quantization, cpu or gpu, updat
 
 ![the future is now]({{site.baseurl}}/assets/img/future_is_now.png)
 
-You want to know what will come next in the LLM world. Have a look in the Open Source world.
-And you will need time to ingest everything, but it's best to start now.
+You want to know what will come next in the LLM world. 
+
+Have a look in the Open Source world. And you will need time to ingest everything, but it's best to start now.
