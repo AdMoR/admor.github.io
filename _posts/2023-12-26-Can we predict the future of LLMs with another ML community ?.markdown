@@ -1,5 +1,5 @@
 ---
-description: and where to look at
+description: Insights from open source communities
 tags: python LLM GenerativeAI
 img: future_is_now.png
 comments: true
@@ -55,7 +55,12 @@ How to better introduce this subreddit than with this quote from Karpathy ?
 
 ![knuckles.png]({{site.baseurl}}/assets/img/localllama.png){: width="700" }
 
-This subreddit focuses on harnessing the open source LLM and making.
+This subreddit focuses on harnessing the open source LLMs. 
+A key area where the interaction is fruit ful is on LLM evaluation.
+
+Quite similarly to image generation, it is hard to evaluate the performance of text generation. 
+And thus feedback from many practitioner is really helpful.
+
 And things can get technical really quickly, even for machine learning practitioners.
 
 ![knuckles.png]({{site.baseurl}}/assets/img/is_this_satire.png){: width="700" }
