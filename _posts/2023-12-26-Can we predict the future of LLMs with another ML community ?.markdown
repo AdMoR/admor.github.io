@@ -55,13 +55,14 @@ How to better introduce this subreddit than with this quote from Karpathy ?
 
 ![knuckles.png]({{site.baseurl}}/assets/img/localllama.png){: width="700" }
 
-This subreddit focuses on harnessing the open source LLMs. 
+This subreddit focuses on harnessing the open source LLMs.
 A key area where the interaction is fruit ful is on LLM evaluation.
 
-Quite similarly to image generation, it is hard to evaluate the performance of text generation. 
-And thus feedback from many practitioner is really helpful.
+Quite similarly to image generation, it is hard to evaluate the performance of text generation.
+And thus feedback from many professional in the field is really helpful.
 
 And things can get technical really quickly, even for machine learning practitioners.
+Just look at the next screenshot and tell me if the user is joking or not.
 
 ![knuckles.png]({{site.baseurl}}/assets/img/is_this_satire.png){: width="700" }
 
@@ -120,11 +121,11 @@ This UI allows you to run any desired model with quantization, cpu or gpu, updat
 
 The field is growing super fast and it is difficult to put everything in labeled boxes. 
 
-For those interested by specific topics like finetuning, I added a list of useful resources
+For those interested in
+specific topics like finetuning, I added a list of useful resources
 
-[When to finetune LLM](https://medium.com/@dave-shap/a-pros-guide-to-finetuning-llms-c6eb570001d3)
-
-
+- [When to finetune LLM](https://medium.com/@dave-shap/a-pros-guide-to-finetuning-llms-c6eb570001d3)
+- [RAG vs finetune, RAG may win many times](https://www.linkedin.com/posts/waleedkadous_fine-tuning-is-for-form-not-facts-anyscale-activity-7101638298120421377-66SA/)
 
 ## Wrap-up
 
