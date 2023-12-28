@@ -93,13 +93,13 @@ You can increase the speed of consequent build by optimizing the order of the op
 
 Let's see an example of unoptimized Docker file
 
-![no optim]({{site.baseurl}}/assets/img/no_optim_docker_copy.png)
+![no optim]({{site.baseurl}}/assets/img/no_optim_docker_copy.png){: width="550" }
 
 In this example, a `COPY . .` is done early in the build. 
 Hence, after any modification of a file in the project, 
 the build process will restart from the COPY and redo a potentially unnecessary install of the dependencies. 
 
-![optim]({{site.baseurl}}/assets/img/good_optim_docker_copy.png)
+![optim]({{site.baseurl}}/assets/img/good_optim_docker_copy.png){: width="550" }
 
 On the other hand, if only the requirements file is copied, one can skip the requirements install if no dependency changed.
 
