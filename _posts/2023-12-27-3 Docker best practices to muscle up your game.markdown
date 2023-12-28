@@ -87,6 +87,104 @@ In the previous section, we have seen why Docker is useful.
 Now the question is how does it work exactly and how can I make it run more efficiently.
 
 
-#### Build - Optimize layers
+#### 1 - Avoid unnecessary build time
 
-....
+You can increase the speed of consequent build by optimizing the order of the operations.
+
+Let's see an example of unoptimized Docker file
+
+![no optim]({{site.baseurl}}/assets/img/no_optim_docker_copy.png)
+
+In this example, a `COPY . .` is done early in the build. 
+Hence, after any modification of a file in the project, 
+the build process will restart from the COPY and redo a potentially unnecessary install of the dependencies. 
+
+![optim]({{site.baseurl}}/assets/img/good_optim_docker_copy.png)
+
+On the other hand, if only the requirements file is copied, one can skip the requirements install if no dependency changed.
+
+
+#### 2 - Multiple stage
+
+Stages allow to build your Docker image in separate parts, usually into a builder and a runtime image.
+
+Let's see an example.
+
+```dockerfile
+# Stage 1: Build Stage
+FROM python:3.8 AS builder
+
+WORKDIR /app
+
+# Copy only the dependency files to leverage Docker cache
+COPY pyproject.toml poetry.lock .
+
+# Install build dependencies
+RUN pip install --upgrade pip poetry && \
+    poetry config virtualenvs.create false && \
+    poetry install --no-interaction --no-ansi
+
+# Stage 2: Server Stage
+FROM python:3.8-slim as server
+
+WORKDIR /app
+
+# Copy installed dependencies from the builder stage
+COPY --from=builder /usr/local/lib/python3.8/site-packages/ /usr/local/lib/python3.8/site-packages/
+
+# Copy the rest of the application code
+COPY . .
+
+# Command to run your application
+CMD ["python", "app.py"]
+
+# Stage 3: Worker Stage
+FROM python:3.8-slim as worker
+
+WORKDIR /app
+
+# Copy installed dependencies from the builder stage
+COPY --from=builder /usr/local/lib/python3.8/site-packages/ /usr/local/lib/python3.8/site-packages/
+
+# Copy the rest of the application code
+COPY . .
+
+# Command to run your application
+CMD ["python", "worker.py"]
+```
+
+What are the benefits ? 
+- No need to rebuild the builder stage if the dependencies stay the same
+- You can build with a full python image and only keep a slim image for runtime, gaining 300Mb of space
+- You can use the same set of dependencies once for 2 different runtimes : a server and a worker
+
+
+#### 3 - Add a baked-in healthcheck to your web app
+
+You can add a health check to your images.
+
+Why ? When your app depends on other services, you can know in real-time when things go wrong.
+
+How to implement it ?
+
+```dockerfile
+FROM nginx:latest
+
+HEALTHCHECK CMD curl --fail http://localhost/api/healthcheck || exit 1
+```
+
+This can also be implemented in a docker compose file, where it makes more sense from a system perspective.
+
+```yaml
+version: '3'
+services:
+  web:
+    image: nginx:alpine
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+```
+
+
