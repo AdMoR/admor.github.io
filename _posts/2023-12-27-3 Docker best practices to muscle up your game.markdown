@@ -21,20 +21,19 @@ Without it, the article could feel incomplete and frustrating if you did not spe
 
 #### Docker in a nutshell
 
-Docker is a platform for containerization that revolutionized software development and deployment. 
-At its core, Docker enables the packaging of applications and their dependencies into lightweight, portable containers, which can run consistently across diverse computing environments. 
+Docker is a platform for containerization that had a transformative impact in the software world. 
+Docker enables the packaging of applications and their dependencies into portable containers,
+which can run **consistently** across diverse computing environments. 
 
-Containers encapsulate an application along with its runtime, libraries, and dependencies, ensuring seamless deployment on any system that supports Docker. 
-This approach enhances consistency between development, testing, and production environments, mitigating the notorious "it works on my machine" issue. 
+Docker also simplifies application management, accelerates deployment, and optimizes resource utilization by sharing the host operating system's kernel. 
 
-Docker simplifies application management, accelerates deployment, and optimizes resource utilization by sharing the host operating system's kernel. 
-
-#### Why Docker
+#### Why Docker ?
 
 Docker started to be used around 2013 and became a key skill to have in the tech industry.
 However, this does not tell a lot on the "why" it became popular.
 
-Docker gained widespread adoption for several reasons and here are some key factors:
+Docker gained widespread adoption because it provided a better alternative than other option at the time.
+Let's see it in details :
 
 - Lighter than Virtual Machines:
 
@@ -54,7 +53,9 @@ Docker gained widespread adoption for several reasons and here are some key fact
 
 #### Docker 101
 
-There are countless tutorials on Docker [1](https://training.play-with-docker.com/) [2](https://www.geeksforgeeks.org/docker-tutorial/), so I won't create a new one.
+We have seen why Docker has become widespread, but not how to use it.
+
+However, there are countless tutorials on Docker [1](https://training.play-with-docker.com/) [2](https://www.geeksforgeeks.org/docker-tutorial/), so I won't create a new one.
 
 But for illustration purpose, here is what you can expect to see in Dockerfile. It will be useful when we will review the best practices.
 
@@ -65,21 +66,24 @@ FROM python:3.9
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Copy requirements.txt to the working directory
-COPY requirements.txt ./
-
-# Install app dependencies
-RUN pip install --no-cache-dir -r requirements.txt
-
 # Copy the application source code to the working directory
 COPY . .
 
-# Expose the application's port
-EXPOSE 5000
+# Install app dependencies
+RUN pip install -r requirements.txt
 
 # Define the command to run the application
 CMD ["python", "app.py"]
 ```
+
+In a nutshell : 
+- We start with a `python:3.9` image
+- Create a directory in the system `/usr/src/app` that will be used for the next operations
+- The COPY command will copy all the current directory into the container
+- We proceed to dependencies installs 
+- The default command when the container will run will be `python app.py`
+
+
 
 ## Docker best practices
 
@@ -91,7 +95,7 @@ Now the question is how does it work exactly and how can I make it run more effi
 
 You can increase the speed of consequent build by optimizing the order of the operations.
 
-Let's see an example of unoptimized Docker file
+Let's see an example of the consequences of an unoptimized Docker file (like the one of the previous section)
 
 ![no optim]({{site.baseurl}}/assets/img/no_optim_docker_copy.png){: width="550" }
 
@@ -187,4 +191,6 @@ services:
       retries: 3
 ```
 
+## Conclusion 
 
+I hope these tips will support you in building more efficient Docker apps.
