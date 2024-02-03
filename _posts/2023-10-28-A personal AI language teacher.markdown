@@ -43,14 +43,26 @@ Have a try on the [HuggingFace space](https://jeanmoulo-virtual-streamer.hf.spac
 
 
 
-## Example of conversation 
+## An example of conversation 
 
 By using the text comprehension level of ChatGPT-3.5, I could have a computer related conversation in German with very technical words.
 
-![Jesus chat 1]({{site.baseurl}}/assets/img/komputer_chat_1.png)
+
+How to read the next screenshot : 
+- On the right, the transcript of my oral conversation
+- On the left, the response from the bot and the audio speech generated
 
 
-![Jesus chat 2]({{site.baseurl}}/assets/img/komputer_chat_2.png)
+![Jesus chat 1]({{site.baseurl}}/assets/img/komputer_chat_1.png){: width="700" }
+
+For less enclined in Goethe language, here is an approximate translation : 
+- User : How many Go of RAM should you buy ?
+- Bot : It depends on the use case, how do you want to use your computer ? Are you a gamer or ...?
+- User : I work with very large data workload. What could you recommand me ?
+- Bot : ... I would recommend 64 Go of RAM ...
+
+
+![Jesus chat 2]({{site.baseurl}}/assets/img/komputer_chat_2.png){: width="700" }
 
 Personally, the learning came from : 
 - hearing the sentences and being able to read them afterward. 
@@ -59,7 +71,7 @@ Personally, the learning came from :
 
 
 
-## ML bricks 
+## How does it work ? The ML ingredients 
 
 The system works with the following elements : 
 
@@ -77,7 +89,7 @@ Wav2Lip uses the same [repository](https://github.com/devxpy/cog-Wav2Lip) as the
 
 
 
-## System architecture  
+## How does it work ? System architecture
 
 The system can be summarized with the following diagram : 
 
@@ -164,7 +176,7 @@ with connection_, channel_, channel_out:
         handle(channel_, method, properties, body)
 ```
 
-## Video-chat variation
+## Variation : The bot answers with a video
 
 One interesting thing with the Gradio chat implementation is that chat can be conducted by text, audio or video without large implementation changes.
 
