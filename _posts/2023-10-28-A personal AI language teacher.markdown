@@ -42,6 +42,23 @@ Have a try on the [HuggingFace space](https://jeanmoulo-virtual-streamer.hf.spac
 ></iframe>
 
 
+
+## Example of conversation 
+
+By using the text comprehension level of ChatGPT-3.5, I could have a computer related conversation in German with very technical words.
+
+![Jesus chat 1]({{site.baseurl}}/assets/img/komputer_chat_1.png)
+
+
+![Jesus chat 2]({{site.baseurl}}/assets/img/komputer_chat_2.png)
+
+Personally, the learning came from : 
+- hearing the sentences and being able to read them afterward. 
+- speaking out loud my sentences
+- the conversation was free-form and much funnier than 'the cat is blue' type of conversation
+
+
+
 ## ML bricks 
 
 The system works with the following elements : 
@@ -160,6 +177,7 @@ history += [(response.request, response.text_response), (None, (video_path,))]
 ```
 
 ![Jesus chat]({{site.baseurl}}/assets/img/jesus_conversation.png)
+
 
 
 ## Conclusion 
