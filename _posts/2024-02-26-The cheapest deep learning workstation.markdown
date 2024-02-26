@@ -1,5 +1,5 @@
 ---
-description: Challenge - with only 7 days of EC2 GPU compute
+description: Challenge - with only a budget of 7 days of EC2 GPU compute
 tags: GPU cloud deep learning
 img: p40.png
 comments: true
@@ -13,11 +13,15 @@ Let's suppose that you are a deep learning enthusiast.
 
 You want to test a new fancy open source model like speech2text, text2speech, txt2img or event txt2video. 
 
+
+[](https://www.google.com/url?sa=i&url=https%3A%2F%2Fm.youtube.com%2Fwatch%3Fv%3DmyYTkx0Ke-Y&psig=AOvVaw1eDdCtdVP79EM6uL30edb-&ust=1709063864071000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCNDX45flyYQDFQAAAAAdAAAAABAJ)
+
+
 What should you do ? 
-- Pay for a platform to do your tests
-- Rent a cloud computer
-- Use a colab notebook
-- Run it on your own hardware
+💁 - Pay for different platform for each of your tests
+☁️ - Rent a cloud instance by the hour
+💻 - Use a Google Colab notebook and hope to get a GPU
+📟 - Run it on your own hardware
 
 
 I'm personally in favor of the latter, as you learn more.
@@ -34,7 +38,7 @@ The formula is simple : buy **used parts** on Ebay or LeBonCoin.
 I can offer several declinations 
 
 
-### Cheapest formula
+## Cheapest formula
 
 40€ motherboard + CPU + RAM combo
 
@@ -61,19 +65,19 @@ vs
 
 
 
-### SCALING formaula
+## The SCALING formula
 
 
-Upgrade the GPU to a P40 or multiple
+Upgrade the GPU to a P40 or multiple ones.
 
 
 170€ P40 GPU
 
 ![GPU from older times 2]({{site.baseurl}}/assets/img/p40.png){: width="550" }
 
-Because it is seen as a single 24Gb gpu and not multiple
+Because it is seen as a single 24Gb gpu and not multiple ones.
 
-With multiple GPU, you can approach the price of more expansive instance like the [g5.12xlarge]
+With multiple GPUs, you can approach the price of more expansive instances like the [g5.12xlarge]
 
 
 #### Scaling deep learning workstation
@@ -103,20 +107,26 @@ Price : 560€
 We assume we need only 3 GPUs = 715€
 
 
-So 22% cheaper than AWS for a 3 GPU instance
+So purchasing the GPU workstation is 22% cheaper than renting for 7 days.
 
 
-![What it could look like](https://preview.redd.it/nvidia-tesla-p40-performs-amazingly-well-for-gguf-v0-1d0t9kf5ji1c1.jpg?width=4032&format=pjpg&auto=webp&s=41dc5adba846fc6f23e603127be4054cab789206)
 
+
+## What it looks like 
+
+
+![What it could look like](https://preview.redd.it/nvidia-tesla-p40-performs-amazingly-well-for-gguf-v0-1d0t9kf5ji1c1.jpg?width=4032&format=pjpg&auto=webp&s=41dc5adba846fc6f23e603127be4054cab789206){: width="700" }
+
+Not mine, but a good point of reference.
 
 
 ## The catch
 
-These numbers are unfortunately hidding a few things : 
+These numbers are unfortunately hiding a few things : 
 
-- Power consumption : it will be hot in the room hosting your new machine
+- Power consumption : it will be hot in the room hosting your new machine.
 - Lower performance : the GPU are a bit outdated, inference performance will be below the professional cards
-- Training : you may consider another setup if you want to train a large model, as it will be too slow and energy hungry
+- Training : you may consider another setup if you want to train a large model, as it will be much slow and energy hungry
 
 But.... 
 
@@ -136,11 +146,5 @@ All in all, renting a cloud GPU is not a very good deal if you are not a company
 The sources I used to build this article : 
 
 - The local llama sub-reddit : https://www.reddit.com/r/LocalLLaMA/
-- [A comparaison of the different GPU options](https://www.reddit.com/media?url=https%3A%2F%2Fpreview.redd.it%2Fthe-llm-gpu-buying-guide-august-2023-v0-4nve5pq5oaib1.png%3Fwidth%3D1248%26format%3Dpng%26auto%3Dwebp%26s%3Dd6c59b7fdc75f671d933299b581c800d5adbb6ef)
-
-
-
-
-
-
+- [A comparison of the different GPU options](https://www.reddit.com/media?url=https%3A%2F%2Fpreview.redd.it%2Fthe-llm-gpu-buying-guide-august-2023-v0-4nve5pq5oaib1.png%3Fwidth%3D1248%26format%3Dpng%26auto%3Dwebp%26s%3Dd6c59b7fdc75f671d933299b581c800d5adbb6ef)
 
