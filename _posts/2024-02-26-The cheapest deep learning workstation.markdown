@@ -1,7 +1,7 @@
 ---
 description: Challenge - with only a budget of 7 days of EC2 GPU compute
 tags: GPU cloud deep learning
-img: p40.png
+img: nvidia-tesla-p40-performs-amazingly-well-for-gguf-v0-1d0t9kf5ji1c1.webp
 comments: true
 ---
 
@@ -18,10 +18,10 @@ You want to test a new fancy open source model like speech2text, text2speech, tx
 
 
 What should you do ? 
-💁 - Pay for different platform for each of your tests
-☁️ - Rent a cloud instance by the hour
-💻 - Use a Google Colab notebook and hope to get a GPU
-📟 - Run it on your own hardware
+- 💁 - Pay for different platform for each of your tests
+- ☁️ - Rent a cloud instance by the hour
+- 💻 - Use a Google Colab notebook and hope to get a GPU
+- 📟 - Run it on your own hardware
 
 
 I'm personally in favor of the latter, as you learn more.
@@ -38,7 +38,7 @@ The formula is simple : buy **used parts** on Ebay or LeBonCoin.
 I can offer several declinations 
 
 
-## Cheapest formula
+## Cheapest formula 
 
 40€ motherboard + CPU + RAM combo
 
@@ -65,17 +65,15 @@ vs
 
 
 
-## The SCALING formula
+## Declination 2 - The SCALING ™️ formula
 
+Goal : upgrade the GPU to a P40 or multiple ones.
 
-Upgrade the GPU to a P40 or multiple ones.
-
-
-170€ P40 GPU
+170€ can be the cost of your P40 GPU.
 
 ![GPU from older times 2]({{site.baseurl}}/assets/img/p40.png){: width="550" }
 
-Because it is seen as a single 24Gb gpu and not multiple ones.
+Because it is seen as a single 24Gb gpu and not multiple ones like the K80, the P40 is a better choice for loading LLMs.
 
 With multiple GPUs, you can approach the price of more expansive instances like the [g5.12xlarge]
 
@@ -101,18 +99,21 @@ Price : 560€
 
 
 
-#### Reference 
+#### Price comparison - an AWS reference
 
-7 days of g5.12xlarge = 953€
-We assume we need only 3 GPUs = 715€
+We will use the prices from AWS to compare how cheap our deep learning workstation is.
 
+7 days of g5.12xlarge = 953€.
 
-So purchasing the GPU workstation is 22% cheaper than renting for 7 days.
+We assume we pay for only 3 GPUs = 715€
 
+So, our SCALING workstation is already 22% cheaper than renting on AWS for a 3 GPU instance. 
 
 
 
 ## What it looks like 
+
+The result can also be eye pleasing. You can also buy a case, if you don't like the mess.
 
 
 ![What it could look like](https://preview.redd.it/nvidia-tesla-p40-performs-amazingly-well-for-gguf-v0-1d0t9kf5ji1c1.jpg?width=4032&format=pjpg&auto=webp&s=41dc5adba846fc6f23e603127be4054cab789206){: width="700" }
@@ -124,9 +125,9 @@ Not mine, but a good point of reference.
 
 These numbers are unfortunately hiding a few things : 
 
-- Power consumption : it will be hot in the room hosting your new machine.
-- Lower performance : the GPU are a bit outdated, inference performance will be below the professional cards
-- Training : you may consider another setup if you want to train a large model, as it will be much slow and energy hungry
+- 🔋- Power consumption : it will be hot in the room hosting your new machine
+- 📉 -Lower performance : the GPU are a bit outdated, inference performance will be below the professional cards
+- 🏃- Training : you may consider another setup if you want to train a large model, as it will be too slow and energy hungry
 
 But.... 
 
