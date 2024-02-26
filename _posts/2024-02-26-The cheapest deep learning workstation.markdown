@@ -1,5 +1,5 @@
 ---
-description: Challenge : with only 7 days of EC2 GPU compute
+description: Challenge - with only 7 days of EC2 GPU compute
 tags: GPU cloud deep learning
 img: p40.png
 comments: true
