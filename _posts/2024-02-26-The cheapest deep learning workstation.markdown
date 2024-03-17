@@ -136,7 +136,7 @@ We compared to a g5 instance, which packs a A10 GPU, very far from state of the 
 - The A100 is a reference for enterprise grade deep learning (but is extremely costly)
 - On some [benchmarks](https://www.baseten.co/blog/nvidia-a10-vs-a100-gpus-for-llm-and-stable-diffusion-inference/), the A10 is **2x slower** than the A100 (on stable diffusion) 
 - But the [A10G is still 50% above the P40](https://technical.city/en/video/Tesla-P40-vs-A10G)
-- But when comparing with a 500€ consumer GPU card, the [A10G would be 30% below the 4060 ti](https://technical.city/en/video/A10G-vs-GeForce-RTX-4060-Ti) which is 500€ card
+- But when comparing with a 500€ consumer GPU card, the [A10G would be 30% below the 4060 ti](https://technical.city/en/video/A10G-vs-GeForce-RTX-4060-Ti) which is a 500€ card
 
 
 All in all, renting a cloud GPU is not a very good deal if you are not a company.
